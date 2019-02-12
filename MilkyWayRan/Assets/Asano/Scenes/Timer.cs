@@ -16,10 +16,25 @@ public class Timer : MonoBehaviour
     void Start()
     {
         //テキスト参照
-        s_timerText = GetComponentInChildren<Text>(); 
+        s_timerText = GetComponentInChildren<Text>();
+        //わざとtrue
+        Sta_Mai = true;
     }
 
     void Update()
+    {
+        //押されたら
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            Sta_Mai = false;
+        }
+        //スタート
+        TimeCount_False();
+        //メイン
+        TimeCount_True();
+    }
+    //スタートです
+    public void TimeCount_False()
     {
         //スタートカウントダウン
         if (Sta_Mai == false)
@@ -40,16 +55,21 @@ public class Timer : MonoBehaviour
                 Sta_Mai = true;
             }
         }
-        //1になったら表示
-        if (minute <=1 )
+        //minuteが1になったら表示
+        if (minute <= 1)
         {
             //スタートを表示
             s_timerText.text = "START!";
             interval -= Time.deltaTime;
         }
 
+        
+        }
+    //メインです
+    public void TimeCount_True()
+    {
         //メインカウントダウン
-        if (Sta_Mai == true&&interval<=0)
+        if (Sta_Mai == true && interval <= 0)
         {
             interval = 0.0f;
             //メインのカウントダウン準備
@@ -64,7 +84,7 @@ public class Timer : MonoBehaviour
             Seconds = (int)mainminute;
             //テキストに反映するよ
             s_timerText.text = Seconds.ToString();
-            
+
             //mainminuteが０までやる
             if (mainminute <= 0)
             {
@@ -75,6 +95,7 @@ public class Timer : MonoBehaviour
             }
         }
     }
+
     //シーン移動してくれます。
     public void SceneGoto()
     {
