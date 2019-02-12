@@ -14,6 +14,10 @@ public class TamaTobasu : MonoBehaviour
     public Vector3 GreenPos { set { greenPos = value; } }
     //進む割合を管理する変数
     float time;
+
+    //弾の消える時間（追加しましたby中島）
+    public float Destroybullet = 5.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,5 +38,7 @@ public class TamaTobasu : MonoBehaviour
         var b = Vector3.Lerp(greenPos, targetPos, time);
         //上の二つの点を結んだベクトル上を通る点の現在の位置（弾の位置）
         this.transform.position = Vector3.Lerp(a, b, time);
+
+        Destroy(gameObject, Destroybullet);//数秒後弾を消す
     }
 }
