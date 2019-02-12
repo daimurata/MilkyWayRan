@@ -23,6 +23,7 @@ public class TamaTobasu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+     
         //弾の進む割合をTime.deltaTimeで決める
         time += Time.deltaTime;
 
