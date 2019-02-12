@@ -6,44 +6,79 @@ using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
-    private Text timerText;
-    public Text startText;
-    public float minute;
-    private float oldminute;
-
-    bool g_start;
-    
-    // Start is called before the first frame update
+    public Text s_timerText;//表示テキスト
+    public float minute=3.0f;//スタートカウント
+    public float mainminute = 10.0f;//ゲームカウント
+    public bool Sta_Mai=false;//切り替えスタート＆メイン
+    int Seconds;//変換
+    public float interval = 1.0f;//インターバル
+    public string NextSceneName;//シーン名
     void Start()
     {
-        minute = 3;
-        oldminute = 0f;
-        timerText = GetComponentInChildren<Text>();
-        startText = GetComponentInChildren<Text>();
-
-        g_start = true;
+        //テキスト参照
+        s_timerText = GetComponentInChildren<Text>(); 
     }
 
-    // Update is called once per frame
     void Update()
     {
-        minute -= Time.deltaTime;
-        if (minute <= 0)
+        //スタートカウントダウン
+        if (Sta_Mai == false)
         {
-            minute = 0;
-            //------------------------
-            if (minute <= 0) 
+            //スタートカウントダウン開始
+            minute -= Time.deltaTime;
+            //int型に直すよ
+            Seconds = (int)minute;
+            //テキストに反映するよ
+            s_timerText.text = Seconds.ToString();
+
+            //minuteが０になるまでやる
+            if (minute <= 0)
             {
-                minute = 0;
-                //シーン移動
-                //SceneManager.LoadScene("RESULT");
-            }
-            else
-            {
-                return;
+                //minuteを０で止めるよ！
+                minute = 0f;
+                //メインに行ける
+                Sta_Mai = true;
             }
         }
-        //TEXTの更新
-        timerText.text = minute.ToString("00");
+        //1になったら表示
+        if (minute <=1 )
+        {
+            //スタートを表示
+            s_timerText.text = "START!";
+            interval -= Time.deltaTime;
+        }
+
+        //メインカウントダウン
+        if (Sta_Mai == true&&interval<=0)
+        {
+            interval = 0.0f;
+            //メインのカウントダウン準備
+            if (mainminute == 10.0f)
+            {
+                //textの更新
+                s_timerText.text = mainminute.ToString("00");
+            }
+            //カウントダウン開始
+            mainminute -= Time.deltaTime;
+            //int型に直すよ
+            Seconds = (int)mainminute;
+            //テキストに反映するよ
+            s_timerText.text = Seconds.ToString();
+            
+            //mainminuteが０までやる
+            if (mainminute <= 0)
+            {
+                //mainminuteを０にする
+                mainminute = 0;
+                //シーン移動
+                SceneGoto();
+            }
+        }
+    }
+    //シーン移動してくれます。
+    public void SceneGoto()
+    {
+        //シーン移動処理
+        SceneManager.LoadScene(NextSceneName);
     }
 }
