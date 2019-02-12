@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: ddeba16c5698e4d4a8b29ea3b6ddb1dd
+guid: f3096e7ee7ddc3d4791b8776c7d7add5
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: SFS
+    100000: default
     100002: //RootNode
-    400000: SFS
+    400000: default
     400002: //RootNode
-    2100000: SFSMat
-    2300000: SFS
-    3300000: SFS
-    4300000: SFS
+    2100000: defaultMat
+    2300000: default
+    3300000: default
+    4300000: default
   externalObjects: {}
   materials:
     importMaterials: 1
