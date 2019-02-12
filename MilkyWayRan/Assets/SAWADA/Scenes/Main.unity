@@ -112,6 +112,40 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &22362218 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8006086876267364433, guid: 9e633d836f155a141aff42401129e592,
+    type: 3}
+  m_PrefabInstance: {fileID: 8006086876731317077}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &22362223
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 22362218}
+  serializedVersion: 2
+  m_Mass: 0.05
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &22362224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 22362218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43c9a2d07dcc7d4438b1c15382e8119d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &317733133
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,6 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a62d383a1b27004084baaf923b23644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obj: {fileID: 5075329975356562058, guid: 39a3a77f9ccf0644ba20ec09aae47be2, type: 3}
 --- !u!4 &317733135
 Transform:
   m_ObjectHideFlags: 0
@@ -318,6 +353,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 8006086876267364433, guid: 9e633d836f155a141aff42401129e592,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player2
+      objectReference: {fileID: 0}
     - target: {fileID: 8006086876267364445, guid: 9e633d836f155a141aff42401129e592,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -371,6 +411,11 @@ PrefabInstance:
     - target: {fileID: 8006086876267364445, guid: 9e633d836f155a141aff42401129e592,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8006086876267364432, guid: 9e633d836f155a141aff42401129e592,
+        type: 3}
+      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
