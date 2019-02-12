@@ -59,7 +59,7 @@ public class PlayerMove : MonoBehaviour
             transform.position += PlayerSpeed * direction * Time.deltaTime;
         }
     }
-    IEnumerator Atack()
+    IEnumerator Atack()//スピンのやつ
     {
         //ループを抜け出すための適当な変数
         int a = 0;
