@@ -18,6 +18,9 @@ public class attak : MonoBehaviour
     //中継地点を割り振るための変数
     int count = 0;
 
+    //★オブジェクトを入れる
+    public GameObject Star;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,37 +31,67 @@ public class attak : MonoBehaviour
     void Update()
     {
         //xキーが押された時
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            //回転処理
-            StartCoroutine(FuncCoroutine());
-        }
+        //if (Input.GetKeyDown(KeyCode.X))
+        //{
+        //    //回転処理
+        //    StartCoroutine(FuncCoroutine());
+        //}
         //zキーが押された時
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
+        //if (Input.GetKeyDown(KeyCode.Z))
+        //{
            
                
-                //自分の位置を保存
-                var pos = this.gameObject.transform.position;
-                //弾のプレハブを作成
-                var t = Instantiate(tama) as GameObject;
-                //弾の初期位置を敵の位置にする
-                t.transform.position = pos;
-                //弾につけているスクリプト、TamaTobasuコンポネントを保存する
-                var cash = t.GetComponent<TamaTobasu>();
-                //スタート地点を弾のスクリプトに渡す
-                cash.CharaPos = this.transform.position;
-                //弾を一つ打ち出すたびに中継地点を変える
-                count++;
-                //中継地点を弾のスクリプトに渡す
-                if (count % 2 == 1) cash.GreenPos = greenPoint.transform.position;
-                else cash.GreenPos = greenPoint1.transform.position;
-                //敵の位置を弾のスクリプトに渡す
-                cash.TargetPos = target.transform.position;
+        //        //自分の位置を保存
+        //        var pos = this.gameObject.transform.position;
+        //        //弾のプレハブを作成
+        //        var t = Instantiate(ta,ma) as GameObject;
+        //        //弾の初期位置を敵の位置にする
+        //        t.transform.position = pos;
+        //        //弾につけているスクリプト、TamaTobasuコンポネントを保存する
+        //        var cash = t.GetComponent<TamaTobasu>();
+        //        //スタート地点を弾のスクリプトに渡す
+        //        cash.CharaPos = this.transform.position;
+        //        //弾を一つ打ち出すたびに中継地点を変える
+        //        count++;
+        //        //中継地点を弾のスクリプトに渡す
+        //        if (count % 2 == 1) cash.GreenPos = greenPoint.transform.position;
+        //        else cash.GreenPos = greenPoint1.transform.position;
+        //        //敵の位置を弾のスクリプトに渡す
+        //        cash.TargetPos = target.transform.position;
 
             
-        }
+        //}
     }
+
+    public void kaiten()
+    {
+        //回転処理
+        StartCoroutine(FuncCoroutine());
+        
+    }
+
+    public void syageki()
+    {
+        //自分の位置を保存
+        var pos = this.gameObject.transform.position;
+        //弾のプレハブを作成
+        var t = Instantiate(tama) as GameObject;
+        //弾の初期位置を敵の位置にする
+        t.transform.position = pos;
+        //弾につけているスクリプト、TamaTobasuコンポネントを保存する
+        var cash = t.GetComponent<TamaTobasu>();
+        //スタート地点を弾のスクリプトに渡す
+        cash.CharaPos = this.transform.position;
+        //弾を一つ打ち出すたびに中継地点を変える
+        count++;
+        //中継地点を弾のスクリプトに渡す
+        if (count % 2 == 1) cash.GreenPos = greenPoint.transform.position;
+        else cash.GreenPos = greenPoint1.transform.position;
+        //敵の位置を弾のスクリプトに渡す
+        cash.TargetPos = target.transform.position;
+    }
+
+
     IEnumerator FuncCoroutine()
     {
         //ループしないようにする
@@ -66,7 +99,7 @@ public class attak : MonoBehaviour
         while (true)
         {
             //回転処理
-            transform.Rotate(0, 10, 0);
+            Star.transform.Rotate(0, 10, 0);
             yield return new WaitForSeconds(timeOut);
             //ループしないようにする処理
             a++;

@@ -9,12 +9,14 @@ public class PlayerMove : MonoBehaviour
     //移動スピード
     public float PlayerSpeed = 5.0f;
     //適当に作成、後で変更
-    public GameObject tama;
+    //public GameObject tama;
+
+    attak script; 
 
     // Use this for initialization
     void Start()
     {
-
+        
     }
     /// <summary>
     /// </summary>
@@ -26,17 +28,20 @@ public class PlayerMove : MonoBehaviour
     }
     void Move(int Number)
     {
+        attak d1 = GetComponent<attak>();
         //ボタン確認
         if (Input.GetButton("Fire1_" + PlayerNum))
         {
             //アクションを入れていく
             Debug.Log("Shot1_" + PlayerNum);
             //回転攻撃のコルーチンの呼び出し
-            StartCoroutine(Atack());
+            //StartCoroutine(Atack());
+            d1.kaiten();
         }
         if (Input.GetButton("Fire2_" + PlayerNum))
         {
             Debug.Log("Shot2_" + PlayerNum);
+            d1.syageki();
         }
         if (Input.GetButton("Fire3_" + PlayerNum))
         {
@@ -59,19 +64,19 @@ public class PlayerMove : MonoBehaviour
             transform.position += PlayerSpeed * direction * Time.deltaTime;
         }
     }
-    IEnumerator Atack()//スピンのやつ
-    {
-        //ループを抜け出すための適当な変数
-        int a = 0;
-        while (true)
-        {
-            //適当に10づつ足してる
-            tama.transform.Rotate(0, 10, 0);
-            //時間も適当で0.1秒づつ呼び出される
-            yield return new WaitForSeconds(0.1f);
-            a++;
-            if(a > 10)
-            break;
-        }
-    }
+    //IEnumerator Atack()//スピンのやつ
+    //{
+    //    //ループを抜け出すための適当な変数
+    //    int a = 0;
+    //    while (true)
+    //    {
+    //        //適当に10づつ足してる
+    //        tama.transform.Rotate(0, 10, 0);
+    //        //時間も適当で0.1秒づつ呼び出される
+    //        yield return new WaitForSeconds(0.1f);
+    //        a++;
+    //        if(a > 10)
+    //        break;
+    //    }
+    //}
 }
