@@ -72,10 +72,16 @@ public class attak : MonoBehaviour
 
     public void syageki()
     {
+        //Resourcesから複製　←ここ書き加えました
+        GameObject prefab = (GameObject)Resources.Load("Bullet");
+        
+
         //自分の位置を保存
         var pos = this.gameObject.transform.position;
         //弾のプレハブを作成
-        var t = Instantiate(tama) as GameObject;
+        //var t = Instantiate(tama) as GameObject;
+        //複製したオブジェクトの位置　←ここ書き加えました
+        var t = Instantiate(prefab, this.transform.position, Quaternion.identity);
         //弾の初期位置を敵の位置にする
         t.transform.position = pos;
         //弾につけているスクリプト、TamaTobasuコンポネントを保存する
@@ -89,6 +95,15 @@ public class attak : MonoBehaviour
         else cash.GreenPos = greenPoint1.transform.position;
         //敵の位置を弾のスクリプトに渡す
         cash.TargetPos = target.transform.position;
+    }
+
+    public void bulletshot()
+    {
+        GameObject bullet = (GameObject)Resources.Load("Bullet(shot)");
+        //Instantiate(bullet,this.transform.position, Quaternion.identity);
+        bullet = Instantiate(bullet) as GameObject;
+        
+        bullet.transform.position = transform.position;
     }
 
 

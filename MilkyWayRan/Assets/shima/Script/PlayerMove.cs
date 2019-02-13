@@ -11,7 +11,10 @@ public class PlayerMove : MonoBehaviour
     //適当に作成、後で変更
     //public GameObject tama;
 
-    attak script; 
+    attak   attakscript;
+    shot    shotscript;
+
+    bool One;
 
     // Use this for initialization
     void Start()
@@ -29,6 +32,7 @@ public class PlayerMove : MonoBehaviour
     void Move(int Number)
     {
         attak d1 = GetComponent<attak>();
+
         //ボタン確認
         if (Input.GetButton("Fire1_" + PlayerNum))
         {
@@ -38,14 +42,17 @@ public class PlayerMove : MonoBehaviour
             //StartCoroutine(Atack());
             d1.kaiten();
         }
-        if (Input.GetButton("Fire2_" + PlayerNum))
+        if (Input.GetButtonDown("Fire2_" + PlayerNum))
         {
             Debug.Log("Shot2_" + PlayerNum);
             d1.syageki();
+               
         }
         if (Input.GetButton("Fire3_" + PlayerNum))
         {
             Debug.Log("Shot3_" + PlayerNum);
+           
+           // d1.bulletshot();
         }
         //アナログスティックで動かせると思う
         float x = Input.GetAxis("Horizontal" + PlayerNum);//左右
@@ -63,6 +70,7 @@ public class PlayerMove : MonoBehaviour
             //方向に移動
             transform.position += PlayerSpeed * direction * Time.deltaTime;
         }
+        
     }
     //IEnumerator Atack()//スピンのやつ
     //{
