@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class attak : MonoBehaviour
-{
+{    
+    public Rigidbody rd;
     public float speed;
     //回転するスピード
     public float timeOut;
@@ -18,7 +19,7 @@ public class attak : MonoBehaviour
     public GameObject greenPoint1;
     //中継地点を割り振るための変数
     int count = 0;
-
+  
     // Start is called before the first frame update
     void Start()
     {
@@ -84,9 +85,16 @@ public class attak : MonoBehaviour
     //当たり判定
     void OnCollisionEnter(Collision coll)
     {
-
+      //コメント表示
         Debug.Log("当たった");
+        
+        rd.isKinematic = true;
 
 
     }
+ void OnCollisionExit(Collision coll)
+    {
+        rd.isKinematic = false;
+    }
+
 }

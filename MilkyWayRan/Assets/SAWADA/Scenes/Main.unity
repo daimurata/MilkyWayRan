@@ -146,6 +146,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43c9a2d07dcc7d4438b1c15382e8119d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pos: {x: -15, y: 1, z: -4.97}
+  rd: {fileID: 22362223}
 --- !u!1 &317733133
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,17 +363,17 @@ PrefabInstance:
     - target: {fileID: 8006086876267364445, guid: 9e633d836f155a141aff42401129e592,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18.3
+      value: -16.25
       objectReference: {fileID: 0}
     - target: {fileID: 8006086876267364445, guid: 9e633d836f155a141aff42401129e592,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0.98
       objectReference: {fileID: 0}
     - target: {fileID: 8006086876267364445, guid: 9e633d836f155a141aff42401129e592,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.97
+      value: -4.79
       objectReference: {fileID: 0}
     - target: {fileID: 8006086876267364445, guid: 9e633d836f155a141aff42401129e592,
         type: 3}
@@ -418,5 +420,11 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8006086876267364432, guid: 9e633d836f155a141aff42401129e592,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: ef9c25fae8fcb2b4ab7d49d0095fea98,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e633d836f155a141aff42401129e592, type: 3}

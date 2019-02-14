@@ -2,19 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class hanntei : MonoBehaviour
+public class hantei2 : MonoBehaviour
 {
-
     public float thrust;
- 
+
     public Rigidbody rd;
-    //当たり判定
     void OnTriggerEnter(Collider coll)
     {
         if (coll.gameObject.tag == "Player")
         {
             rd.isKinematic = false;
-            rd.AddForce(transform.right * thrust);
+            rd.AddForce(transform.forward * thrust);
             Debug.Log("ぶつかった");
         }
 
@@ -37,7 +35,7 @@ public class hanntei : MonoBehaviour
     {
         
     }
-    void Stop()
+     void Stop()
     {
         rd.isKinematic = true;
     }
