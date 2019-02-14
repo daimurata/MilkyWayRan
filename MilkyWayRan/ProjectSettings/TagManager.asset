@@ -7,6 +7,7 @@ TagManager:
   - Bullet
   - Meteo
   - Satellite
+  - Star
   layers:
   - Default
   - TransparentFX
