@@ -18,18 +18,38 @@ public class attak : MonoBehaviour
     //中継地点を割り振るための変数
     int count = 0;
 
+    //弾数
+    public int BulletCount = 5;
+    //弾数の上限
+    public int BulletCountLimit = 5;
+    //弾の回復時間変数
+    public float BulletTime = 3f;
+
     //★オブジェクトを入れる
     public GameObject Star;
 
     // Start is called before the first frame update
     void Start()
     {
-  
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        BulletTime -= Time.deltaTime;
+        //時間毎(BulletTime)で弾数を1追加
+        if (BulletTime <= 0)
+        {
+            BulletTime = 3;
+            BulletCount = BulletCount + 1;
+        }
+        if(BulletCount > BulletCountLimit)
+        {
+            BulletCount = BulletCountLimit;
+        }
+
+        //BulletTime == Time.deltaTime;
         //xキーが押された時
         //if (Input.GetKeyDown(KeyCode.X))
         //{
@@ -39,8 +59,8 @@ public class attak : MonoBehaviour
         //zキーが押された時
         //if (Input.GetKeyDown(KeyCode.Z))
         //{
-           
-               
+
+
         //        //自分の位置を保存
         //        var pos = this.gameObject.transform.position;
         //        //弾のプレハブを作成
@@ -59,7 +79,7 @@ public class attak : MonoBehaviour
         //        //敵の位置を弾のスクリプトに渡す
         //        cash.TargetPos = target.transform.position;
 
-            
+
         //}
     }
 
@@ -72,40 +92,34 @@ public class attak : MonoBehaviour
 
     public void syageki()
     {
-        //Resourcesから複製　←ここ書き加えました
-        GameObject prefab = (GameObject)Resources.Load("Bullet");
-        
+        if (BulletCount > 0)
+        {
+            //Resourcesから複製　←ここ書き加えました
+            GameObject prefab = (GameObject)Resources.Load("Bullet");
 
-        //自分の位置を保存
-        var pos = this.gameObject.transform.position;
-        //弾のプレハブを作成
-        //var t = Instantiate(tama) as GameObject;
-        //複製したオブジェクトの位置　←ここ書き加えました
-        var t = Instantiate(prefab, this.transform.position, Quaternion.identity);
-        //弾の初期位置を敵の位置にする
-        t.transform.position = pos;
-        //弾につけているスクリプト、TamaTobasuコンポネントを保存する
-        var cash = t.GetComponent<TamaTobasu>();
-        //スタート地点を弾のスクリプトに渡す
-        cash.CharaPos = this.transform.position;
-        //弾を一つ打ち出すたびに中継地点を変える
-        count++;
-        //中継地点を弾のスクリプトに渡す
-        if (count % 2 == 1) cash.GreenPos = greenPoint.transform.position;
-        else cash.GreenPos = greenPoint1.transform.position;
-        //敵の位置を弾のスクリプトに渡す
-        cash.TargetPos = target.transform.position;
+            //自分の位置を保存
+            var pos = this.gameObject.transform.position;
+            //弾のプレハブを作成
+            //var t = Instantiate(tama) as GameObject;
+            //複製したオブジェクトの位置　←ここ書き加えました
+            var t = Instantiate(prefab, this.transform.position, Quaternion.identity);
+            //弾の初期位置を敵の位置にする
+            t.transform.position = pos;
+            //弾につけているスクリプト、TamaTobasuコンポネントを保存する
+            var cash = t.GetComponent<TamaTobasu>();
+            //スタート地点を弾のスクリプトに渡す
+            cash.CharaPos = this.transform.position;
+            //弾を一つ打ち出すたびに中継地点を変える
+            //count++;
+            //中継地点を弾のスクリプトに渡す←countをBulletCountに変更
+            if (BulletCount % 2 == 1) cash.GreenPos = greenPoint.transform.position;
+            else cash.GreenPos = greenPoint1.transform.position;
+            //敵の位置を弾のスクリプトに渡す
+            cash.TargetPos = target.transform.position;
+            //弾数を減らす←追加
+            BulletCount = BulletCount - 1;
+        }
     }
-
-    public void bulletshot()
-    {
-        GameObject bullet = (GameObject)Resources.Load("Bullet(shot)");
-        //Instantiate(bullet,this.transform.position, Quaternion.identity);
-        bullet = Instantiate(bullet) as GameObject;
-        
-        bullet.transform.position = transform.position;
-    }
-
 
     IEnumerator FuncCoroutine()
     {

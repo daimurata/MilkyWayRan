@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerPrefab : MonoBehaviour
-{
+{ 
     public int PlayerNum = 1;
     public float PlayerposX = 1.0f;
     public float PlayerposY = 1.0f;

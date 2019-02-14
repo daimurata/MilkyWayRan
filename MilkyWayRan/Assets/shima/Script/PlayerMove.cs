@@ -8,18 +8,29 @@ public class PlayerMove : MonoBehaviour
     public int PlayerNum = 1;
     //移動スピード
     public float PlayerSpeed = 5.0f;
+
+
+    //プレイヤーのHPを別々で保存する？迷い中
+    public int PlayerHP1 = 10;
+    public int PlayerHP = 10;
+
+
+    //弾の与えるダメージ
+    public int BulletDamage = 2;
+    //
+    public int StarDamage = 5;
+
     //適当に作成、後で変更
     //public GameObject tama;
 
-    attak   attakscript;
-    shot    shotscript;
+    attak attakscript;
 
     bool One;
 
     // Use this for initialization
     void Start()
     {
-        
+
     }
     /// <summary>
     /// </summary>
@@ -44,15 +55,14 @@ public class PlayerMove : MonoBehaviour
         }
         if (Input.GetButtonDown("Fire2_" + PlayerNum))
         {
-            Debug.Log("Shot2_" + PlayerNum);
-            d1.syageki();
-               
+            
+             Debug.Log("Shot2_" + PlayerNum);
+             d1.syageki();               
         }
         if (Input.GetButton("Fire3_" + PlayerNum))
         {
             Debug.Log("Shot3_" + PlayerNum);
-           
-           // d1.bulletshot();
+                   
         }
         //アナログスティックで動かせると思う
         float x = Input.GetAxis("Horizontal" + PlayerNum);//左右
@@ -70,8 +80,45 @@ public class PlayerMove : MonoBehaviour
             //方向に移動
             transform.position += PlayerSpeed * direction * Time.deltaTime;
         }
-        
     }
+    public void HP(int amount)
+    {
+        PlayerHP -= amount;
+        if(PlayerHP >= 0)
+        {
+            Debug.Log(PlayerHP);
+        }
+        if(PlayerHP == 0)
+        {
+            Destroy(this.gameObject);
+            Debug.Log("死亡");
+        }
+    }
+    void OnCollisionEnter(Collision other)
+    {
+        if(other.gameObject.tag == "Star")
+        {
+            var hit = other.gameObject;
+            var health = hit.GetComponent<PlayerMove>();
+            if (health != null)
+            {
+                health.HP(StarDamage);
+                Destroy(this.gameObject);
+            }
+        }
+        if (other.gameObject.tag == "Bullet")
+        {
+            var hit = other.gameObject;
+            var health = hit.GetComponent<PlayerMove>();
+            if (health != null)
+            {
+                health.HP(BulletDamage);
+                Destroy(this.gameObject);
+            }
+        }
+    }
+}
+   
     //IEnumerator Atack()//スピンのやつ
     //{
     //    //ループを抜け出すための適当な変数
@@ -86,5 +133,4 @@ public class PlayerMove : MonoBehaviour
     //        if(a > 10)
     //        break;
     //    }
-    //}
-}
+ 
