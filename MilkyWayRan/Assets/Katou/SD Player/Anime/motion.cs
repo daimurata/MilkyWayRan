@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class motion : MonoBehaviour
 {
+    private Rigidbody _rigidBody;
 
     private Animator animator;
 
@@ -11,6 +12,7 @@ public class motion : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        _rigidBody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();        
     }
 
@@ -51,11 +53,11 @@ public class motion : MonoBehaviour
     }
 
     //オブジェクトと接触した瞬間に呼び出される
-    void OnTriggerEnter(Collider other)
+    void OnCollisionEnter(Collider col)
     {
 
         //相手がBulletの場合
-        if (other.CompareTag("Bullet"))
+        if (col.tag == ("Bullet"))
         {
             Debug.Log("hit Player");
             animator.SetBool("is_damage", true);
