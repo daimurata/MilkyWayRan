@@ -2,24 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hanntei : MonoBehaviour
+public class Playerhantei2 : MonoBehaviour
 {
     //力を加える量
     public float thrust;
-   //Rigidbody
+    //Rigidbody
     public Rigidbody rd;
     //当たり判定(対象物にぶつかった時)
     void OnTriggerEnter(Collider coll)
     {
-        //Playerタグにぶつかった時
-        if (coll.gameObject.tag == "Player")
+        //Player1タグにぶつかった時
+        if (coll.gameObject.tag == "Player1")
         {
             //衝突した時に回転しないようにする
             rd.constraints = RigidbodyConstraints.FreezeRotation;
             //isKinematicをfalseにする
             rd.isKinematic = false;
-            //自身を横方向に動かす
-            rd.AddForce(transform.right * thrust);
+            //自身を縦方向に動かす
+            rd.AddForce(transform.forward * thrust);
+
          
         }
 
@@ -30,6 +31,7 @@ public class Hanntei : MonoBehaviour
         //isKinematicがfalseならば
         if (rd.isKinematic == false)
         {
+
             //1秒後に自身を止める
             Invoke("Stop", 1.0f);
         }
@@ -41,6 +43,5 @@ public class Hanntei : MonoBehaviour
         rd.isKinematic = true;
 
     }
-   
-   
+  
 }

@@ -2,28 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class attak : MonoBehaviour
-{    
-    public Rigidbody rd;
+public class Attak : MonoBehaviour
+{
+
+ 　 //移動量
     public float speed;
     //回転するスピード
     public float timeOut;
     //ターゲット
-    public GameObject target;
+    private GameObject target;
     //弾のプレハブ
     public GameObject tama;
-   
+
     //中継地点1
     public GameObject greenPoint;
     //中継地点2
     public GameObject greenPoint1;
     //中継地点を割り振るための変数
     int count = 0;
-  
+
     // Start is called before the first frame update
     void Start()
     {
-  
+        //弾を打つターゲット
+        target = GameObject.Find("Enemy");
     }
 
     // Update is called once per frame
@@ -60,12 +62,27 @@ public class attak : MonoBehaviour
 
 
         }
-       
-            if (Input.GetKeyDown(KeyCode.S))
-            {
+        //左移動
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
             transform.position -= transform.right * speed * Time.deltaTime;
         }
-        
+        //右移動
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            transform.position += transform.right * speed * Time.deltaTime;
+        }
+        //上移動
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            transform.position += transform.forward * speed * Time.deltaTime;
+        }
+        //下移動
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            transform.position -= transform.forward * speed * Time.deltaTime;
+        }
+
     }
     IEnumerator FuncCoroutine()
     {
@@ -82,19 +99,5 @@ public class attak : MonoBehaviour
                 break;
         }
     }
-    //当たり判定
-    void OnCollisionEnter(Collision coll)
-    {
-      //コメント表示
-        Debug.Log("当たった");
-        
-        rd.isKinematic = true;
-
-
-    }
- void OnCollisionExit(Collision coll)
-    {
-        rd.isKinematic = false;
-    }
-
+   
 }

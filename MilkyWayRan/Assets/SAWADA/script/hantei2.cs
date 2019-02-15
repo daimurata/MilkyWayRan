@@ -2,41 +2,47 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class hantei2 : MonoBehaviour
+public class Hantei2 : MonoBehaviour
 {
+    //力を加える量
     public float thrust;
-
+    //Rigidbody
     public Rigidbody rd;
+    //当たり判定(対象物にぶつかった時)
     void OnTriggerEnter(Collider coll)
     {
+        //Playerタグにぶつかった時
         if (coll.gameObject.tag == "Player")
         {
+            //衝突した時に回転しないようにする
+            rd.constraints = RigidbodyConstraints.FreezeRotation;
+            //isKinematicをfalseにする
             rd.isKinematic = false;
+            //自身を縦方向に動かす
             rd.AddForce(transform.forward * thrust);
-            Debug.Log("ぶつかった");
+
+           
         }
 
     }
+    //当たり判定(対象物に離れた時)
     void OnTriggerExit(Collider coll)
     {
+
+        //isKinematicがfalseならば
         if (rd.isKinematic == false)
         {
+            //1秒後に自身を止める
             Invoke("Stop", 1.0f);
         }
     }
-    // Start is called before the first frame update
-    void Start()
+    //止める処理
+    void Stop()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-     void Stop()
-    {
+        //isKinematicをtrueにする
         rd.isKinematic = true;
+
     }
+   
+  
 }
