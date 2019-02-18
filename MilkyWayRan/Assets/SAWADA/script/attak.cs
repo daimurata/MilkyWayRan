@@ -10,6 +10,8 @@ public class attak : MonoBehaviour
     public GameObject target;
     //弾のプレハブ
     public GameObject tama;
+    //星の回転時に攻撃を入れるもの
+    public GameObject tama2;
    
     //中継地点1
     public GameObject greenPoint;
@@ -24,6 +26,8 @@ public class attak : MonoBehaviour
     public int BulletCountLimit = 5;
     //弾の回復時間変数
     public float BulletTime = 3f;
+
+    public int PlayerNum;
 
     //★オブジェクトを入れる
     public GameObject Star;
@@ -64,7 +68,7 @@ public class attak : MonoBehaviour
         //        //自分の位置を保存
         //        var pos = this.gameObject.transform.position;
         //        //弾のプレハブを作成
-        //        var t = Instantiate(ta,ma) as GameObject;
+        //        var t = Instantiate(tama) as GameObject;
         //        //弾の初期位置を敵の位置にする
         //        t.transform.position = pos;
         //        //弾につけているスクリプト、TamaTobasuコンポネントを保存する
@@ -87,22 +91,19 @@ public class attak : MonoBehaviour
     {
         //回転処理
         StartCoroutine(FuncCoroutine());
-        
+        //var t = Instantiate(tama2, this.transform.position, Quaternion.identity);
     }
 
     public void syageki()
     {
         if (BulletCount > 0)
         {
-            //Resourcesから複製　←ここ書き加えました
-            GameObject prefab = (GameObject)Resources.Load("Bullet");
-
             //自分の位置を保存
             var pos = this.gameObject.transform.position;
             //弾のプレハブを作成
             //var t = Instantiate(tama) as GameObject;
             //複製したオブジェクトの位置　←ここ書き加えました
-            var t = Instantiate(prefab, this.transform.position, Quaternion.identity);
+            var t = Instantiate(tama, this.transform.position, Quaternion.identity);
             //弾の初期位置を敵の位置にする
             t.transform.position = pos;
             //弾につけているスクリプト、TamaTobasuコンポネントを保存する

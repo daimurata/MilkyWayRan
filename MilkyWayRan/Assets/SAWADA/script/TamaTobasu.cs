@@ -17,8 +17,11 @@ public class TamaTobasu : MonoBehaviour
 
     //弾の消える時間（追加しましたby中島）
     public float Destroybullet = 5.0f;
+
     //弾の与えるダメージ
-    public int BulletDamage = 1;
+    public int BulletDamage = 2;
+    //番号
+    public int Num = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -43,18 +46,27 @@ public class TamaTobasu : MonoBehaviour
 
         Destroy(gameObject, Destroybullet);//数秒後弾を消す
     }
-
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "Player2")
+        bool TriggerFlag = true;
+        if (TriggerFlag)
         {
-            var hit = other.gameObject;
-            var health = hit.GetComponent<PlayerMove>();
-            if(health != null)
+            TriggerFlag = false;
+            if (other.gameObject.tag == "Player" + Num)
             {
-                health.HP(BulletDamage);
-                Destroy(this.gameObject);
+                //何もしない
             }
-        }   
+            else
+            {
+                var hit = other.gameObject;
+                var health = hit.GetComponent<PlayerMove>();
+                if (health != null)
+                {
+                    Destroy(gameObject);
+                    health.HP(Num, BulletDamage);
+                }
+            }
+        }
+        
     }
 }
