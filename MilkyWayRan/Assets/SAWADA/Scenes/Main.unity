@@ -319,11 +319,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 8006086876267364433, guid: 9e633d836f155a141aff42401129e592,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player1
-      objectReference: {fileID: 0}
     - target: {fileID: 8006086876267364445, guid: 9e633d836f155a141aff42401129e592,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -378,6 +373,58 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1035822064, guid: 9e633d836f155a141aff42401129e592, type: 3}
+      propertyPath: collthrust
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1035822064, guid: 9e633d836f155a141aff42401129e592, type: 3}
+      propertyPath: collobject
+      value: 
+      objectReference: {fileID: 5075329975356562058, guid: 39a3a77f9ccf0644ba20ec09aae47be2,
+        type: 3}
+    - target: {fileID: 1035822064, guid: 9e633d836f155a141aff42401129e592, type: 3}
+      propertyPath: thrust
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1261758191, guid: 9e633d836f155a141aff42401129e592, type: 3}
+      propertyPath: collthrust
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1261758191, guid: 9e633d836f155a141aff42401129e592, type: 3}
+      propertyPath: collobject
+      value: 
+      objectReference: {fileID: 5075329975356562058, guid: 39a3a77f9ccf0644ba20ec09aae47be2,
+        type: 3}
+    - target: {fileID: 1261758191, guid: 9e633d836f155a141aff42401129e592, type: 3}
+      propertyPath: thrust
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1509288492, guid: 9e633d836f155a141aff42401129e592, type: 3}
+      propertyPath: collthrust
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1509288492, guid: 9e633d836f155a141aff42401129e592, type: 3}
+      propertyPath: collobject
+      value: 
+      objectReference: {fileID: 5075329975356562058, guid: 39a3a77f9ccf0644ba20ec09aae47be2,
+        type: 3}
+    - target: {fileID: 1509288492, guid: 9e633d836f155a141aff42401129e592, type: 3}
+      propertyPath: thrust
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1936060435, guid: 9e633d836f155a141aff42401129e592, type: 3}
+      propertyPath: collthrust
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1936060435, guid: 9e633d836f155a141aff42401129e592, type: 3}
+      propertyPath: collobject
+      value: 
+      objectReference: {fileID: 5075329975356562058, guid: 39a3a77f9ccf0644ba20ec09aae47be2,
+        type: 3}
+    - target: {fileID: 1936060435, guid: 9e633d836f155a141aff42401129e592, type: 3}
+      propertyPath: thrust
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e633d836f155a141aff42401129e592, type: 3}
