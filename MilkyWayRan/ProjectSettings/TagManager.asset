@@ -4,11 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Player2
-  - New tag
-  - player1
-  - righthanteii
-  - uphantei
+  - Bullet
+  - Meteo
+  - Satellite
+  - Star
+  - Undefined
   - Player1
   layers:
   - Default
