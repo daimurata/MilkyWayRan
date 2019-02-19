@@ -4,12 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Player2
+  - Bullet
+  - Meteo
+  - Satellite
   - Star
-  - Bullet2
-  - Star2
-  - Bullet1
-  - Star1
+  - Undefined
   - Player1
   layers:
   - Default
