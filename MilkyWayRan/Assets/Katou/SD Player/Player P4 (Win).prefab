@@ -332,7 +332,7 @@ GameObject:
   - component: {fileID: 843942191129201315}
   - component: {fileID: 1065544895490522503}
   m_Layer: 0
-  m_Name: Player P3 (Win)
+  m_Name: Player P4 (Win)
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -364,7 +364,7 @@ Animator:
   m_GameObject: {fileID: 4624012822295394083}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: bab126ec0b7316e42b84411f75c9adaa, type: 3}
-  m_Controller: {fileID: 9100000, guid: e8f3e6cbc9d951e4a94957b1f58ea7f0, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
