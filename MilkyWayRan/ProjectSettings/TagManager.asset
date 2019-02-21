@@ -8,6 +8,7 @@ TagManager:
   - Meteo
   - Satellite
   - Star
+  - Fist
   layers:
   - Default
   - TransparentFX
