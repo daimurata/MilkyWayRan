@@ -344,6 +344,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  NextSceneName: 
+  Game_PL: 00000000
 --- !u!1001 &45359167314168948
 PrefabInstance:
   m_ObjectHideFlags: 0

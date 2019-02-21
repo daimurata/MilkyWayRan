@@ -22,6 +22,8 @@ public class Play_Entry : MonoBehaviour
     public GameObject[] PL;
     //シーンの名前
     public string NextSceneName;
+    //ゲーム中にプレイヤーを生成しない
+    public bool[] Game_PL;
 
     void Start()
     {
@@ -36,30 +38,29 @@ public class Play_Entry : MonoBehaviour
         Timer_Lobby();
         //プレイヤー参加操作
         Player_Set();
+        //プレイヤー参加情報
+        Standby_Fore();
     }
     //ロビー制限時間
     public void Timer_Lobby()
     {
+        //初期設定
         if (Count_Bl == false)
         {
             //ロビー時間60秒
             Lobby_Tim -= Time.deltaTime;
         }
-
+        //ロビー時間の延長
+        Looby_Timer();
+    }
+    //ロビー時間の延長
+    public void Looby_Timer()
+    {
         //ロビーの時間が0以下の時
         if (Lobby_Tim <= 0)
         {
-            Count_Bl = true;
             //ロビーの時間を60秒に
             Lobby_Tim = 60;
-            //延長を起動
-            
-        }
-        //延長時間
-        if (Count_Bl == true)
-        {
-            //ロビー時間延長60秒
-            Lobby_Tim -= Time.deltaTime;
         }
     }
     //初期設定
@@ -93,8 +94,10 @@ public class Play_Entry : MonoBehaviour
         if (OK_pl[0] == false)
         {
             //Aキーを押したら
-            if (Input.GetKeyDown(KeyCode.A))
+            if (Input.GetKeyDown(KeyCode.A)&& Game_PL[0] == false)
             {
+                //ゲームスタートするまでの時間
+                Count_Dow = 10;
                 Debug.Log("参加");
                 //プレイヤー1参加
                 OK_pl[0] = true;
@@ -106,7 +109,7 @@ public class Play_Entry : MonoBehaviour
         else
         {
             //Aキーを押したら
-            if (Input.GetKeyDown(KeyCode.A))
+            if (Input.GetKeyDown(KeyCode.A)&& Game_PL[0] == false)
             {
                 Debug.Log("非参加");
                 //プレイヤー1参加
@@ -123,8 +126,10 @@ public class Play_Entry : MonoBehaviour
         if (OK_pl[1] == false)
         {
             //Sキーを押したら
-            if (Input.GetKeyDown(KeyCode.S))
+            if (Input.GetKeyDown(KeyCode.S)&& Game_PL[1] == false)
             {
+                //ゲームスタートするまでの時間
+                Count_Dow = 10;
                 Debug.Log("参加");
                 //プレイヤー2参加
                 OK_pl[1] = true;
@@ -136,7 +141,7 @@ public class Play_Entry : MonoBehaviour
         else
         {
             //Sキーを押したら
-            if (Input.GetKeyDown(KeyCode.S))
+            if (Input.GetKeyDown(KeyCode.S)&& Game_PL[1] == false)
             {
                 Debug.Log("非参加2");
                 //プレイヤー2参加
@@ -153,8 +158,10 @@ public class Play_Entry : MonoBehaviour
         if (OK_pl[2] == false)
         {
             //Dキーを押したら
-            if (Input.GetKeyDown(KeyCode.D))
+            if (Input.GetKeyDown(KeyCode.D)&&Game_PL[0] == false)
             {
+                //ゲームスタートするまでの時間
+                Count_Dow = 10;
                 Debug.Log("参加3");
                 //プレイヤー3参加
                 OK_pl[2] = true;
@@ -166,7 +173,7 @@ public class Play_Entry : MonoBehaviour
         else
         {
             //Dキーを押したら
-            if (Input.GetKeyDown(KeyCode.D))
+            if (Input.GetKeyDown(KeyCode.D)&& Game_PL[2] == false)
             {
                 Debug.Log("非参加3");
                 //プレイヤー3参加
@@ -183,8 +190,10 @@ public class Play_Entry : MonoBehaviour
         if (OK_pl[3] == false)
         {
             //Fキーを押したら
-            if (Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.F)&&Game_PL[3] == false)
             {
+                //ゲームスタートするまでの時間
+                Count_Dow = 10;
                 Debug.Log("参加4");
                 //プレイヤー4参加
                 OK_pl[3] = true;
@@ -196,7 +205,7 @@ public class Play_Entry : MonoBehaviour
         else
         {
             //Fキーを押したら
-            if (Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.F)&&Game_PL[3] == false)
             {
                 Debug.Log("非参加4");
                 //プレイヤー4参加
@@ -211,5 +220,141 @@ public class Play_Entry : MonoBehaviour
     {
         //シーンの名前に移動
         SceneManager.LoadScene(NextSceneName);
+    }
+    //プレイヤー参加情報
+    public void Standby_Fore()
+    {
+        //4人参加
+        if (OK_pl[0]==true&&OK_pl[1]==true&&OK_pl[2]==true&&OK_pl[3]==true)
+        {
+            Debug.Log("全員が参加します");
+            //ゲーム開始までのインターバル
+            Start_Game();
+        }else
+        //1,2,3参加
+        if (OK_pl[0] == true && OK_pl[1] == true && OK_pl[2] == true)
+        {
+            Debug.Log("1Pと2Pと3Pが戦います");
+            //ゲーム開始までのインターバル
+            Start_Game();
+        }else
+        //1,2,4参加
+        if (OK_pl[0] == true && OK_pl[1] == true && OK_pl[3] == true)
+        {
+            Debug.Log("1Pと2Pと4Pが戦います");
+            //ゲーム開始までのインターバル
+            Start_Game();
+        }else
+        //1,3,4参加
+        if(OK_pl[0] == true && OK_pl[2] == true && OK_pl[3] == true)
+        {
+            Debug.Log("1Pと3Pと4Pが戦います");
+            //ゲーム開始までのインターバル
+            Start_Game();
+        }else
+        //2,3,4参加
+        if (OK_pl[1] == true && OK_pl[2] == true && OK_pl[3] == true)
+        {
+            Debug.Log("2Pと3Pと4Pが戦います");
+            //ゲーム開始までのインターバル
+            Start_Game();
+        }else
+        //1,2参加
+        if (OK_pl[0] == true && OK_pl[1] == true)
+        {
+            Debug.Log("1Pと2Pが戦います");
+            //ゲーム開始までのインターバル
+            Start_Game();
+        }else
+        //1,3参加
+        if (OK_pl[0] == true && OK_pl[2] == true)
+        {
+            Debug.Log("1Pと3Pが戦います");
+            //ゲーム開始までのインターバル
+            Start_Game();
+        }else
+        //1,4参加
+        if (OK_pl[0] == true && OK_pl[3] == true)
+        {
+            Debug.Log("1Pと4Pが戦います");
+            //ゲーム開始までのインターバル
+            Start_Game();
+        }else
+        //2,3参加
+        if (OK_pl[1] == true && OK_pl[2] == true)
+        {
+            Debug.Log("2Pと3Pが戦います");
+            //ゲーム開始までのインターバル
+            Start_Game();
+        }else
+        //2,4参加
+        if (OK_pl[1] == true && OK_pl[3] == true)
+        {
+            Debug.Log("2Pと4Pが戦います");
+            //ゲーム開始までのインターバル
+            Start_Game();
+        }else
+        //3,4参加
+        if (OK_pl[2] == true && OK_pl[3] == true)
+        {
+            Debug.Log("3Pと4Pが戦います");
+            //ゲーム開始までのインターバル
+            Start_Game();
+        }else
+        //1参加
+        if (OK_pl[0] == true)
+        {
+            Debug.Log("1Pが1人です");
+            //ロビー時間の延長
+            Looby_Timer();
+        }else
+        //2参加
+        if (OK_pl[1] == true)
+        {
+            Debug.Log("2Pが1人です");
+            //ロビー時間の延長
+            Looby_Timer();
+        }else
+        //3参加
+        if (OK_pl[2] == true)
+        {
+            Debug.Log("3Pが1人です");
+            //ロビー時間の延長
+            Looby_Timer();
+        }else
+        //4参加
+        if (OK_pl[3] == true)
+        {
+            Debug.Log("4Pが1人です");
+            //ロビー時間の延長
+            Looby_Timer();
+        }else
+        //全員非参加
+        if (OK_pl[0]==false&&OK_pl[1]==false&&OK_pl[2]==false&&OK_pl[3]==false)
+        {
+            Debug.Log("誰も参加しません");
+            //ロビー時間の延長
+            Looby_Timer();
+        }
+    }
+    //ゲーム開始までのインターバル
+    public void Start_Game()
+    {
+        //開始までのカウントダウン
+        Count_Dow -= Time.deltaTime;
+        //カウントダウンが0になったら
+        if (Count_Dow<=0)
+        {
+            //カウントダウンをやめる
+            Count_Dow = 0;
+            //ロビーの時間を止める
+            Count_Bl = true;
+            //プレイヤー生成をしない
+            Game_PL[0] = true;
+            Game_PL[1] = true;
+            Game_PL[2] = true;
+            Game_PL[3] = true;
+            Debug.Log("ゲームスタート1，2，3");
+        }
     }
 }
