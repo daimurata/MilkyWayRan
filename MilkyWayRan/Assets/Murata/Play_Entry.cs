@@ -2,28 +2,65 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 //プレイヤー参加ロビー
 public class Play_Entry : MonoBehaviour
 {
+    /// <summary>
+    /// ロビー時間設定
+    /// </summary>
     //ロビー時間
     public float Lobby_Tim = 60;
     //インターバル時間
     public float Count_Dow=10;
     //延長の場合
     public bool Count_Bl;
+
+    /// <summary>
+    /// プレイヤー設定
+    /// </summary>
     //プレイヤーは4人
-    public GameObject[] Player;
+    public GameObject[] Player=new GameObject[4];
     //プレイヤーの参加
-    public bool[] OK_pl;
+    public bool[] OK_pl =new bool[4];
     //プレイヤーの生成位置座標
-    public Vector3[] Pl_pos;
+    public Vector3[] Pl_pos=new Vector3[4];
     //プレイヤー消す時使う
-    public GameObject[] PL;
-    //シーンの名前
-    public string NextSceneName;
+    private GameObject[] PL=new GameObject[4];
     //ゲーム中にプレイヤーを生成しない
     public bool[] Game_PL;
+
+    /// <summary>
+    /// ゲーム開始設定
+    /// </summary>
+    //カウントダウン1.2，3,スタート
+    public Sprite[] Nanbaers=new Sprite[4];
+    //表示UI
+    public GameObject Count_UI;
+
+    /// <summary>
+    /// ゲーム中設定
+    /// </summary>
+    //星の親オブジェクト
+    public GameObject Staer_S;
+    //星画像
+    public Image[] Ster_Img=new Image[6];
+    //時間
+    private float[] Count_Tim = new float[6];
+    //点滅速度
+    private float[] Step_Tim = new float[6];
+    //星のアルファ値
+    private float[] ToColor = new float[6];
+
+    //シーンの名前
+    public string NextSceneName;
+
+    /// <summary>
+    /// ゲージの表示設定
+    /// </summary>
+    //プレイヤーゲージ
+    public GameObject[] Gage=new GameObject[4];
 
     void Start()
     {
@@ -31,7 +68,6 @@ public class Play_Entry : MonoBehaviour
         Setting();
     }
 
-    
     void Update()
     {
         //ロビー制限時間
@@ -41,6 +77,10 @@ public class Play_Entry : MonoBehaviour
         //プレイヤー参加情報
         Standby_Fore();
     }
+
+    /// <summary>
+    /// ロビー時間処理設定
+    /// </summary>
     //ロビー制限時間
     public void Timer_Lobby()
     {
@@ -62,10 +102,19 @@ public class Play_Entry : MonoBehaviour
             //ロビーの時間を60秒に
             Lobby_Tim = 60;
         }
+        //非表示カウントダウン
+        Count_UI.SetActive(false);
     }
+
+    /// <summary>
+    /// Startに置いておくもの情報
+    /// </summary>
     //初期設定
     public void Setting()
     {
+        /// <summary>
+        /// プレイヤー情報初期
+        /// </summary>
         //プレイヤー1　非参加
         OK_pl[0] = false;
         //プレイヤー2　非参加
@@ -74,8 +123,59 @@ public class Play_Entry : MonoBehaviour
         OK_pl[2] = false;
         //プレイヤー4　非参加
         OK_pl[3] = false;
+
+        //ゲーム時間を非表示
+        Staer_S.SetActive(false);
+
+        /// <summary>
+        /// ゲームタイム情報初期
+        /// </summary>
+        //1星
+        Count_Tim[0] = 12;
+        //2星
+        Count_Tim[1] = 12;
+        //3星
+        Count_Tim[2] = 12;
+        //4星
+        Count_Tim[3] = 12;
+        //5星
+        Count_Tim[4] = 12;
+        //6星
+        Count_Tim[5] = 12;
+
+        /// <summary>
+        /// 星点滅処理初期
+        /// </summary>
+        //1星点滅
+        Step_Tim[0]= 0.033f;
+        //2星点滅
+        Step_Tim[1] = 0.033f;
+        //3星点滅
+        Step_Tim[2] = 0.033f;
+        //4星点滅
+        Step_Tim[3] = 0.033f;
+        //5星点滅
+        Step_Tim[4] = 0.033f;
+        //6星点滅
+        Step_Tim[5] = 0.033f;
+
+        /// <summary>
+        /// ゲージ処理初期
+        /// </summary>
+        //1プレイヤーのゲージ非表示
+        Gage[0].SetActive(false);
+        //2プレイヤーのゲージ非表示
+        Gage[1].SetActive(false);
+        //3プレイヤーのゲージ非表示
+        Gage[2].SetActive(false);
+        //4プレイヤーのゲージ非表示
+        Gage[3].SetActive(false);
     }
-    //プレイヤー参加操作
+
+    /// <summary>
+    /// プレイヤー処理情報
+    /// </summary>
+    //プレイヤー参加操作情報
     public void Player_Set()
     {
         //プレイヤー1
@@ -215,12 +315,6 @@ public class Play_Entry : MonoBehaviour
             }
         }
     }
-    //シーン移動
-    public void Scene_GO()
-    {
-        //シーンの名前に移動
-        SceneManager.LoadScene(NextSceneName);
-    }
     //プレイヤー参加情報
     public void Standby_Fore()
     {
@@ -337,24 +431,307 @@ public class Play_Entry : MonoBehaviour
             Looby_Timer();
         }
     }
-    //ゲーム開始までのインターバル
+
+    /// <summary>
+    /// ロビー時間とゲーム時間処理情報
+    /// </summary>
+    //ゲーム開始と運営
     public void Start_Game()
     {
         //開始までのカウントダウン
         Count_Dow -= Time.deltaTime;
-        //カウントダウンが0になったら
-        if (Count_Dow<=0)
+        //スタート3秒前
+        if (Count_Dow <= 4)
         {
+            //表示カウントダウン
+            Count_UI.SetActive(true);
+            //3を表示
+            Count_UI.gameObject.GetComponent<Image>().sprite = Nanbaers[3];
+        }
+        //スタート2秒前
+        if (Count_Dow <= 3)
+        {
+            //2を表示
+            Count_UI.gameObject.GetComponent<Image>().sprite = Nanbaers[2];
+        }
+        //スタート1秒前
+        if (Count_Dow <=2)
+        {
+            //1を表示
+            Count_UI.gameObject.GetComponent<Image>().sprite = Nanbaers[1];
+        }
+        //スタート0秒
+        if (Count_Dow <= 1)
+        {
+            //スターを表示
+            Count_UI.gameObject.GetComponent<Image>().sprite = Nanbaers[0];
+        }
+        //カウントダウンが0になったら
+        if (Count_Dow <= 0)
+        {
+            //非表示カウントダウン
+            Count_UI.SetActive(false);
             //カウントダウンをやめる
-            Count_Dow = 0;
+            Count_Dow = -1;
             //ロビーの時間を止める
             Count_Bl = true;
+
             //プレイヤー生成をしない
             Game_PL[0] = true;
             Game_PL[1] = true;
             Game_PL[2] = true;
             Game_PL[3] = true;
-            Debug.Log("ゲームスタート1，2，3");
+
+            //ゲームタイムを表示
+            Staer_S.SetActive(true);
+
+            //スタートゲームタイマー
+            Star1();
+            //プレイヤーゲージ表示
+            Plays_Gage();
         }
     }
+
+    /// <summary>
+    /// ゲーム時間の処理情報設定
+    /// </summary>
+    //1個目の星点滅処理（ゲームタイマー開始）
+    public void Star1()
+    {
+        //1星
+        Count_Tim[0] -= Time.deltaTime;
+        //現在のアルファ値を取得
+        ToColor[0] = Ster_Img[0].GetComponent<Image>().color.a;
+        //アルファが0または１になったら
+        if (ToColor[0] < 0 || ToColor[0] > 1)
+        {
+            //増減値を反転
+            Step_Tim[0] = Step_Tim[0] * -1;
+        }
+        //アルファ値を反転
+        Ster_Img[0].GetComponent<Image>().color = new Color(255, 255, 255, ToColor[0] + Step_Tim[0]);
+
+        //1星のカウント0で終了
+        if (Count_Tim[0]<=0)
+        {
+            //カウントを0にする
+            Count_Tim[0] = 0;
+            //点滅を終了する
+            Step_Tim[0] = 0;
+            //星の点滅をなくす
+            Ster_Img[0].GetComponent<Image>().color = new Color(0, 0, 0 + Step_Tim[0]);
+            //2星へ
+            Star2();
+        }
+    }
+    //2個目の星点滅処理
+    public void Star2()
+    {
+        //2星
+        Count_Tim[1] -= Time.deltaTime;
+        //現在のアルファ値を取得
+        ToColor[1] = Ster_Img[1].GetComponent<Image>().color.a;
+        //アルファが0または１になったら
+        if (ToColor[1] < 0 || ToColor[1] > 1)
+        {
+            //増減値を反転
+            Step_Tim[1] = Step_Tim[1] * -1;
+        }
+        //アルファ値を反転
+        Ster_Img[1].GetComponent<Image>().color = new Color(255, 255, 255, ToColor[1] + Step_Tim[1]);
+
+        //2星のカウント0で終了
+        if (Count_Tim[1] <= 0)
+        {
+            //カウントを0にする
+            Count_Tim[1] = 0;
+            //点滅を終了する
+            Step_Tim[1] = 0;
+            //星の点滅をなくす
+            Ster_Img[1].GetComponent<Image>().color = new Color(0, 0, 0 + Step_Tim[1]);
+            //3星へ
+            Star3();
+        }
+    }
+    //3個目の星点滅処理
+    public void Star3()
+    {
+        //3星
+        Count_Tim[2] -= Time.deltaTime;
+        //現在のアルファ値を取得
+        ToColor[2] = Ster_Img[2].GetComponent<Image>().color.a;
+        //アルファが0または１になったら
+        if (ToColor[2] < 0 || ToColor[2] > 1)
+        {
+            //増減値を反転
+            Step_Tim[2] = Step_Tim[2] * -1;
+        }
+        //アルファ値を反転
+        Ster_Img[2].GetComponent<Image>().color = new Color(255, 255, 255, ToColor[2] + Step_Tim[2]);
+
+        //3星のカウント0で終了
+        if (Count_Tim[2] <= 0)
+        {
+            //カウントを0にする
+            Count_Tim[2] = 0;
+            //点滅を終了する
+            Step_Tim[2] = 0;
+            //星の点滅をなくす
+            Ster_Img[2].GetComponent<Image>().color = new Color(0, 0, 0 + Step_Tim[2]);
+            //4星へ
+            Star4();
+        }
+    }
+    //4個目の星点滅処理
+    public void Star4()
+    {
+        //4星
+        Count_Tim[3] -= Time.deltaTime;
+        //現在のアルファ値を取得
+        ToColor[3] = Ster_Img[3].GetComponent<Image>().color.a;
+        //アルファが0または１になったら
+        if (ToColor[3] < 0 || ToColor[3] > 1)
+        {
+            //増減値を反転
+            Step_Tim[3] = Step_Tim[3] * -1;
+        }
+        //アルファ値を反転
+        Ster_Img[3].GetComponent<Image>().color = new Color(255, 255, 255, ToColor[3] + Step_Tim[3]);
+
+        //4星のカウント0で終了
+        if (Count_Tim[3] <= 0)
+        {
+            //カウントを0にする
+            Count_Tim[3] = 0;
+            //点滅を終了する
+            Step_Tim[3] = 0;
+            //星の点滅をなくす
+            Ster_Img[3].GetComponent<Image>().color = new Color(0, 0, 0 + Step_Tim[3]);
+            //5星へ
+            Star5();
+        }
+    }
+    //5個目の星点滅処理
+    public void Star5()
+    {
+        //5星
+        Count_Tim[4] -= Time.deltaTime;
+        //現在のアルファ値を取得
+        ToColor[4] = Ster_Img[4].GetComponent<Image>().color.a;
+        //アルファが0または１になったら
+        if (ToColor[4] < 0 || ToColor[4] > 1)
+        {
+            //増減値を反転
+            Step_Tim[4] = Step_Tim[4] * -1;
+        }
+        //アルファ値を反転
+        Ster_Img[4].GetComponent<Image>().color = new Color(255, 255, 255, ToColor[4] + Step_Tim[4]);
+
+        //5星のカウント0で終了
+        if (Count_Tim[4] <= 0)
+        {
+            //カウントを0にする
+            Count_Tim[4] = 0;
+            //点滅を終了する
+            Step_Tim[4] = 0;
+            //星の点滅をなくす
+            Ster_Img[4].GetComponent<Image>().color = new Color(0, 0, 0 + Step_Tim[4]);
+            //6星へ
+            Star6();
+        }
+    }
+    //6個目の星点滅処理（ゲームタイマー終了）
+    public void Star6()
+    {
+        //5星
+        Count_Tim[5] -= Time.deltaTime;
+        //現在のアルファ値を取得
+        ToColor[5] = Ster_Img[5].GetComponent<Image>().color.a;
+        //アルファが0または１になったら
+        if (ToColor[5] < 0 || ToColor[5] > 1)
+        {
+            //増減値を反転
+            Step_Tim[5] = Step_Tim[5] * -1;
+        }
+        //アルファ値を反転
+        Ster_Img[5].GetComponent<Image>().color = new Color(255, 255, 255, ToColor[5] + Step_Tim[5]);
+
+        //6星のカウント0で終了
+        if (Count_Tim[5] <= 0)
+        {
+            //カウントを0にする
+            Count_Tim[5] = 0;
+            //点滅を終了する
+            Step_Tim[5] = 0;
+            //星の点滅をなくす
+            Ster_Img[5].GetComponent<Image>().color = new Color(0, 0, 0 + Step_Tim[5]);
+
+            //シーン移動
+            Scene_GO();
+        }
+    }
+
+    //シーン移動
+    public void Scene_GO()
+    {
+        //名前宣言したシーンへ
+        SceneManager.LoadScene(NextSceneName);
+    }
+
+    /// <summary>
+    /// プレイヤーのゲージ情報設定
+    /// </summary>
+    //プレイヤーゲージ情報
+    public void Plays_Gage()
+    {
+        //1プレイヤーゲージ
+        Play1_Gage();
+        //2プレイヤーゲージ
+        Play2_Gage();
+        //3プレイヤーゲージ
+        Play3_Gage();
+        //4プレイヤーゲージ
+        Play4_Gage();
+    }
+    //1プレイヤーゲージ
+    public void Play1_Gage()
+    {
+        //1プレイヤーがゲームに参加なら
+        if (OK_pl[0]==true)
+        {
+            //1プレイヤーのゲージを表示
+            Gage[0].SetActive(true);
+        }
+    }
+    //2プレイヤーゲージ
+    public void Play2_Gage()
+    {
+        //2プレイヤーがゲームに参加なら
+        if (OK_pl[1] == true)
+        {
+            //2プレイヤーのゲージを表示
+            Gage[1].SetActive(true);
+        }
+    }
+    //3プレイヤーゲージ
+    public void Play3_Gage()
+    {
+        //3プレイヤーがゲームに参加なら
+        if (OK_pl[2] == true)
+        {
+            //3プレイヤーのゲージを表示
+            Gage[2].SetActive(true);
+        }
+    }
+    //4プレイヤーゲージ
+    public void Play4_Gage()
+    {
+        //4プレイヤーがゲームに参加なら
+        if (OK_pl[3] == true)
+        {
+            //4プレイヤーのゲージを表示
+            Gage[3].SetActive(true);
+        }
+    }
+
 }
