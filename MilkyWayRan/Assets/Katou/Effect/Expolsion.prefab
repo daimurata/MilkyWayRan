@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3366246377263558482}
   - component: {fileID: 7933809138489053998}
   m_Layer: 0
-  m_Name: Particle System (1)
+  m_Name: Star 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4777,7 +4777,7 @@ GameObject:
   - component: {fileID: 3667488747995487253}
   - component: {fileID: 3667488747995487252}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: Star 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
