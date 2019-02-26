@@ -4,8 +4,16 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Bullet
+  - Meteo
+  - Satellite
   - Star
+<<<<<<< HEAD
+  - Undefined
+  - Player1
+=======
   - Fist
+>>>>>>> origin/katou
   layers:
   - Default
   - TransparentFX
@@ -15,7 +23,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - PostProcessing
   - 
   - 
   - 
