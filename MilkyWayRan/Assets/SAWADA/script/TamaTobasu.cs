@@ -20,8 +20,15 @@ public class TamaTobasu : MonoBehaviour
 
     //弾の与えるダメージ
     public int BulletDamage = 2;
-    //番号
+    //自分の弾の番号
     public int Num = 1;
+
+    public int EnemyNum1 = 1;
+    public int EnemyNum2 = 2;
+    public int EnemyNum3 = 3;
+
+    //敵の番号
+
 
     // Start is called before the first frame update
     void Start()
@@ -52,11 +59,27 @@ public class TamaTobasu : MonoBehaviour
         if (TriggerFlag)
         {
             TriggerFlag = false;
-            if (other.gameObject.tag == "Player" + Num)
+            if (other.gameObject.tag == "Player" + EnemyNum1)
             {
-                //何もしない
+                var hit = other.gameObject;
+                var health = hit.GetComponent<PlayerMove>();
+                if (health != null)
+                {
+                    Destroy(gameObject);
+                    health.HP(Num, BulletDamage);
+                }
             }
-            else
+            if (other.gameObject.tag == "Player" + EnemyNum2)
+            {
+                var hit = other.gameObject;
+                var health = hit.GetComponent<PlayerMove>();
+                if (health != null)
+                {
+                    Destroy(gameObject);
+                    health.HP(Num, BulletDamage);
+                }
+            }
+            if (other.gameObject.tag == "Player" + EnemyNum3)
             {
                 var hit = other.gameObject;
                 var health = hit.GetComponent<PlayerMove>();
@@ -67,6 +90,5 @@ public class TamaTobasu : MonoBehaviour
                 }
             }
         }
-        
     }
 }

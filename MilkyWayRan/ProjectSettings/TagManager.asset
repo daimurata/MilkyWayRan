@@ -10,6 +10,11 @@ TagManager:
   - Star
   - Undefined
   - Player1
+  - Bullet2
+  - Bullet1
+  - Player2
+  - Star1
+  - Star2
   layers:
   - Default
   - TransparentFX
