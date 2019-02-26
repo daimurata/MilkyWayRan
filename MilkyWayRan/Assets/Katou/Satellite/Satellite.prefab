@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 132942258969594817}
   - component: {fileID: 2115529352648884040}
+  - component: {fileID: 4486658789296053072}
   m_Layer: 0
   m_Name: Satellite
   m_TagString: Satellite
@@ -46,6 +47,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: ef0f186851ea5114fa0bbac3b5092d39, type: 3}
+--- !u!114 &4486658789296053072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2699113293350353105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 676c355fa3fd48d4781a519d85c2749f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeOut: 5
 --- !u!1 &3825109732799732554
 GameObject:
   m_ObjectHideFlags: 0

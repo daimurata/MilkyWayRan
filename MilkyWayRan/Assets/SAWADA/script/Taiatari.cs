@@ -20,7 +20,6 @@ public class Taiatari : MonoBehaviour
             Debug.Log("a");
             //飛ばす方向を求める
             var impulse = (rigid.position - transform.position).normalized * this.thrust;
- ;
             //相手が衝突した時に回転しないようにする
             rigid.constraints = RigidbodyConstraints.FreezeRotation |
                                 RigidbodyConstraints.FreezePositionY;

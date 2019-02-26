@@ -8,8 +8,12 @@ TagManager:
   - Meteo
   - Satellite
   - Star
+<<<<<<< HEAD
   - Undefined
   - Player1
+=======
+  - Fist
+>>>>>>> origin/katou
   layers:
   - Default
   - TransparentFX
