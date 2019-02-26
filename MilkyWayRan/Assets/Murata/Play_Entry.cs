@@ -30,6 +30,8 @@ public class Play_Entry : MonoBehaviour
     private GameObject[] PL=new GameObject[4];
     //ゲーム中にプレイヤーを生成しない
     public bool[] Game_PL;
+    //ゲームに参加UI
+    public GameObject[] Join_PL = new GameObject[4];
 
     /// <summary>
     /// ゲーム開始設定
@@ -159,6 +161,18 @@ public class Play_Entry : MonoBehaviour
         //6星点滅
         Step_Tim[5] = 0.033f;
 
+        ///<summary>
+        ///参加UI処理初期
+        /// </summary>
+        //1プレイヤー非表示
+        Join_PL[0].SetActive(false);
+        //2プレイヤー非表示
+        Join_PL[1].SetActive(false);
+        //3プレイヤー非表示
+        Join_PL[2].SetActive(false);
+        //4プレイヤー非表示
+        Join_PL[3].SetActive(false);
+
         /// <summary>
         /// ゲージ処理初期
         /// </summary>
@@ -203,6 +217,8 @@ public class Play_Entry : MonoBehaviour
                 OK_pl[0] = true;
                 //プレイヤー1生成
                 PL[0] = Instantiate(Player[0], new Vector3(Pl_pos[0].x, Pl_pos[0].y, Pl_pos[0].z), transform.rotation);
+                //ゲームに参加UI表示
+                Join_PL[0].SetActive(true);
             }
         }
         //プレイヤーが参加なら
@@ -216,6 +232,8 @@ public class Play_Entry : MonoBehaviour
                 OK_pl[0] = false;
                 //プレイヤー1消す
                 Destroy(PL[0]);
+                //ゲームに参加UI非表示
+                Join_PL[0].SetActive(false);
             }
         }
     }
@@ -235,6 +253,8 @@ public class Play_Entry : MonoBehaviour
                 OK_pl[1] = true;
                 //プレイヤー2生成
                 PL[1] = Instantiate(Player[1], new Vector3(Pl_pos[1].x, Pl_pos[1].y, Pl_pos[1].z), transform.rotation);
+                //ゲームに参加UI表示
+                Join_PL[1].SetActive(true);
             }
         }
         //プレイヤー2が参加なら
@@ -248,6 +268,8 @@ public class Play_Entry : MonoBehaviour
                 OK_pl[1] = false;
                 //プレイヤー2消す
                 Destroy(PL[1]);
+                //ゲームに参加UI非表示
+                Join_PL[1].SetActive(false);
             }
         }
     }
@@ -267,6 +289,8 @@ public class Play_Entry : MonoBehaviour
                 OK_pl[2] = true;
                 //プレイヤー3生成
                 PL[2] = Instantiate(Player[2], new Vector3(Pl_pos[2].x, Pl_pos[2].y, Pl_pos[2].z), transform.rotation);
+                //ゲームに参加UI表示
+                Join_PL[2].SetActive(true);
             }
         }
         //プレイヤー3が参加なら
@@ -280,6 +304,8 @@ public class Play_Entry : MonoBehaviour
                 OK_pl[2] = false;
                 //プレイヤー3消す
                 Destroy(PL[2]);
+                //ゲームに参加UI非表示
+                Join_PL[2].SetActive(false);
             }
         }
     }
@@ -299,6 +325,8 @@ public class Play_Entry : MonoBehaviour
                 OK_pl[3] = true;
                 //プレイヤー4生成
                 PL[3] = Instantiate(Player[3], new Vector3(Pl_pos[3].x, Pl_pos[3].y, Pl_pos[3].z), transform.rotation);
+                //ゲームに参加UI表示
+                Join_PL[3].SetActive(true);
             }
         }
         //プレイヤー4が参加なら
@@ -312,6 +340,8 @@ public class Play_Entry : MonoBehaviour
                 OK_pl[3] = false;
                 //プレイヤー4消す
                 Destroy(PL[3]);
+                //ゲームに参加UI非表示
+                Join_PL[3].SetActive(false);
             }
         }
     }
@@ -481,6 +511,12 @@ public class Play_Entry : MonoBehaviour
             Game_PL[1] = true;
             Game_PL[2] = true;
             Game_PL[3] = true;
+
+            //参加UI非表示
+            Join_PL[0].SetActive(false);
+            Join_PL[1].SetActive(false);
+            Join_PL[2].SetActive(false);
+            Join_PL[3].SetActive(false);
 
             //ゲームタイムを表示
             Staer_S.SetActive(true);
