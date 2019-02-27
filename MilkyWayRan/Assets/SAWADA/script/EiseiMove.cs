@@ -25,6 +25,7 @@ public class EiseiMove : MonoBehaviour
  
     void OnBecameInvisible()
     {
+        Debug.Log("a");
           //画面外に出たらオブジェクトを消す
             Destroy(this.gameObject);
     }
@@ -34,7 +35,7 @@ public class EiseiMove : MonoBehaviour
         while (true)
         {
             //回転処理
-            transform.Rotate(0.01f, 0, 0);
+            transform.Rotate(0.1f, 0, 0);
             yield return new WaitForSeconds(timeOut);
             
         }

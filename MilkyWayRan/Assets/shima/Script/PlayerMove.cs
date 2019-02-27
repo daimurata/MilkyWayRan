@@ -17,7 +17,7 @@ public class PlayerMove : MonoBehaviour
     //適当に作成、後で変更
     //public GameObject tama;
 
-    attak attakscript;
+    Attak attakscript;
 
     bool One;
 
@@ -36,20 +36,20 @@ public class PlayerMove : MonoBehaviour
     }
     void Move(int Number)
     {
-        attak d1 = GetComponent<attak>();
+        Attak d1 = GetComponent<Attak>();
 
         //ボタン確認
         if (Input.GetButtonDown("Fire1_" + PlayerNum))
         {
             //アクションを入れていく
             Debug.Log("Shot1_" + PlayerNum);
-            d1.kaiten();
+            d1.Kaiten();
         }
         if (Input.GetButtonDown("Fire2_" + PlayerNum))
         {
             
              Debug.Log("Shot2_" + PlayerNum);
-             d1.syageki();               
+             d1.Syageki();               
         }
         if (Input.GetButton("Fire3_" + PlayerNum))
         {
