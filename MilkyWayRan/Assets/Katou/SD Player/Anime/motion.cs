@@ -61,10 +61,12 @@ public class motion : MonoBehaviour
         {
             animator.SetBool("is_damage", true);
         }
-        else
-        {
-            animator.SetBool("is_damage", false);
-        }   
+    }
+
+    // 衝突から離れた瞬間に呼ばれる  
+    private void OnCollisionExit(Collision collision)
+    {
+        animator.SetBool("is_damage", false);
     }
 
 }

@@ -24,7 +24,6 @@ public class Bullet : MonoBehaviour
         if (col.gameObject.name == "Player")
         {
             Destroy(gameObject);
-            Destroy(col.gameObject);
         }
     }
 
