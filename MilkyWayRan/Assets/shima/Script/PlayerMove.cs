@@ -24,7 +24,7 @@ public class PlayerMove : MonoBehaviour
     //ふっとぶ距離的なもの
     public float pos = 1.0f;
 
-    attak attakscript;
+    Attak attakscript;
 
     //アニメーター関連をコピってきたもの
     private Rigidbody _rigidBody;
@@ -52,7 +52,7 @@ public class PlayerMove : MonoBehaviour
     }
     void Move(int Number)
     {
-        attak d1 = GetComponent<attak>();
+        Attak d1 = GetComponent<Attak>();
 
         //ボタン確認
 
@@ -60,6 +60,7 @@ public class PlayerMove : MonoBehaviour
         {
             //アクションを入れていく
             Debug.Log("Shot1_" + PlayerNum);
+<<<<<<< HEAD
             d1.kaiten();
             animator.SetBool("is_attack", true);
             _rigidBody.isKinematic = true;
@@ -80,6 +81,15 @@ public class PlayerMove : MonoBehaviour
         else
         {
             animator.SetBool("is_attack", false);
+=======
+            d1.Kaiten();
+        }
+        if (Input.GetButtonDown("Fire2_" + PlayerNum))
+        {
+            
+             Debug.Log("Shot2_" + PlayerNum);
+             d1.Syageki();               
+>>>>>>> origin/sawada
         }
         if (Input.GetButton("Fire3_" + PlayerNum))
         {

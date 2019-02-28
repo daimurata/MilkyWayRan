@@ -3,18 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Bullet
-  - Meteo
-  - Satellite
-  - Star
-  - Undefined
-  - Player1
-  - Bullet2
-  - Bullet1
-  - Player2
-  - Star1
-  - Star2
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -24,7 +13,7 @@ TagManager:
   - UI
   - 
   - 
-  - PostProcessing
+  - 
   - 
   - 
   - 

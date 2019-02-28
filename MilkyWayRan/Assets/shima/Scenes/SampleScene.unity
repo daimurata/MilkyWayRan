@@ -1038,6 +1038,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj: {fileID: 0}
+<<<<<<< HEAD
+=======
+  obj1: {fileID: 0}
+  obj2: {fileID: 0}
+  obj3: {fileID: 0}
+>>>>>>> origin/sawada
 --- !u!114 &959814014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1051,6 +1057,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj: {fileID: 0}
+<<<<<<< HEAD
+=======
+  obj1: {fileID: 0}
+  obj2: {fileID: 0}
+  obj3: {fileID: 0}
+>>>>>>> origin/sawada
 --- !u!114 &959814015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1064,6 +1076,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj: {fileID: 0}
+<<<<<<< HEAD
+=======
+  obj1: {fileID: 0}
+  obj2: {fileID: 0}
+  obj3: {fileID: 0}
+>>>>>>> origin/sawada
 --- !u!114 &959814016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1077,6 +1095,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj: {fileID: 0}
+<<<<<<< HEAD
+=======
+  obj1: {fileID: 0}
+  obj2: {fileID: 0}
+  obj3: {fileID: 0}
+>>>>>>> origin/sawada
 --- !u!1 &960595653
 GameObject:
   m_ObjectHideFlags: 0
@@ -1539,7 +1563,11 @@ PrefabInstance:
     - target: {fileID: 6721195887603150251, guid: 163c773d3bb70294dbcb683be33a3310,
         type: 3}
       propertyPath: m_RootOrder
+<<<<<<< HEAD
       value: 7
+=======
+      value: 4
+>>>>>>> origin/sawada
       objectReference: {fileID: 0}
     - target: {fileID: 6721195887603150251, guid: 163c773d3bb70294dbcb683be33a3310,
         type: 3}

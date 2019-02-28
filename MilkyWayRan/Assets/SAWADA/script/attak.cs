@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class attak : MonoBehaviour
+public class Attak : MonoBehaviour
 {
     //回転するスピード
     public float timeOut;
@@ -17,8 +17,7 @@ public class attak : MonoBehaviour
     public GameObject greenPoint;
     //中継地点2
     public GameObject greenPoint1;
-    //中継地点を割り振るための変数
-    int count = 0;
+  
 
     //弾数
     public int BulletCount = 5;
@@ -87,7 +86,7 @@ public class attak : MonoBehaviour
         //}
     }
 
-    public void kaiten()
+    public void Kaiten()
     {
         //回転処理
         StartCoroutine(FuncCoroutine());
@@ -96,7 +95,7 @@ public class attak : MonoBehaviour
         Invoke("SetActivefalse",1.0f);
     }
 
-    public void syageki()
+    public void Syageki()
     {
         if (BulletCount > 0)
         {
