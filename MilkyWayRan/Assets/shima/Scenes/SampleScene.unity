@@ -439,6 +439,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1955442903}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &415475058 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4521176850293322510, guid: 163c773d3bb70294dbcb683be33a3310,
+    type: 3}
+  m_PrefabInstance: {fileID: 1955442903}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &436416253
 GameObject:
   m_ObjectHideFlags: 0
@@ -517,7 +523,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &616307331
 Transform:
   m_ObjectHideFlags: 0
@@ -526,11 +532,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 616307330}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.1371659, y: 0.18705292, z: 0.00027837604}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children: []
-  m_Father: {fileID: 2108951974}
-  m_RootOrder: 3
+  m_Father: {fileID: 415475058}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &616307332
 Rigidbody:
@@ -556,7 +562,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 616307330}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.7, y: 0.4, z: 0.4000001}
@@ -573,7 +579,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95193d4fd1ccdca45ac0342564518363, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DestroyStar: 1
   StarDamage: 5
   Num: 2
   EnemyNum1: 1
@@ -612,7 +617,7 @@ MonoBehaviour:
   timeOut: 0
   target: {fileID: 775811593}
   tama: {fileID: 396476535}
-  tama2: {fileID: 0}
+  tama2: {fileID: 616307330}
   greenPoint: {fileID: 1750964298}
   greenPoint1: {fileID: 960595653}
   BulletCount: 5
@@ -638,8 +643,9 @@ MonoBehaviour:
   EnemyNum3: 4
   PlayerSpeed: 5
   PlayerHP: 20
-  TackleDamage: 5
+  TackleDamage: 1
   pos: 10
+  invincible: 3
 --- !u!4 &729706296 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6721195887603150251, guid: 163c773d3bb70294dbcb683be33a3310,
@@ -670,8 +676,9 @@ MonoBehaviour:
   EnemyNum3: 4
   PlayerSpeed: 5
   PlayerHP: 20
-  TackleDamage: 5
+  TackleDamage: 1
   pos: 3
+  invincible: 3
 --- !u!4 &775811598 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3360017831555288797, guid: 2178e45bbd4ac4b438f5ba61bc9c3cec,
@@ -693,7 +700,7 @@ MonoBehaviour:
   timeOut: 0
   target: {fileID: 729706290}
   tama: {fileID: 673748762}
-  tama2: {fileID: 0}
+  tama2: {fileID: 957665813}
   greenPoint: {fileID: 515539916}
   greenPoint1: {fileID: 436416253}
   BulletCount: 5
@@ -909,7 +916,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &957665814
 Transform:
   m_ObjectHideFlags: 0
@@ -918,11 +925,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 957665813}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.918663, y: 0.5277884, z: -0.004113504}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.31899998, z: -0.00075}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children: []
-  m_Father: {fileID: 2108951974}
-  m_RootOrder: 2
+  m_Father: {fileID: 2099557745}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &957665815
 BoxCollider:
@@ -932,7 +939,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 957665813}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.4, z: 1.5}
@@ -965,7 +972,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95193d4fd1ccdca45ac0342564518363, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DestroyStar: 1
   StarDamage: 5
   Num: 1
   EnemyNum1: 2
@@ -1111,7 +1117,7 @@ PrefabInstance:
     - target: {fileID: 6353303079737009793, guid: 102ae95bef3ae3445b095c21c6339e1b,
         type: 3}
       propertyPath: m_Name
-      value: Star (2)
+      value: Star1
       objectReference: {fileID: 0}
     - target: {fileID: 6353303079737009793, guid: 102ae95bef3ae3445b095c21c6339e1b,
         type: 3}
@@ -1490,6 +1496,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Star2
       objectReference: {fileID: 0}
+    - target: {fileID: 1423310552910717489, guid: 163c773d3bb70294dbcb683be33a3310,
+        type: 3}
+      propertyPath: m_Name
+      value: Star2
+      objectReference: {fileID: 0}
     - target: {fileID: 6721195887603150251, guid: 163c773d3bb70294dbcb683be33a3310,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1613,6 +1624,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1084481130}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &2099557745 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8454831488253540286, guid: 102ae95bef3ae3445b095c21c6339e1b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1084481130}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2108951973
 GameObject:
   m_ObjectHideFlags: 0
@@ -1642,8 +1659,6 @@ Transform:
   m_Children:
   - {fileID: 673748763}
   - {fileID: 396476536}
-  - {fileID: 957665814}
-  - {fileID: 616307331}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -7,12 +7,12 @@ public class PlayerMove : MonoBehaviour
     //ここでプレイヤー関連のやつ移動とかHPまとめてやります
 
 
-    //プレイヤーナンバー
-    public int PlayerNum = 1;
-    //敵ナンバー
-    public int EnemyNum1 = 1;
-    public int EnemyNum2 = 2;
-    public int EnemyNum3 = 3;
+    //自分の番号、Inspectorで変更してね
+    public int PlayerNum;
+    //相手の番号、Inspectorで変更してね
+    public int EnemyNum1;
+    public int EnemyNum2;
+    public int EnemyNum3;
     //移動スピード
     public float PlayerSpeed = 5.0f;
     //HP
@@ -24,9 +24,6 @@ public class PlayerMove : MonoBehaviour
     //ふっとぶ距離的なもの
     public float pos = 1.0f;
 
-    //適当に作成、後で変更
-    //public GameObject tama;
-
     attak attakscript;
 
     //アニメーター関連をコピってきたもの
@@ -36,6 +33,8 @@ public class PlayerMove : MonoBehaviour
 
     //無敵（一時的にダメージを無くすためのもの）
     private bool isCollision = true;
+    //無敵時間、Inspectorで変更できるよ
+    public float invincible = 3;
 
     // Use this for initialization
     void Start()
@@ -131,8 +130,8 @@ public class PlayerMove : MonoBehaviour
                 Debug.Log("プレイヤー" + "死亡");
                 //多分ここに死んだ時のアニメーション追加
             }
-            //○○秒後trueにする,現在は3秒
-            Invoke("isCollisionfalse", 3.0f);
+            //○○秒後trueにする
+            Invoke("isCollisionfalse", invincible);
         }
     }
    
@@ -162,7 +161,6 @@ public class PlayerMove : MonoBehaviour
                 if (health != null)
                 {
                     //ここがプレイヤーの入力方向と逆の方向に無理やり飛ばす処理
-                    //transform.position -= direction * pos ;
                     _rigidBody.AddForce(-direction * 100,ForceMode.Impulse);
                     health.HP(PlayerNum, TackleDamage);
                 }
@@ -182,7 +180,8 @@ public class PlayerMove : MonoBehaviour
                 var health = hit.GetComponent<PlayerMove>();
                 if (health != null)
                 {
-                    //Destroy(gameObject);
+                    //ここがプレイヤーの入力方向と逆の方向に無理やり飛ばす処理
+                    _rigidBody.AddForce(-direction * 100, ForceMode.Impulse);
                     health.HP(PlayerNum, TackleDamage);
                 }
             }
@@ -201,31 +200,12 @@ public class PlayerMove : MonoBehaviour
                 var health = hit.GetComponent<PlayerMove>();
                 if (health != null)
                 {
-                    //Destroy(gameObject);
+                    //ここがプレイヤーの入力方向と逆の方向に無理やり飛ばす処理
+                    _rigidBody.AddForce(-direction * 100, ForceMode.Impulse);
                     health.HP(PlayerNum, TackleDamage);
                 }
             }
         }
-
-
-        //if (col.gameObject.tag == "Star" + EnemyNum1)
-        //{
-        //    Debug.Log(PlayerNum + "がダメージをうけた");
-        //    animator.SetBool("is_damege", true);
-        //    Invoke("AnimatorBoolfalse", 0.5f);
-        //}
-        //if (col.gameObject.tag == "Star" + EnemyNum2)
-        //{
-        //    Debug.Log(PlayerNum + "がダメージをうけた");
-        //    animator.SetBool("is_damege", true);
-        //    Invoke("AnimatorBoolfalse", 0.5f);
-        //}
-        //if (col.gameObject.tag == "Star" + EnemyNum3)
-        //{
-        //    Debug.Log(PlayerNum + "がダメージをうけた");
-        //    animator.SetBool("is_damege", true);
-        //    Invoke("AnimatorBoolfalse", 0.5f);
-        //}
 
         //相手がBulletの場合、弾の番号指定（Inspectorで変更）
         if (col.gameObject.tag == "Bullet" + EnemyNum1)

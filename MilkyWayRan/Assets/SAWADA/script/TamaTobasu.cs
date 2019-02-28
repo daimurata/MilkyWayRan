@@ -21,8 +21,8 @@ public class TamaTobasu : MonoBehaviour
     //弾の与えるダメージ
     public int BulletDamage = 2;
     //自分の弾の番号
-    public int Num = 1;
-
+    public int PlayerNum = 1;
+    //相手のプレイヤー番号を判別するための番号
     public int EnemyNum1 = 1;
     public int EnemyNum2 = 2;
     public int EnemyNum3 = 3;
@@ -66,7 +66,7 @@ public class TamaTobasu : MonoBehaviour
                 if (health != null)
                 {
                     Destroy(gameObject);
-                    health.HP(Num, BulletDamage);
+                    health.HP(PlayerNum, BulletDamage);
                 }
             }
             if (other.gameObject.tag == "Player" + EnemyNum2)
@@ -76,7 +76,7 @@ public class TamaTobasu : MonoBehaviour
                 if (health != null)
                 {
                     Destroy(gameObject);
-                    health.HP(Num, BulletDamage);
+                    health.HP(PlayerNum, BulletDamage);
                 }
             }
             if (other.gameObject.tag == "Player" + EnemyNum3)
@@ -86,7 +86,7 @@ public class TamaTobasu : MonoBehaviour
                 if (health != null)
                 {
                     Destroy(gameObject);
-                    health.HP(Num, BulletDamage);
+                    health.HP(PlayerNum, BulletDamage);
                 }
             }
         }

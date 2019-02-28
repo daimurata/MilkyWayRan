@@ -10,7 +10,7 @@ public class attak : MonoBehaviour
     public GameObject target;
     //弾のプレハブ
     public GameObject tama;
-    //星の回転時に攻撃を入れるもの
+    //星の回転時に攻撃判定をいれるもの
     public GameObject tama2;
    
     //中継地点1
@@ -91,7 +91,9 @@ public class attak : MonoBehaviour
     {
         //回転処理
         StartCoroutine(FuncCoroutine());
-        var t = Instantiate(tama2, this.transform.position + new Vector3(0,0,-0.5f), Quaternion.identity);      
+        //SetActiveのON、OFFの切り替えで攻撃判定を一時的に出すようにしてあります
+        tama2.gameObject.SetActive(true);
+        Invoke("SetActivefalse",1.0f);
     }
 
     public void syageki()
@@ -136,5 +138,9 @@ public class attak : MonoBehaviour
             if (a > 35)
                 break;
         }
+    }
+    void SetActivefalse()
+    {
+        tama2.gameObject.SetActive(false);
     }
 }
