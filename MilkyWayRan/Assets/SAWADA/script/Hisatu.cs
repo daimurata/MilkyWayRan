@@ -10,6 +10,7 @@ public class Hisatu : MonoBehaviour
     public Transform muzzle;
     //拳のスピード
     public float speed = 100;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,22 +20,41 @@ public class Hisatu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //zキーが押された時
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-           //拳の生成
-            GameObject Kobusies = Instantiate(Kobusi) as GameObject;
-            //拳の向きをオブジェクトの向きに合わせます。
-            Kobusies.transform.rotation = this.gameObject.transform.rotation;
-            //拳の発射
-            Vector3 force;
-            force = this.gameObject.transform.forward * speed;
-            //拳のRigidbodyの取得
-            Kobusies.GetComponent<Rigidbody>().AddForce(force);
-            //拳がプレイヤーの進行方向に向かうようにする
-            Kobusies.transform.position = transform.position;
-            //発射位置から拳を発射
-            Kobusies.transform.position = muzzle.position;
-        }
+        ////zキーが押された時
+        //if (Input.GetKeyDown(KeyCode.Z))
+        //{
+        //   //拳の生成
+        //    GameObject Kobusies = Instantiate(Kobusi) as GameObject;
+        //    //拳の向きをオブジェクトの向きに合わせます。
+        //    Kobusies.transform.rotation = this.gameObject.transform.rotation;
+        //    //拳の発射
+        //    Vector3 force;
+        //    force = this.gameObject.transform.forward * speed;
+        //    //拳のRigidbodyの取得
+        //    Kobusies.GetComponent<Rigidbody>().AddForce(force);
+        //    //拳がプレイヤーの進行方向に向かうようにする
+        //    Kobusies.transform.position = transform.position;
+        //    //発射位置から拳を発射
+        //    Kobusies.transform.position = muzzle.position;
+        //}
+    }
+    public void hisatuskill()
+    {
+        //他のスクリプトから呼び出す為に作成
+        //試す際はUpdateでいいですけれど、動作確認が終わったらこっち hisatuskill に移動させてください
+
+        //拳の生成
+        GameObject Kobusies = Instantiate(Kobusi) as GameObject;
+        //拳の向きをオブジェクトの向きに合わせます。
+        Kobusies.transform.rotation = this.gameObject.transform.rotation;
+        //拳の発射
+        Vector3 force;
+        force = this.gameObject.transform.forward * speed;
+        //拳のRigidbodyの取得
+        Kobusies.GetComponent<Rigidbody>().AddForce(force);
+        //拳がプレイヤーの進行方向に向かうようにする
+        Kobusies.transform.position = transform.position;
+        //発射位置から拳を発射
+        Kobusies.transform.position = muzzle.position;
     }
 }

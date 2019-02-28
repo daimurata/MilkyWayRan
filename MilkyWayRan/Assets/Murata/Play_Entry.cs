@@ -208,7 +208,8 @@ public class Play_Entry : MonoBehaviour
         if (OK_pl[0] == false)
         {
             //Aキーを押したら
-            if (Input.GetKeyDown(KeyCode.A)&& Game_PL[0] == false)
+            //if (Input.GetKeyDown(KeyCode.A)&& Game_PL[0] == false)
+            if (Input.GetButtonDown("PlayerLoad1") && Game_PL[0] == false)
             {
                 //ゲームスタートするまでの時間
                 Count_Dow = 10;
@@ -225,7 +226,9 @@ public class Play_Entry : MonoBehaviour
         else
         {
             //Aキーを押したら
-            if (Input.GetKeyDown(KeyCode.A)&& Game_PL[0] == false)
+            //if (Input.GetKeyDown(KeyCode.A)&& Game_PL[0] == false)
+            //これを追記　PlayerLoad1 1～4まであるのでそれに対応したものを入れます
+            if (Input.GetButtonDown("PlayerLoad1") && Game_PL[0] == false)
             {
                 Debug.Log("非参加");
                 //プレイヤー1参加
@@ -244,7 +247,8 @@ public class Play_Entry : MonoBehaviour
         if (OK_pl[1] == false)
         {
             //Sキーを押したら
-            if (Input.GetKeyDown(KeyCode.S)&& Game_PL[1] == false)
+            //if (Input.GetKeyDown(KeyCode.S)&& Game_PL[1] == false)
+            if (Input.GetButtonDown("PlayerLoad2") && Game_PL[1] == false)
             {
                 //ゲームスタートするまでの時間
                 Count_Dow = 10;
@@ -261,7 +265,8 @@ public class Play_Entry : MonoBehaviour
         else
         {
             //Sキーを押したら
-            if (Input.GetKeyDown(KeyCode.S)&& Game_PL[1] == false)
+            //if (Input.GetKeyDown(KeyCode.S)&& Game_PL[1] == false)
+            if (Input.GetButtonDown("PlayerLoad2") && Game_PL[1] == false)
             {
                 Debug.Log("非参加2");
                 //プレイヤー2参加
@@ -279,8 +284,9 @@ public class Play_Entry : MonoBehaviour
         //プレイヤー3が非参加
         if (OK_pl[2] == false)
         {
-            //Dキーを押したら
-            if (Input.GetKeyDown(KeyCode.D)&&Game_PL[0] == false)
+            //Dキーを押したら、変更していないけれど↓のPL[0]の所に多分2が入るのかな？
+            //if (Input.GetKeyDown(KeyCode.D)&&Game_PL[0] == false)
+            if (Input.GetButtonDown("PlayerLoad3") && Game_PL[2] == false)
             {
                 //ゲームスタートするまでの時間
                 Count_Dow = 10;
@@ -297,7 +303,8 @@ public class Play_Entry : MonoBehaviour
         else
         {
             //Dキーを押したら
-            if (Input.GetKeyDown(KeyCode.D)&& Game_PL[2] == false)
+            //if (Input.GetKeyDown(KeyCode.D)&& Game_PL[2] == false)
+            if (Input.GetButtonDown("PlayerLoad3") && Game_PL[2] == false)
             {
                 Debug.Log("非参加3");
                 //プレイヤー3参加
@@ -316,7 +323,8 @@ public class Play_Entry : MonoBehaviour
         if (OK_pl[3] == false)
         {
             //Fキーを押したら
-            if (Input.GetKeyDown(KeyCode.F)&&Game_PL[3] == false)
+            //if (Input.GetKeyDown(KeyCode.F)&&Game_PL[3] == false)
+            if (Input.GetButtonDown("PlayerLoad4") && Game_PL[3] == false)
             {
                 //ゲームスタートするまでの時間
                 Count_Dow = 10;
@@ -333,7 +341,8 @@ public class Play_Entry : MonoBehaviour
         else
         {
             //Fキーを押したら
-            if (Input.GetKeyDown(KeyCode.F)&&Game_PL[3] == false)
+            //if (Input.GetKeyDown(KeyCode.F)&&Game_PL[3] == false)
+            if (Input.GetButtonDown("PlayerLoad4") && Game_PL[3] == false)
             {
                 Debug.Log("非参加4");
                 //プレイヤー4参加

@@ -21,10 +21,8 @@ public class PlayerMove : MonoBehaviour
     //体当たりダメージ
     public int TackleDamage = 5;
 
-    //ふっとぶ距離的なもの
-    public float pos = 1.0f;
-
     Attak attakscript;
+    Hisatu hisatuscript;
 
     //アニメーター関連をコピってきたもの
     private Rigidbody _rigidBody;
@@ -53,52 +51,34 @@ public class PlayerMove : MonoBehaviour
     void Move(int Number)
     {
         Attak d1 = GetComponent<Attak>();
+        Hisatu a1 = GetComponent<Hisatu>();
 
         //ボタン確認
 
         if (Input.GetButtonDown("Fire1_" + PlayerNum))
         {
-            //アクションを入れていく
             Debug.Log("Shot1_" + PlayerNum);
-<<<<<<< HEAD
-            d1.kaiten();
+            d1.Kaiten();
             animator.SetBool("is_attack", true);
+            Invoke("AnimatorBoolis_attack", 0.5f);
             _rigidBody.isKinematic = true;
             Invoke("RigidBodyfalse", 1.0f);
-        }
-        else
-        {
-            animator.SetBool("is_attack", false);
         }
         if (Input.GetButtonDown("Fire2_" + PlayerNum))
         {
             Debug.Log("Shot2_" + PlayerNum);
-            d1.syageki();
+            d1.Syageki();
             animator.SetBool("is_attack", true);
+            Invoke("AnimatorBoolis_attack", 0.5f);
             _rigidBody.isKinematic = true;
-            Invoke("RigidBodyfalse", 1.0f);
+            Invoke("RigidBodyfalse", 1.0f);        
         }
-        else
+        if (Input.GetButtonDown("Fire3_" + PlayerNum))
         {
-            animator.SetBool("is_attack", false);
-=======
-            d1.Kaiten();
-        }
-        if (Input.GetButtonDown("Fire2_" + PlayerNum))
-        {
-            
-             Debug.Log("Shot2_" + PlayerNum);
-             d1.Syageki();               
->>>>>>> origin/sawada
-        }
-        if (Input.GetButton("Fire3_" + PlayerNum))
-        {
+            a1.hisatuskill();
             Debug.Log("Shot3_" + PlayerNum);
             animator.SetBool("is_attack", true);
-        }
-        else
-        {
-            animator.SetBool("is_attack", false);
+            Invoke("AnimatorBoolis_attack", 0.5f);
         }
         //アナログスティックで動かせると思う
         float x = Input.GetAxis("Horizontal" + PlayerNum);//左右
@@ -164,7 +144,7 @@ public class PlayerMove : MonoBehaviour
                 /////
                 Debug.Log(PlayerNum + "がダメージをうけた");
                 animator.SetBool("is_damage", true);
-                Invoke("AnimatorBoolfalse", 0.5f);
+                Invoke("AnimatorBoolis_damage", 0.5f);
                 //////
                 var hit = col.gameObject;
                 var health = hit.GetComponent<PlayerMove>();
@@ -184,7 +164,7 @@ public class PlayerMove : MonoBehaviour
                 /////
                 Debug.Log(PlayerNum + "がダメージをうけた");
                 animator.SetBool("is_damage", true);
-                Invoke("AnimatorBoolfalse", 0.5f);
+                Invoke("AnimatorBoolis_damage", 0.5f);
                 //////
                 var hit = col.gameObject;
                 var health = hit.GetComponent<PlayerMove>();
@@ -204,7 +184,7 @@ public class PlayerMove : MonoBehaviour
                 /////
                 Debug.Log(PlayerNum + "がダメージをうけた");
                 animator.SetBool("is_damage", true);
-                Invoke("AnimatorBoolfalse", 0.5f);
+                Invoke("AnimatorBoolis_damage", 0.5f);
                 //////
                 var hit = col.gameObject;
                 var health = hit.GetComponent<PlayerMove>();
@@ -222,25 +202,32 @@ public class PlayerMove : MonoBehaviour
         {
             Debug.Log(PlayerNum + "がダメージをうけた");
             animator.SetBool("is_damage", true);
-            Invoke("AnimatorBoolfalse", 0.5f);
+            Invoke("AnimatorBoolis_damage", 0.5f);
         }
         if (col.gameObject.tag == "Bullet" + EnemyNum2)
         {
             Debug.Log(PlayerNum + "がダメージをうけた");
             animator.SetBool("is_damage", true);
-            Invoke("AnimatorBoolfalse", 0.5f);
+            Invoke("AnimatorBoolis_damage", 0.5f);
         }
         if (col.gameObject.tag == "Bullet" + EnemyNum3)
         {
             Debug.Log(PlayerNum + "がダメージをうけた");
             animator.SetBool("is_damage", true);
-            Invoke("AnimatorBoolfalse", 0.5f);
+            Invoke("AnimatorBoolis_damage", 0.5f);
         }
     }
-    void AnimatorBoolfalse()
+    //↓のやつらはBoolをInvokeで呼び出すためだけに作成したものです
+    void AnimatorBoolis_damage()
     {
+        //is_damage
         //falseを呼び出すだけのため
         animator.SetBool("is_damage", false);
+    }
+    void AnimatorBoolis_attack()
+    {
+        //is_attack
+        animator.SetBool("is_attack", false);
     }
     void RigidBodyfalse()
     {
