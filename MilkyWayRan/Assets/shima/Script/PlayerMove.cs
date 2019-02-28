@@ -34,7 +34,7 @@ public class PlayerMove : MonoBehaviour
 
     private Animator animator;
 
-    //攻撃に当たった際Boolを呼び出して一時的な無敵処理を追加するか否か,途中
+    //無敵（一時的にダメージを無くすためのもの）
     private bool isCollision = true;
 
     // Use this for initialization
@@ -56,7 +56,7 @@ public class PlayerMove : MonoBehaviour
         attak d1 = GetComponent<attak>();
 
         //ボタン確認
-        
+
         if (Input.GetButtonDown("Fire1_" + PlayerNum))
         {
             //アクションを入れていく
@@ -71,7 +71,7 @@ public class PlayerMove : MonoBehaviour
             animator.SetBool("is_attack", false);
         }
         if (Input.GetButtonDown("Fire2_" + PlayerNum))
-        {         
+        {
             Debug.Log("Shot2_" + PlayerNum);
             d1.syageki();
             animator.SetBool("is_attack", true);
@@ -106,6 +106,7 @@ public class PlayerMove : MonoBehaviour
             transform.localRotation = Quaternion.LookRotation(direction);
             //方向に移動
             transform.position += PlayerSpeed * direction * Time.deltaTime;
+            //_rigidBody.AddForce(direction * 1000);
             animator.SetBool("is_go", true);
         }
         else
@@ -113,20 +114,28 @@ public class PlayerMove : MonoBehaviour
             animator.SetBool("is_go", false);
         }
     }
-    public void HP(int Number,int amount)
-    {
-        PlayerHP -= amount;
-        if (PlayerHP >= 0)
+    public void HP(int Number, int amount)
+    {      
+        //これのtrue,falseを切り替えて無敵時間の用意
+        if (isCollision)
         {
-            Debug.Log("プレイヤー"+Number+"が攻撃"+PlayerHP);
-        }
-        if (PlayerHP <= 0)
-        {
-            Destroy(this.gameObject);
-            Debug.Log("プレイヤー" +"死亡");
-            //多分ここに死んだ時のアニメーション追加
+            PlayerHP -= amount;
+            isCollision = false;
+            if (PlayerHP >= 0)
+            {
+                Debug.Log("プレイヤー" + Number + "が攻撃" + PlayerHP);
+            }
+            if (PlayerHP <= 0)
+            {
+                Destroy(this.gameObject);
+                Debug.Log("プレイヤー" + "死亡");
+                //多分ここに死んだ時のアニメーション追加
+            }
+            //○○秒後trueにする,現在は3秒
+            Invoke("isCollisionfalse", 3.0f);
         }
     }
+   
     void OnCollisionEnter(Collision col)
     {
         float x = Input.GetAxis("Horizontal" + PlayerNum);//左右
@@ -135,6 +144,7 @@ public class PlayerMove : MonoBehaviour
         var direction = new Vector3(x, 0, y);
 
         bool TriggerFlag = true;
+
         //相手がプレイヤーの場合、プレイヤーの番号指定（Inspectorで変更）
         //体当たりでダメージが出る感じ
         if (TriggerFlag)
@@ -152,7 +162,8 @@ public class PlayerMove : MonoBehaviour
                 if (health != null)
                 {
                     //ここがプレイヤーの入力方向と逆の方向に無理やり飛ばす処理
-                    transform.position -= direction * pos ;
+                    //transform.position -= direction * pos ;
+                    _rigidBody.AddForce(-direction * 100,ForceMode.Impulse);
                     health.HP(PlayerNum, TackleDamage);
                 }
             }
@@ -245,5 +256,10 @@ public class PlayerMove : MonoBehaviour
     {
         _rigidBody.isKinematic = false;
     }
+    void isCollisionfalse()
+    {
+        isCollision = true;
+    }
+
 }
  

@@ -91,7 +91,7 @@ public class attak : MonoBehaviour
     {
         //回転処理
         StartCoroutine(FuncCoroutine());
-        var t = Instantiate(tama2, this.transform.position + new Vector3(0,0,-0.5f), Quaternion.identity);
+        var t = Instantiate(tama2, this.transform.position + new Vector3(0,0,-0.5f), Quaternion.identity);      
     }
 
     public void syageki()
