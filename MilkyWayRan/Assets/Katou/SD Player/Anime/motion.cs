@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class motion : MonoBehaviour
+public class Motion : MonoBehaviour
 {
     private Rigidbody _rigidBody;
 
@@ -24,7 +24,7 @@ public class motion : MonoBehaviour
         {
             transform.position += transform.forward * 0.1f;
             animator.SetBool("is_go", true);
-            attack();
+            Attack();
         }
         else
         {
@@ -38,9 +38,9 @@ public class motion : MonoBehaviour
         {
             transform.Rotate(0, -10, 0);
         }
-        attack();
+        Attack();
     }
-    public void attack()
+    public void Attack()
     {
         if (Input.GetKey(KeyCode.A))//攻撃
         {
@@ -54,14 +54,20 @@ public class motion : MonoBehaviour
 
     //オブジェクトと接触した瞬間に呼び出される
     //OnCollisionEnter()
-    private void OnCollisionEnter(Collision collision)
-    {
-        //Playerが衝突したオブジェクトがBulletだった場合
-        if (collision.gameObject.name == "Bullet")
-        {
-            animator.SetBool("is_damage", true);
-        }
-    }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //Playerが衝突したオブジェクトがBulletだった場合
+    // if (collision.gameObject.name == "Bullet")
+
+    //void OnCollisionEnter(Collision col)
+    //{
+
+    //相手がBulletの場合
+    //if (col.gameObject.tag == ("Bullet"))
+
+    //{
+    //animator.SetBool("is_damage", true);
+    //}
 
     // 衝突から離れた瞬間に呼ばれる  
     private void OnCollisionExit(Collision collision)
