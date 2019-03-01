@@ -3,18 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-<<<<<<< HEAD
-  tags: []
-=======
   tags:
-  - Satellite
-  - Meteo
-  - Star
-  - Fist
   - Bullet
-  - Right
-  - Left
->>>>>>> origin/katou
   layers:
   - Default
   - TransparentFX
