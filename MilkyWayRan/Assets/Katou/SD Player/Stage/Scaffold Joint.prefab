@@ -87,6 +87,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1388754048109584867}
   - component: {fileID: 4944329024440749554}
+  - component: {fileID: 1625670951765436101}
+  - component: {fileID: 2119015609709220139}
   m_Layer: 0
   m_Name: Scaffold Joint
   m_TagString: Untagged
@@ -123,3 +125,33 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: 53ea7facbc04c124b8d84f0e79172dbf, type: 3}
+--- !u!54 &1625670951765436101
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722299124564973162}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!114 &2119015609709220139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722299124564973162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c36b7bf36f8574428749e0234c309e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  JointNum: 1
+  JointSpeed: 1
