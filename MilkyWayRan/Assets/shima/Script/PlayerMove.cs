@@ -104,7 +104,8 @@ public class PlayerMove : MonoBehaviour
         }
     }
     public void HP(int Number, int amount)
-    {      
+    {
+        Hisatu a1 = GetComponent<Hisatu>();
         //これのtrue,falseを切り替えて無敵時間の用意
         if (isCollision)
         {
@@ -122,6 +123,8 @@ public class PlayerMove : MonoBehaviour
             }
             //○○秒後trueにする
             Invoke("isCollisionfalse", invincible);
+            //ここで受けるダメージをHisatu.csのSpecialGageに送る
+            a1.SpecialGage(amount);
         }
     }
    

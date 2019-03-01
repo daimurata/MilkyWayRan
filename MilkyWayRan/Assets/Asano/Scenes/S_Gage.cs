@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class S_Gage : MonoBehaviour
 {
+    //弾数ゲージ＝Playerの弾と連動
+
     //m
     public Image Gage_0;
     public Image Gage_1;
@@ -12,14 +14,22 @@ public class S_Gage : MonoBehaviour
     public Image Gage_3;
     public Image Gage_4;
     public Image Gage_5;
-    public int Bool = 5;
+    //public int Bool = 5;
+
+    //Playerの弾数を取得するため、Playerを入れればおｋ
+    public GameObject gameObject;
+
     void Start()
     {
-        Bool = 5;
+        //Bool = 5;
     }
     void Update()
     {
-        if(Bool == 5)
+        //ここで弾数取得
+        int Pbulletcount = gameObject.GetComponent<Attak>().BulletCount;
+
+        //BoolをPbulletcountに変更
+        if (Pbulletcount == 5)
         {
             Gage_5.gameObject.SetActive(true);
             Gage_4.gameObject.SetActive(true);
@@ -27,7 +37,7 @@ public class S_Gage : MonoBehaviour
             Gage_2.gameObject.SetActive(true);
             Gage_1.gameObject.SetActive(true);
         }
-        if (Bool == 4)
+        if (Pbulletcount == 4)
         {
             Gage_5.gameObject.SetActive(false);
             Gage_4.gameObject.SetActive(true);
@@ -36,7 +46,7 @@ public class S_Gage : MonoBehaviour
             Gage_1.gameObject.SetActive(true);
         }
 
-        if (Bool == 3)
+        if (Pbulletcount == 3)
         {
             Gage_5.gameObject.SetActive(false);
             Gage_4.gameObject.SetActive(false);
@@ -44,7 +54,7 @@ public class S_Gage : MonoBehaviour
             Gage_2.gameObject.SetActive(true);
             Gage_1.gameObject.SetActive(true);
         }
-        if (Bool == 2)
+        if (Pbulletcount == 2)
         {
             Gage_5.gameObject.SetActive(false);
             Gage_4.gameObject.SetActive(false);
@@ -52,7 +62,7 @@ public class S_Gage : MonoBehaviour
             Gage_2.gameObject.SetActive(true);
             Gage_1.gameObject.SetActive(true);
         }
-        if (Bool == 1)
+        if (Pbulletcount == 1)
         {
             Gage_5.gameObject.SetActive(false);
             Gage_4.gameObject.SetActive(false);
@@ -60,7 +70,7 @@ public class S_Gage : MonoBehaviour
             Gage_2.gameObject.SetActive(false);
             Gage_1.gameObject.SetActive(true);
         }
-        if (Bool == 0)
+        if (Pbulletcount == 0)
         {
             Gage_5.gameObject.SetActive(false);
             Gage_4.gameObject.SetActive(false);
@@ -69,24 +79,25 @@ public class S_Gage : MonoBehaviour
             Gage_1.gameObject.SetActive(false);
         }
 
-        //増える
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            Bool += 1;
-            if (Bool >= 5)
-            {
-                Bool = 5;
-            }
-        }
+        //使わないから消した
+        ////増える
+        //if (Input.GetKeyDown(KeyCode.Z))
+        //{
+        //    Bool += 1;
+        //    if (Bool >= 5)
+        //    {
+        //        Bool = 5;
+        //    }
+        //}
         
-        //減る
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            Bool -= 1;
-            if (Bool <= 0)
-            {
-                Bool = 0;
-            }
-        }
+        ////減る
+        //if (Input.GetKeyDown(KeyCode.X))
+        //{
+        //    Bool -= 1;
+        //    if (Bool <= 0)
+        //    {
+        //        Bool = 0;
+        //    }
+        //}
     }
 }
