@@ -13,7 +13,8 @@ public class Hisatu : MonoBehaviour
     //必殺技の数値
     public int Special = 0;
 
-    Death death;
+    //Death death;
+    public Death death;
     // Start is called before the first frame update
     void Start()
     {
@@ -64,10 +65,16 @@ public class Hisatu : MonoBehaviour
             Kobusies.transform.position = transform.position;
             //発射位置から拳を発射
             Kobusies.transform.position = muzzle.position;
+
+            Death a1 = death.GetComponent<Death>();
+            a1.Gage0();
         }   
     }
     public void SpecialGage(int damage)
     {
         Special = Special + damage;
+        //
+        Death a1 = death.GetComponent<Death>();
+        a1.Gage(damage);
     }
 }

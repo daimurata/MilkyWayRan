@@ -29,6 +29,9 @@ public class PlayerMove : MonoBehaviour
 
     private Animator animator;
 
+    public GameObject efect1;
+    public GameObject efect2;
+
     //無敵（一時的にダメージを無くすためのもの）
     private bool isCollision = true;
     //無敵時間、Inspectorで変更できるよ
@@ -144,6 +147,8 @@ public class PlayerMove : MonoBehaviour
             TriggerFlag = false;
             if (col.gameObject.tag == "Player" + EnemyNum1)
             {
+                //爆発の生成
+                var t = Instantiate(efect1, this.transform.position, Quaternion.identity);
                 /////
                 Debug.Log(PlayerNum + "がダメージをうけた");
                 animator.SetBool("is_damage", true);
@@ -164,6 +169,8 @@ public class PlayerMove : MonoBehaviour
             TriggerFlag = false;
             if (col.gameObject.tag == "Player" + EnemyNum2)
             {
+                //爆発の生成
+                var t = Instantiate(efect1, this.transform.position, Quaternion.identity);
                 /////
                 Debug.Log(PlayerNum + "がダメージをうけた");
                 animator.SetBool("is_damage", true);
@@ -184,6 +191,8 @@ public class PlayerMove : MonoBehaviour
             TriggerFlag = false;
             if (col.gameObject.tag == "Player" + EnemyNum3)
             {
+                //爆発の生成
+                var t = Instantiate(efect1, this.transform.position, Quaternion.identity);
                 /////
                 Debug.Log(PlayerNum + "がダメージをうけた");
                 animator.SetBool("is_damage", true);
@@ -203,18 +212,50 @@ public class PlayerMove : MonoBehaviour
         //相手がBulletの場合、弾の番号指定（Inspectorで変更）
         if (col.gameObject.tag == "Bullet" + EnemyNum1)
         {
+            //小さい爆発の生成
+            var t = Instantiate(efect2, col.transform.position, Quaternion.identity);
             Debug.Log(PlayerNum + "がダメージをうけた");
             animator.SetBool("is_damage", true);
             Invoke("AnimatorBoolis_damage", 0.5f);
         }
         if (col.gameObject.tag == "Bullet" + EnemyNum2)
         {
+            //小さい爆発の生成
+            var t = Instantiate(efect2, col.transform.position, Quaternion.identity);
             Debug.Log(PlayerNum + "がダメージをうけた");
             animator.SetBool("is_damage", true);
             Invoke("AnimatorBoolis_damage", 0.5f);
         }
         if (col.gameObject.tag == "Bullet" + EnemyNum3)
         {
+            //小さい爆発の生成
+            var t = Instantiate(efect2, col.transform.position, Quaternion.identity);
+            Debug.Log(PlayerNum + "がダメージをうけた");
+            animator.SetBool("is_damage", true);
+            Invoke("AnimatorBoolis_damage", 0.5f);
+        }
+
+        //相手がStarの場合、Starの番号指定（Inspectorで変更）
+        if (col.gameObject.tag == "Star" + EnemyNum1)
+        {
+            //小さい爆発の生成
+            var t = Instantiate(efect2, col.transform.position, Quaternion.identity);
+            Debug.Log(PlayerNum + "がダメージをうけた");
+            animator.SetBool("is_damage", true);
+            Invoke("AnimatorBoolis_damage", 0.5f);
+        }
+        if (col.gameObject.tag == "Star" + EnemyNum2)
+        {
+            //小さい爆発の生成
+            var t = Instantiate(efect2, col.transform.position, Quaternion.identity);
+            Debug.Log(PlayerNum + "がダメージをうけた");
+            animator.SetBool("is_damage", true);
+            Invoke("AnimatorBoolis_damage", 0.5f);
+        }
+        if (col.gameObject.tag == "Star" + EnemyNum3)
+        {
+            //小さい爆発の生成
+            var t = Instantiate(efect2, col.transform.position, Quaternion.identity);
             Debug.Log(PlayerNum + "がダメージをうけた");
             animator.SetBool("is_damage", true);
             Invoke("AnimatorBoolis_damage", 0.5f);
@@ -226,6 +267,7 @@ public class PlayerMove : MonoBehaviour
         //is_damage
         //falseを呼び出すだけのため
         animator.SetBool("is_damage", false);
+        
     }
     void AnimatorBoolis_attack()
     {
