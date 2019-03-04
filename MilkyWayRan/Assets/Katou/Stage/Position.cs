@@ -4,79 +4,78 @@ using UnityEngine;
 
 public class Position : MonoBehaviour
 {
-    //速度変数
-    public float speed = 1.0f;
+    //移動[0]がMAX[0]がMIN
+    public float[] pos = new float[2];
+    //動かすオブジェクト
+    public GameObject[] moveObj = new GameObject[2];
+    //動くための許可
+    public bool[] OK_GO = new bool[2];
+    //目的場所
+    public float[] MAX = new float[2];
+    //目的場所2
+    public float[] MIN = new float[2];
+    //スピード
+    public float Speed = 0.5f;
 
-    private Rigidbody _rigidBody;
+    public string[] Name = new string[2];
 
-    // ターゲットオブジェクトの Transform を格納する変数
-    public Transform target;
-
-    // ターゲットオブジェクトの座標からオフセットする値
-    public float offset;
-
-    float time = 0.0f;
-
-    private bool isCalled = false;
-
-    // Start is called before the first frame update
     void Start()
     {
-        _rigidBody = GetComponent<Rigidbody>();
-
-        
+        //初期値
+        pos[0] = 1;
+        pos[1] = -1;
+        MAX[0] = -43;
+        MAX[1] = 143;
+        MIN[0] = -143;
+        MIN[1] = 43;
     }
 
-    // Update is called once per frame
     void Update()
-    {   
-        time = time + Time.deltaTime;
-        if (time >= 0.0f)
-        {
-            if (isCalled == false)
-            {
-                isCalled = true;
-                Pos1();
-            }       
-        }
+    {
+        //参照
+        Vector3 POS_1 = GameObject.Find(Name[0]).transform.position;
+        Vector3 POS_2 = GameObject.Find(Name[1]).transform.position;
 
-        if (time >= 60.0f)
+        //←→に行くとき
+        if (OK_GO[0])
         {
-            if (isCalled == false)
+            //今の座標にスピードをかける
+            moveObj[0].transform.position += new Vector3(pos[0] * Speed, 0, 0);
+            Debug.Log("やじ←" + moveObj[0] + "移動");
+            moveObj[1].transform.position += new Vector3(pos[1] * Speed, 0, 0);
+            Debug.Log("やじ→" + moveObj[1] + "移動");
+            //目的場所を超えたら
+            if (POS_1.x >= MAX[0] && POS_2.x <= MIN[1])
             {
-                isCalled = true;
-                Pos2();
+                //同じにする
+                POS_1.x = MAX[0];
+                POS_2.x = MIN[1];
+                //移動終了
+                OK_GO[0] = false;
             }
-            Debug.Log("Time Out");
         }
-    }
-
-    void Pos1()
-    {
-        if(gameObject.tag == "Right")
+        //→←に行くとき
+        if (OK_GO[1])
         {
-            // オブジェクトの座標を変数 pos に格納
-            Vector3 pos = transform.position;
-            // 変数 posのX座標に代入
-            pos.x = target.position.x + offset;
-            // 変数 pos の値をオブジェクト座標に格納
-            transform.position = pos;
+            //今の座標にスピードをかける
+            moveObj[0].transform.position += new Vector3(pos[1] * Speed, 0, 0);
+            Debug.Log("やじ→" + moveObj[0] + "移動→←");
+            moveObj[1].transform.position += new Vector3(pos[0] * Speed, 0, 0);
+            Debug.Log("やじ←" + moveObj[1] + "移動→←");
+            //目的場所を超えたら
+            if (POS_1.x <= MIN[0] && POS_2.x >= MAX[1])
+            {
+                //同じにする
+                POS_1.x = MIN[0];
+                POS_2.x = MAX[1];
+                //移動終了
+                OK_GO[1] = false;
+            }
         }
 
-        if (gameObject.tag == "Left")
-        {
-            // オブジェクトの座標を変数 pos に格納
-            Vector3 pos = transform.position;
-            // 変数 posのX座標に代入
-            pos.x = target.position.x + offset;
-            // 変数 pos の値をオブジェクト座標に格納
-            transform.position = pos;
-        }
-    }
 
-    void Pos2()
-    {
-       
     }
-
 }
+
+
+
