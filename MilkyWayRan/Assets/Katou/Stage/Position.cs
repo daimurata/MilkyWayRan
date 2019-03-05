@@ -24,10 +24,10 @@ public class Position : MonoBehaviour
         //初期値
         pos[0] = 1;
         pos[1] = -1;
-        MAX[0] = -43;
+        MAX[0] = -44;
         MAX[1] = 143;
         MIN[0] = -143;
-        MIN[1] = 43;
+        MIN[1] = 44;
     }
 
     void Update()

@@ -53,22 +53,14 @@ public class Motion : MonoBehaviour
     }
 
     //オブジェクトと接触した瞬間に呼び出される
-    //OnCollisionEnter()
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //Playerが衝突したオブジェクトがBulletだった場合
-    // if (collision.gameObject.name == "Bullet")
-
-    //void OnCollisionEnter(Collision col)
-    //{
-
-    //相手がBulletの場合
-    //if (col.gameObject.tag == ("Bullet"))
-
-    //{
-    //animator.SetBool("is_damage", true);
-    //}
-
+    void OnCollisionEnter(Collision col)
+    {
+        //相手がBulletの場合
+        if (col.gameObject.tag == ("Bullet"))
+        {
+            animator.SetBool("is_damage", true);
+        }
+    }
     // 衝突から離れた瞬間に呼ばれる  
     private void OnCollisionExit(Collision collision)
     {
