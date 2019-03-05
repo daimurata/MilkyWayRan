@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class Test_imag : MonoBehaviour
 {
     float fadeSpeed = 0.01f;        //透明度が変わるスピードを管理
-    float red, green, blue, alfa=0;   //パネルの色、不透明度を管理
+    float red=0, green=0, blue=0, alfa=0;   //パネルの色、不透明度を管理
 
     public bool isFadeOut = false;  //フェードアウト処理の開始、完了を管理するフラグ
     public bool isFadeIn = false;   //フェードイン処理の開始、完了を管理するフラグ
@@ -41,6 +41,9 @@ public class Test_imag : MonoBehaviour
 
     void StartFadeIn()
     {
+        red -= fadeSpeed;
+        green -= fadeSpeed;
+        blue -= fadeSpeed;
         alfa -= fadeSpeed;               
         SetAlpha();
         if (alfa <= 0)
@@ -52,15 +55,19 @@ public class Test_imag : MonoBehaviour
 
     void StartFadeOut()
     {
-        Debug.Log("初め"+alfa);
+        // Debug.Log("初め"+alfa);
+        fadeImage.enabled = true;
+        red += fadeSpeed;
+        green += fadeSpeed;
+        blue += fadeSpeed;
         alfa += fadeSpeed;         
         SetAlpha();               
         if (alfa >= 1)
         {
-            Debug.Log("移動前"+alfa);
+           // Debug.Log("移動前"+alfa);
             isFadeOut = false;
-            fadeImage.enabled = true;
             SceneManager.LoadScene(NextSceneName);
+ 
             isFadeIn = true;
         }
     }
@@ -72,7 +79,7 @@ public class Test_imag : MonoBehaviour
     public void ButtonClick()
     {
         isFadeOut = true;
-        Debug.Log("押した");
+       // Debug.Log("押した");
     }
 }
 

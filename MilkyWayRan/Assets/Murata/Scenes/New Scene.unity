@@ -567,7 +567,7 @@ MonoBehaviour:
   isFadeOut: 0
   isFadeIn: 0
   fadeImage: {fileID: 256794496}
-  NextSceneName: 1
+  NextSceneName: Te
 --- !u!114 &1377770305
 MonoBehaviour:
   m_ObjectHideFlags: 0

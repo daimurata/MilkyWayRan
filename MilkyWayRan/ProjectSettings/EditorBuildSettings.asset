@@ -9,9 +9,9 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/New Scene.unity
+    path: Assets/Murata/Scenes/New Scene.unity
     guid: 7c9e2ae27f1ef2642b05c708d2fb7d41
   - enabled: 1
-    path: Assets/1.unity
+    path: Assets/Murata/Scenes/Te.unity
     guid: f7d8d9828f540694792b510f881ad03b
   m_configObjects: {}
