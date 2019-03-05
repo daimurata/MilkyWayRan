@@ -120,7 +120,9 @@ public class PlayerMove : MonoBehaviour
             }
             if (PlayerHP <= 0)
             {
-                Destroy(this.gameObject);
+                //Destroy(this.gameObject);
+                //HP残量の確認をするためにSetActiveに変更
+                this.gameObject.SetActive(false);
                 Debug.Log("プレイヤー" + "死亡");
                 //多分ここに死んだ時のアニメーション追加
             }
