@@ -9,9 +9,12 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Murata/Scenes/New Scene.unity
-    guid: 7c9e2ae27f1ef2642b05c708d2fb7d41
+    path: Assets/Asano/Scenes/TITLE.unity
+    guid: 3776dad4267fb614fae8d92082b37bf2
   - enabled: 1
-    path: Assets/Murata/Scenes/Te.unity
-    guid: f7d8d9828f540694792b510f881ad03b
+    path: Assets/SAWADA/Scenes/Main.unity
+    guid: 6e2b48116deb3a04b8c15158b34aaa4c
+  - enabled: 1
+    path: Assets/SAWADA/Scenes/RIZARUTO.unity
+    guid: 9d7ca27f30a1d08468fe249845e4ccd3
   m_configObjects: {}

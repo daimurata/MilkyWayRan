@@ -3,7 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Bullet
+  - Bullet1
+  - Bullet2
+  - Player2
+  - Star2
+  - Player1
+  - Star1
+  - Bullet3
+  - Bullet4
+  - Player3
+  - Player4
   layers:
   - Default
   - TransparentFX
@@ -13,7 +24,7 @@ TagManager:
   - UI
   - 
   - 
-  - PostProcessing
+  - 
   - 
   - 
   - 
