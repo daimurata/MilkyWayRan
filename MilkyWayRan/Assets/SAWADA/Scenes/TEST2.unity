@@ -709,6 +709,21 @@ MonoBehaviour:
   Star: {fileID: 1890889162}
   efect: {fileID: 3050023874109629614, guid: b0605b4f5d3cf314fb866de50b1fae09, type: 3}
   delettime: 1
+--- !u!114 &1843127507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843127505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90046602b382a5e43909eda8f1a60086, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Destroyefect: {fileID: 3667488748694853192, guid: c28ff4dbc3aff174688233a8eaadd683,
+    type: 3}
+  delettime: 2
 --- !u!4 &1843127510 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3360017831555288797, guid: 2178e45bbd4ac4b438f5ba61bc9c3cec,
