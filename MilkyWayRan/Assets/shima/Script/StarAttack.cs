@@ -6,7 +6,7 @@ public class StarAttack : MonoBehaviour
 {
     
     //星の消える時間
-    private int DestroyStar = 1;
+    public int DestroyStar = 1;
     //星の与えるダメージ
     public int StarDamage;
     //自分の番号、Inspectorで変更してね

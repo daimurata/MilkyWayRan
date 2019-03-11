@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class Timer : MonoBehaviour
 {
@@ -37,6 +38,16 @@ public class Timer : MonoBehaviour
     private float Step4 = 0.033f;
     private float Step5 = 0.033f;
     private float Step6 = 0.033f;
+
+    //Playerを1~4までいれる
+    public GameObject playerMove1;
+    public GameObject playerMove2;
+    public GameObject playerMove3;
+    public GameObject playerMove4;
+
+    //一番HPの多いプレイヤー番号を入れる変数
+    private int TopNum;
+
     void Start()
     {
         //テキスト参照
@@ -55,6 +66,12 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
+        //配列を入れてるメソッドの呼び出し
+        Info();
+        //時間制限内でプレイヤーが1人になった際にシーン移動させるためのメソッド
+        LastPlayerNum();
+
+
         //押されたら
         if (Input.GetKeyDown(KeyCode.A))
         {
@@ -281,7 +298,68 @@ public class Timer : MonoBehaviour
     public void SceneGoto()
     {
         //シーン移動処理
-        SceneManager.LoadScene(NextSceneName);
+        //シーン名＋番号でシーン移動する場所を決める
+        //シーン名の最後に番号を入れてほしい１～４まで、そうすればTopNumに合わせて呼び出されるシーンが変更されると思う
+        SceneManager.LoadScene(NextSceneName+TopNum);       
+    }
+    public void Info()//配列を入れてるメソッド
+    {
+        //HPの変数
+        var PName1 = playerMove1;
+        int PHp1 = PName1.GetComponent<PlayerMove>().PlayerHP;
+        var PName2 = playerMove2;
+        int PHp2 = PName2.GetComponent<PlayerMove>().PlayerHP;
+        var PName3 = playerMove3;
+        int PHp3 = PName3.GetComponent<PlayerMove>().PlayerHP;
+        var PName4 = playerMove4;
+        int PHp4 = PName4.GetComponent<PlayerMove>().PlayerHP;
+
+        //Nameがプレイヤー番号、PHpがそのプレイヤーのHP
+        var src = new[]
+        {
+            new {Name = 1,HP = PHp1 },
+            new {Name = 2,HP = PHp2 },
+            new {Name = 3,HP = PHp3 },
+            new {Name = 4,HP = PHp4 },
+        };
+
+        //HPが降順
+        var orderByDescendingList = src.OrderByDescending(x => x.HP).ToList();
+    
+        //多分HPが一番多いプレイヤーの番号が入っていると思う
+        TopNum = orderByDescendingList[0].Name;
+
+        //一番HPの多いPlayerの名前とHPを表示
+        //Debug.Log(orderByDescendingList[0].Name + "のHPが" + orderByDescendingList[0].HP);
+    }
+
+    public void LastPlayerNum()//最後に残ったプレイヤーを判別するメソッド
+    {
+        //シーン名の後にTopNumが入っていないのはきちんとそのシーンに移動しているか判別するため
+        //1Pの勝利判定
+        //SetActiveが1P以外Falseの場合1Pの勝利にしてシーン移動させる
+        if (playerMove2.activeSelf == false && playerMove3.activeSelf == false && playerMove4.activeSelf == false)
+        {
+            SceneManager.LoadScene(NextSceneName + 1);
+        }
+        //2Pの勝利判定
+        //SetActiveが2P以外Falseの場合2Pの勝利にしてシーン移動させる
+        if (playerMove1.activeSelf == false && playerMove3.activeSelf == false && playerMove4.activeSelf == false)
+        {
+            SceneManager.LoadScene(NextSceneName + 2);
+        }
+        //3Pの勝利判定
+        //SetActiveが3P以外Falseの場合3Pの勝利にしてシーン移動させる
+        if (playerMove1.activeSelf == false && playerMove2.activeSelf == false && playerMove4.activeSelf == false)
+        {
+            SceneManager.LoadScene(NextSceneName + 3);
+        }
+        //4Pの勝利判定
+        //SetActiveが4P以外Falseの場合4Pの勝利にしてシーン移動させる
+        if (playerMove1.activeSelf == false && playerMove2.activeSelf == false && playerMove3.activeSelf == false)
+        {
+            SceneManager.LoadScene(NextSceneName + 4);
+        }
     }
 }
 //public class Timer : MonoBehaviour
