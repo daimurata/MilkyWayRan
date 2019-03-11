@@ -232,7 +232,7 @@ GameObject:
   - component: {fileID: 3913682481874689391}
   - component: {fileID: 8368722800729563842}
   m_Layer: 0
-  m_Name: Player P4  (Win)
+  m_Name: Player P3  (Win)
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -264,7 +264,7 @@ Animator:
   m_GameObject: {fileID: 3104493276252714555}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: bab126ec0b7316e42b84411f75c9adaa, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7b7d01883c4ee4747b14c9716f1a2fad, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -479,7 +479,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5207006850198967873}
-  m_LocalRotation: {x: 0.07995867, y: 0.03259562, z: 0.99070597, w: 0.1050991}
+  m_LocalRotation: {x: 0.07995867, y: 0.032595623, z: 0.99070597, w: 0.105099104}
   m_LocalPosition: {x: -0.0017523175, y: -0.00013616994, z: -0.00012924788}
   m_LocalScale: {x: 1.0000036, y: 1, z: 1.0000006}
   m_Children:
