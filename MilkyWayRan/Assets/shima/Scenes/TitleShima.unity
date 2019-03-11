@@ -897,7 +897,7 @@ MonoBehaviour:
   NextSceneName:
   - Game_ATitle
   - MainShima
-  - Game_Result
+  - Game_Result1
   - Game_Result2
   - Game_Result3
   - Game_Result4

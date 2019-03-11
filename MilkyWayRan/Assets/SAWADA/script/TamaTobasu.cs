@@ -27,8 +27,6 @@ public class TamaTobasu : MonoBehaviour
     public int EnemyNum2 = 2;
     public int EnemyNum3 = 3;
 
-    public GameObject efect;
-
     // Start is called before the first frame update
     void Start()
     {

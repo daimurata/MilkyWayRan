@@ -91,10 +91,14 @@ public class Play_Entry : MonoBehaviour
 
     //一番HPの多いプレイヤー番号を入れる変数
     public int TopNum;
+
+    AudioSource audioSource;
+    public AudioClip SE1;
     void Start()
     {
         //初期設定
         Setting();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -242,6 +246,7 @@ public class Play_Entry : MonoBehaviour
             //if (Input.GetKeyDown(KeyCode.A)&& Game_PL[0] == false)
             if (Input.GetButtonDown("PlayerLoad1") && Game_PL[0] == false)
             {
+                audioSource.PlayOneShot(SE1);
                 //ゲームスタートするまでの時間
                 Count_Dow = 10;
                 Debug.Log("参加");
@@ -281,6 +286,7 @@ public class Play_Entry : MonoBehaviour
             //if (Input.GetKeyDown(KeyCode.S)&& Game_PL[1] == false)
             if (Input.GetButtonDown("PlayerLoad2") && Game_PL[1] == false)
             {
+                audioSource.PlayOneShot(SE1);
                 //ゲームスタートするまでの時間
                 Count_Dow = 10;
                 Debug.Log("参加");
@@ -319,6 +325,7 @@ public class Play_Entry : MonoBehaviour
             //if (Input.GetKeyDown(KeyCode.D)&&Game_PL[0] == false)
             if (Input.GetButtonDown("PlayerLoad3") && Game_PL[2] == false)
             {
+                audioSource.PlayOneShot(SE1);
                 //ゲームスタートするまでの時間
                 Count_Dow = 10;
                 Debug.Log("参加3");
@@ -357,6 +364,7 @@ public class Play_Entry : MonoBehaviour
             //if (Input.GetKeyDown(KeyCode.F)&&Game_PL[3] == false)
             if (Input.GetButtonDown("PlayerLoad4") && Game_PL[3] == false)
             {
+                audioSource.PlayOneShot(SE1);
                 //ゲームスタートするまでの時間
                 Count_Dow = 10;
                 Debug.Log("参加4");
@@ -854,7 +862,7 @@ public class Play_Entry : MonoBehaviour
         //HPが降順
         var orderByDescendingList = src.OrderByDescending(x => x.HP).ToList();
 
-        //多分HPが一番多いプレイヤーの番号が入っていると思う、今持ってこれていない？
+        //多分HPが一番多いプレイヤーの番号が入っていると思う
         TopNum = orderByDescendingList[0].Name;
     }
 
@@ -866,25 +874,26 @@ public class Play_Entry : MonoBehaviour
         if (Player[1].activeSelf == false && Player[2].activeSelf == false && Player[3].activeSelf == false)
         {
             //リザルトうんぬんの処理を後で追加
-            
+            //リザルトに飛ばす
+            Scene_GO();
         }
         //2Pの勝利判定
         //SetActiveが2P以外Falseの場合2Pの勝利にしてシーン移動させる
         if (Player[0].activeSelf == false && Player[2].activeSelf == false && Player[3].activeSelf == false)
         {
-            
+            Scene_GO();
         }
         //3Pの勝利判定
         //SetActiveが3P以外Falseの場合3Pの勝利にしてシーン移動させる
         if (Player[0].activeSelf == false && Player[1].activeSelf == false && Player[3].activeSelf == false)
         {
-            
+            Scene_GO();
         }
         //4Pの勝利判定
         //SetActiveが4P以外Falseの場合4Pの勝利にしてシーン移動させる
         if (Player[0].activeSelf == false && Player[1].activeSelf == false && Player[2].activeSelf == false)
         {
-            
+            Scene_GO();
         }
     }
 }

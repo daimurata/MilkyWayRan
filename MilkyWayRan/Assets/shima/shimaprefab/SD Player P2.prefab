@@ -560,9 +560,6 @@ GameObject:
   - component: {fileID: 1100569240636601583}
   - component: {fileID: 972363698235403663}
   - component: {fileID: 448128449211638935}
-  - component: {fileID: 4340168330524741636}
-  - component: {fileID: 5360921115452212526}
-  - component: {fileID: 3476478983897600187}
   m_Layer: 0
   m_Name: SD Player P2
   m_TagString: Player2
@@ -639,68 +636,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 36
   m_CollisionDetection: 0
---- !u!114 &4340168330524741636
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5360921115452212520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3c63988c5ff0d64582a27c6c927ebe8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerNum: 2
-  EnemyNum1: 1
-  EnemyNum2: 3
-  EnemyNum3: 4
-  PlayerSpeed: 5
-  PlayerHP: 20
-  TackleDamage: 1
-  efect1: {fileID: 0}
-  efect2: {fileID: 0}
-  invincible: 3
---- !u!114 &5360921115452212526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5360921115452212520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ba7f6e6c2ad33645ab81433e6954dda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Kobusi: {fileID: 0}
-  muzzle: {fileID: 4807864695806929371}
-  speed: 1000
-  Special: 0
-  death: {fileID: 0}
---- !u!114 &3476478983897600187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5360921115452212520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0739d924c47b40743bbf84c4430f7587, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeOut: 0
-  target: {fileID: 0}
-  tama: {fileID: 0}
-  tama2: {fileID: 5360921115672639634}
-  greenPoint: {fileID: 5360921115801770978}
-  greenPoint1: {fileID: 5360921114149193728}
-  BulletCount: 5
-  BulletCountLimit: 5
-  BulletTime: 3
-  PlayerNum: 2
-  Star: {fileID: 5360921114550018831}
 --- !u!1 &5360921115672639634
 GameObject:
   m_ObjectHideFlags: 0
@@ -746,6 +681,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95193d4fd1ccdca45ac0342564518363, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DestroyStar: 1
   StarDamage: 5
   Num: 2
   EnemyNum1: 1

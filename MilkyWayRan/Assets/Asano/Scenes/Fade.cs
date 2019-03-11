@@ -15,9 +15,9 @@ public class Fade : MonoBehaviour
 
     public Image fadeImage;                //透明度を変更するパネルのイメージ
 
-    public string[] NextSceneName =new string[3];//シーン移動
+    public string[] NextSceneName =new string[6];//シーン移動
 
-    public static bool[] Secne_Go = new bool[3];//シーンを分岐
+    public static bool[] Secne_Go = new bool[6];//シーンを分岐
 
    // public static bool[] SecneOK = new bool[2];//シーンを連続飛びしない
 
@@ -55,9 +55,12 @@ public class Fade : MonoBehaviour
         alfa = fadeImage.color.a;
 
         //シーン移動処理分け
-        Secne_Go[0] = false;
-        Secne_Go[1] = false;
-        Secne_Go[2] = false;
+        Secne_Go[0] = false;//タイトルシーン
+        Secne_Go[1] = false;//メインシーン
+        Secne_Go[2] = false;//1
+        Secne_Go[3] = false;//2
+        Secne_Go[4] = false;//3
+        Secne_Go[5] = false;//4
 
         //シーンを連続呼び防止
         //ゲームに行くため
@@ -166,6 +169,63 @@ public class Fade : MonoBehaviour
                 isFadeIn = true;
                 //終了
                 Secne_Go[2] = false;
+
+                /*
+                //タイトル移動可能
+                SecneOK[0] = true;
+                //ゲーム移動可能
+                SecneOK[1] = true;
+                */
+            }
+            if (Secne_Go[3])
+            {
+                // 完全に不透明になったら処理を抜ける
+                //フェードアウト終了
+                isFadeOut = false;
+                //シーン遷移タイトル
+                SceneManager.LoadScene(NextSceneName[3]);
+                //フェードインする
+                isFadeIn = true;
+                //終了
+                Secne_Go[3] = false;
+
+                /*
+                //タイトル移動可能
+                SecneOK[0] = true;
+                //ゲーム移動可能
+                SecneOK[1] = true;
+                */
+            }
+            if (Secne_Go[4])
+            {
+                // 完全に不透明になったら処理を抜ける
+                //フェードアウト終了
+                isFadeOut = false;
+                //シーン遷移タイトル
+                SceneManager.LoadScene(NextSceneName[4]);
+                //フェードインする
+                isFadeIn = true;
+                //終了
+                Secne_Go[4] = false;
+
+                /*
+                //タイトル移動可能
+                SecneOK[0] = true;
+                //ゲーム移動可能
+                SecneOK[1] = true;
+                */
+            }
+            if (Secne_Go[5])
+            {
+                // 完全に不透明になったら処理を抜ける
+                //フェードアウト終了
+                isFadeOut = false;
+                //シーン遷移タイトル
+                SceneManager.LoadScene(NextSceneName[5]);
+                //フェードインする
+                isFadeIn = true;
+                //終了
+                Secne_Go[5] = false;
 
                 /*
                 //タイトル移動可能
@@ -366,7 +426,8 @@ public class Fade : MonoBehaviour
             if (GOTO == false)
             {
                 //シーン移動先　リザルト
-                Secne_Go[2] = true;
+                //番号＋１で無理やりScene_Go
+                Secne_Go[PNum += 1] = true;
                 //フェードの処理
                 isFadeOut = true;
             }

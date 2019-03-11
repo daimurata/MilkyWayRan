@@ -29,8 +29,15 @@ public class PlayerMove : MonoBehaviour
 
     private Animator animator;
 
+    AudioSource audioSource;
+
     public GameObject efect1;
     public GameObject efect2;
+
+    public AudioClip SE1;
+    public AudioClip SE2;
+    public AudioClip SE3;
+    public AudioClip SE4;
 
     //無敵（一時的にダメージを無くすためのもの）
     private bool isCollision = true;
@@ -46,6 +53,7 @@ public class PlayerMove : MonoBehaviour
     {
         _rigidBody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
     /// <summary>
     /// </summary>
@@ -129,11 +137,14 @@ public class PlayerMove : MonoBehaviour
             }
             if (PlayerHP <= 0)
             {
+                //死んだ時の音
+                audioSource.PlayOneShot(SE4);
                 //Destroy(this.gameObject);
                 //HP残量の確認をするためにSetActiveに変更
                 this.gameObject.SetActive(false);
                 Debug.Log("プレイヤー" + "死亡");
                 //多分ここに死んだ時のアニメーション追加
+
             }
             //○○秒後trueにする
             Invoke("isCollisionfalse", invincible);
@@ -161,6 +172,7 @@ public class PlayerMove : MonoBehaviour
                 //爆発の生成
                 var t = Instantiate(efect1, this.transform.position, Quaternion.identity);
                 /////
+                audioSource.PlayOneShot(SE1);
                 Debug.Log(PlayerNum + "がダメージをうけた");
                 animator.SetBool("is_damage", true);
                 Invoke("AnimatorBoolis_damage", 0.5f);
@@ -183,6 +195,7 @@ public class PlayerMove : MonoBehaviour
                 //爆発の生成
                 var t = Instantiate(efect1, this.transform.position, Quaternion.identity);
                 /////
+                audioSource.PlayOneShot(SE1);
                 Debug.Log(PlayerNum + "がダメージをうけた");
                 animator.SetBool("is_damage", true);
                 Invoke("AnimatorBoolis_damage", 0.5f);
@@ -205,6 +218,7 @@ public class PlayerMove : MonoBehaviour
                 //爆発の生成
                 var t = Instantiate(efect1, this.transform.position, Quaternion.identity);
                 /////
+                audioSource.PlayOneShot(SE1);
                 Debug.Log(PlayerNum + "がダメージをうけた");
                 animator.SetBool("is_damage", true);
                 Invoke("AnimatorBoolis_damage", 0.5f);
@@ -224,6 +238,7 @@ public class PlayerMove : MonoBehaviour
         if (col.gameObject.tag == "Bullet" + EnemyNum1)
         {
             //小さい爆発の生成
+            audioSource.PlayOneShot(SE2);
             var t = Instantiate(efect2, col.transform.position, Quaternion.identity);
             Debug.Log(PlayerNum + "がダメージをうけた");
             animator.SetBool("is_damage", true);
@@ -232,6 +247,7 @@ public class PlayerMove : MonoBehaviour
         if (col.gameObject.tag == "Bullet" + EnemyNum2)
         {
             //小さい爆発の生成
+            audioSource.PlayOneShot(SE2);
             var t = Instantiate(efect2, col.transform.position, Quaternion.identity);
             Debug.Log(PlayerNum + "がダメージをうけた");
             animator.SetBool("is_damage", true);
@@ -240,6 +256,7 @@ public class PlayerMove : MonoBehaviour
         if (col.gameObject.tag == "Bullet" + EnemyNum3)
         {
             //小さい爆発の生成
+            audioSource.PlayOneShot(SE2);
             var t = Instantiate(efect2, col.transform.position, Quaternion.identity);
             Debug.Log(PlayerNum + "がダメージをうけた");
             animator.SetBool("is_damage", true);
@@ -250,6 +267,7 @@ public class PlayerMove : MonoBehaviour
         if (col.gameObject.tag == "Star" + EnemyNum1)
         {
             //小さい爆発の生成
+            audioSource.PlayOneShot(SE3);
             var t = Instantiate(efect2, col.transform.position, Quaternion.identity);
             Debug.Log(PlayerNum + "がダメージをうけた");
             animator.SetBool("is_damage", true);
@@ -258,6 +276,7 @@ public class PlayerMove : MonoBehaviour
         if (col.gameObject.tag == "Star" + EnemyNum2)
         {
             //小さい爆発の生成
+            audioSource.PlayOneShot(SE3);
             var t = Instantiate(efect2, col.transform.position, Quaternion.identity);
             Debug.Log(PlayerNum + "がダメージをうけた");
             animator.SetBool("is_damage", true);
@@ -266,6 +285,7 @@ public class PlayerMove : MonoBehaviour
         if (col.gameObject.tag == "Star" + EnemyNum3)
         {
             //小さい爆発の生成
+            audioSource.PlayOneShot(SE3);
             var t = Instantiate(efect2, col.transform.position, Quaternion.identity);
             Debug.Log(PlayerNum + "がダメージをうけた");
             animator.SetBool("is_damage", true);
@@ -300,5 +320,6 @@ public class PlayerMove : MonoBehaviour
         Mov_OK = true;
     }
 
+    
 }
  

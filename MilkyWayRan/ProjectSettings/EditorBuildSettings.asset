@@ -24,8 +24,17 @@ EditorBuildSettings:
     path: Assets/A_AScenes/Game_LobbyGame.unity
     guid: 4bbe930352f385f48bb6fc062f2353b3
   - enabled: 1
-    path: Assets/A_AScenes/Game_Result.unity
+    path: Assets/A_AScenes/Game_Result1.unity
     guid: e701440d155eedb44814d1e64b0fb330
+  - enabled: 1
+    path: Assets/A_AScenes/Game_Result2.unity
+    guid: 28eb964749265e941804855dc9549f45
+  - enabled: 1
+    path: Assets/A_AScenes/Game_Result3.unity
+    guid: fb7de06b97fbdcb4b9e6992be561785c
+  - enabled: 1
+    path: Assets/A_AScenes/Game_Result4.unity
+    guid: 1c9c624f244508540acf6ff649dc7965
   - enabled: 1
     path: Assets/shima/Scenes/MainShima.unity
     guid: 7331165290aa4604295c7d317951e9f9
