@@ -7,9 +7,9 @@ using UnityEngine.SceneManagement;
 public class Timer : MonoBehaviour
 {
     public Text s_timerText;//表示テキスト
-    public float minute=3.0f;//スタートカウント
+    public float minute = 3.0f;//スタートカウント
     public float mainminute = 10.0f;//ゲームカウント
-    public bool Sta_Mai=false;//切り替えスタート＆メイン
+    public bool Sta_Mai = false;//切り替えスタート＆メイン
     int Seconds;//変換
     public float interval = 1.0f;//インターバル
     public string NextSceneName;//シーン名
@@ -97,8 +97,8 @@ public class Timer : MonoBehaviour
             interval -= Time.deltaTime;
         }
 
-        
-        }
+
+    }
     //メインです
     public void TimeCount_True()
     {
@@ -117,10 +117,10 @@ public class Timer : MonoBehaviour
             //    //textの更新
             //    s_timerText.text = mainminute.ToString("00");
 
-                
+
             //}
 
-            
+
             //カウントダウン開始
             //mainminute -= Time.deltaTime;
             ////int型に直すよ
@@ -273,7 +273,7 @@ public class Timer : MonoBehaviour
             t_star6.GetComponent<Image>().color = new Color(0, 0, 0 + Step6);
 
             //シーン移動
-                SceneGoto();
+            SceneGoto();
         }
     }
 
@@ -282,5 +282,6 @@ public class Timer : MonoBehaviour
     {
         //シーン移動処理
         SceneManager.LoadScene(NextSceneName);
+        Debug.Log(NextSceneName);
     }
 }

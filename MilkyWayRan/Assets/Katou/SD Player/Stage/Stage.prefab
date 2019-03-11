@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 838665748}
   - component: {fileID: 838665750}
   - component: {fileID: 838665749}
+  - component: {fileID: 2706545414157914070}
   m_Layer: 0
   m_Name: Stage
   m_TagString: Untagged
@@ -108,3 +109,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &2706545414157914070
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838665747}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300000, guid: cb68762c2168a6b41924fc5f6363596f, type: 3}

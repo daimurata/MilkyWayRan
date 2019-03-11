@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class StarAttack : MonoBehaviour
 {
+    
+    //星の消える時間
+    private int DestroyStar = 1;
     //星の与えるダメージ
-    public int StarDamage = 5;
-    //番号
-    public int Num = 1;
+    public int StarDamage;
+    //自分の番号、Inspectorで変更してね
+    public int Num;
+    //敵番号、Inspectorで変更してね
+    public int EnemyNum1;
+    public int EnemyNum2;
+    public int EnemyNum3;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,22 +24,49 @@ public class StarAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "Player" + Num)
+        bool TriggerFlag = true;
+
+        if (TriggerFlag)
         {
-            //何もしない
-        }
-        else
-        {
-            var hit = other.gameObject;
-            var health = hit.GetComponent<PlayerMove>();
-            if (health != null)
+            TriggerFlag = false;
+            if (other.gameObject.tag == "Player" + EnemyNum1)
             {
-                health.HP(Num,StarDamage);
-                //Destroy(gameObject);
+                var hit = other.gameObject;
+                var health = hit.GetComponent<PlayerMove>();
+                if (health != null)
+                {
+                    health.HP(Num, StarDamage);
+                }
+            }
+        }
+        if (TriggerFlag)
+        {
+            TriggerFlag = false;
+            if (other.gameObject.tag == "Player" + EnemyNum2)
+            {
+                var hit = other.gameObject;
+                var health = hit.GetComponent<PlayerMove>();
+                if (health != null)
+                {
+                    health.HP(Num, StarDamage);
+                }
+            }
+        }
+        if (TriggerFlag)
+        {
+            TriggerFlag = false;
+            if (other.gameObject.tag == "Player" + EnemyNum3)
+            {
+                var hit = other.gameObject;
+                var health = hit.GetComponent<PlayerMove>();
+                if (health != null)
+                {
+                    health.HP(Num, StarDamage);
+                }
             }
         }
     }
