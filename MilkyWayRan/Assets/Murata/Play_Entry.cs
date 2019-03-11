@@ -755,6 +755,9 @@ public class Play_Entry : MonoBehaviour
             //星の点滅をなくす
             Ster_Img[5].GetComponent<Image>().color = new Color(0, 0, 0 + Step_Tim[5]);
 
+            //隕石終了
+            Create.Gim_NO();
+
             //シーン移動
             Scene_GO();
         }
