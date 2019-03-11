@@ -4,7 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-//プレイヤー参加ロビー
+/// <summary>
+/// プレイヤー参加ロビー
+/// </summary>
+
 public class Play_Entry : MonoBehaviour
 {
     /// <summary>
@@ -56,7 +59,7 @@ public class Play_Entry : MonoBehaviour
     private float[] ToColor = new float[6];
 
     //シーンの名前
-    public string NextSceneName;
+    //public string NextSceneName;
 
     /// <summary>
     /// ゲージの表示設定
@@ -64,6 +67,20 @@ public class Play_Entry : MonoBehaviour
     //プレイヤーゲージ
     public GameObject[] Gage=new GameObject[4];
 
+    //ステージ移動スクリプトスクリプト
+    Position Position;
+
+    //衛星
+    Eisei Eisei;
+
+    //攻撃
+    Attak Attak;
+
+    //プレイヤー移動
+    PlayerMove PlayerMove;
+
+    //ギミック
+    Create Create;
     void Start()
     {
         //初期設定
@@ -234,7 +251,7 @@ public class Play_Entry : MonoBehaviour
                 //プレイヤー1参加
                 OK_pl[0] = false;
                 //プレイヤー1消す
-                Destroy(PL[0]);
+                 Destroy(PL[0]);
                 //ゲームに参加UI非表示
                 Join_PL[0].SetActive(false);
             }
@@ -498,12 +515,25 @@ public class Play_Entry : MonoBehaviour
         {
             //1を表示
             Count_UI.gameObject.GetComponent<Image>().sprite = Nanbaers[1];
+            //ステージの移動
+            Position.Mov_Stage();
         }
         //スタート0秒
         if (Count_Dow <= 1)
         {
             //スターを表示
             Count_UI.gameObject.GetComponent<Image>().sprite = Nanbaers[0];
+            //攻撃許可します
+            Attak.Atc();
+            //移動許可します
+            PlayerMove.Mov_GO();
+            //ギミック許可します
+            Create.Gim_GOGO();
+        }
+        if (Count_Dow <= 1&&Count_Dow >= 0)
+        {
+            //衛星の移動許可
+            Eisei.Go_Eisei();
         }
         //カウントダウンが0になったら
         if (Count_Dow <= 0)
@@ -720,7 +750,9 @@ public class Play_Entry : MonoBehaviour
     public void Scene_GO()
     {
         //名前宣言したシーンへ
-        SceneManager.LoadScene(NextSceneName);
+       // SceneManager.LoadScene(NextSceneName);
+       //リザルトへ
+        Fade.Sen_Result();
     }
 
     /// <summary>

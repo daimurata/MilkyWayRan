@@ -13,10 +13,12 @@ public class Create : MonoBehaviour
     private GameObject Gim_mov;//ギミックの移動
     private bool Gim_mov_Go = false;//動かす許可
 
+    //ギミックOK
+    static bool Gim_OK = false;
     void Start()
     {
         //仮のステージ
-        CreateObject();
+       // CreateObject();
     }
 
    
@@ -45,25 +47,29 @@ public class Create : MonoBehaviour
     //ギミック
     public void Gimmick()
     {
-        //タイム計算
-        time += Time.deltaTime;
-        //2秒以上なら
-        if (time >= 2)
+        //許可
+        if (Gim_OK)
         {
-            //数だけ回す
-            for (int i = 0; i < Gim; i++)
+            //タイム計算
+            time += Time.deltaTime;
+            //2秒以上ならランダムにしたら面白そう
+            if (time >= 2)
             {
-                //X座標のランダム
-                int number_X = Random.Range(10, -10);
-                //Z座標のランダム
-                int number_Z = Random.Range(10, -10);
-                //複数生成
-                Gim_mov =Instantiate(Obj[1], new Vector3(number_X, 10, number_Z), transform.rotation);
-                //動かしてよし
-                Gim_mov_Go = true;
+                //数だけ回す
+                for (int i = 0; i < Gim; i++)
+                {
+                    //X座標のランダム
+                    int number_X = Random.Range(10, -10);
+                    //Z座標のランダム
+                    int number_Z = Random.Range(10, -10);
+                    //複数生成
+                    Gim_mov = Instantiate(Obj[1], new Vector3(number_X, 10, number_Z), transform.rotation);
+                    //動かしてよし
+                    Gim_mov_Go = true;
+                }
+                //時間は0へ
+                time = 0;
             }
-            //時間は0へ
-            time = 0;
         }
     }
     //移動
@@ -79,5 +85,12 @@ public class Create : MonoBehaviour
             //移動
             Gim_mov.gameObject.transform.position = new Vector3(pos.x, pos.y - number, pos.z);
         }  
+    }
+
+    //許可書
+    public static void Gim_GOGO()
+    {
+        //許可
+        Gim_OK = true;
     }
 }

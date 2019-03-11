@@ -8,13 +8,22 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Asano/Scenes/TITLE.unity
     guid: 3776dad4267fb614fae8d92082b37bf2
-  - enabled: 1
+  - enabled: 0
     path: Assets/SAWADA/Scenes/Main.unity
     guid: 6e2b48116deb3a04b8c15158b34aaa4c
-  - enabled: 1
+  - enabled: 0
     path: Assets/SAWADA/Scenes/RIZARUTO.unity
     guid: 9d7ca27f30a1d08468fe249845e4ccd3
+  - enabled: 1
+    path: Assets/A_AScenes/Game_ATitle.unity
+    guid: 304f6fab88ad25646ac5dc3681e42824
+  - enabled: 1
+    path: Assets/A_AScenes/Game_LobbyGame.unity
+    guid: 4bbe930352f385f48bb6fc062f2353b3
+  - enabled: 1
+    path: Assets/A_AScenes/Game_Result.unity
+    guid: e701440d155eedb44814d1e64b0fb330
   m_configObjects: {}

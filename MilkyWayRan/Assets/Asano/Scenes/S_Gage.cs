@@ -17,16 +17,20 @@ public class S_Gage : MonoBehaviour
     //public int Bool = 5;
 
     //Playerの弾数を取得するため、Playerを入れればおｋ
-    public GameObject gameObject1;
-
+    public GameObject at;
+    Attak attak;
+    public string plyer;
     void Start()
     {
         //Bool = 5;
     }
     void Update()
     {
+        at = GameObject.Find(plyer);
+        attak = at.GetComponent<Attak>();
         //ここで弾数取得
-        int Pbulletcount = gameObject1.GetComponent<Attak>().BulletCount;
+        int Pbulletcount = attak.BulletCount;
+        //int Pbulletcount = at.GetComponent<Attak>().BulletCount;
 
         //BoolをPbulletcountに変更
         if (Pbulletcount == 5)

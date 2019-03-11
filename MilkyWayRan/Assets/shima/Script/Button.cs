@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// 浅野ファイルFade移植
+/// </summary>
 public class Button : MonoBehaviour
 {
     public string NextSceneName;
