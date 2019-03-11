@@ -43,17 +43,7 @@ public class Attak : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        BulletTime -= Time.deltaTime;
-        //時間毎(BulletTime)で弾数を1追加
-        if (BulletTime <= 0)
-        {
-            BulletTime = 3;
-            BulletCount = BulletCount + 1;
-        }
-        if(BulletCount > BulletCountLimit)
-        {
-            BulletCount = BulletCountLimit;
-        }
+        Atack_B();
 
         //BulletTime == Time.deltaTime;
         //xキーが押された時
@@ -155,5 +145,19 @@ public class Attak : MonoBehaviour
     {
         //攻撃をOK
         Atc_OK = true;
+    }
+    public  void Atack_B()
+    {
+        BulletTime -= Time.deltaTime;
+        //時間毎(BulletTime)で弾数を1追加
+        if (BulletTime <= 0)
+        {
+            BulletTime = 3;
+            BulletCount = BulletCount + 1;
+        }
+        if (BulletCount > BulletCountLimit)
+        {
+            BulletCount = BulletCountLimit;
+        }
     }
 }

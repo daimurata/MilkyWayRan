@@ -358,7 +358,7 @@ public class Fade : MonoBehaviour
     }
 
     //呼ばれたらリザルトシーンへ移動　自動
-    public static void Sen_Result()
+    public static void Sen_Result(int PNum)//一番HPの多いプレイヤーの番号を受け取る
     {
         if (GOTO == true)
         {

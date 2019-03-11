@@ -44,6 +44,11 @@ public class Timer : MonoBehaviour
     public GameObject playerMove2;
     public GameObject playerMove3;
     public GameObject playerMove4;
+    //プレイヤーの名前を入れる（Clone）を最後につけること
+    public string P1;
+    public string P2;
+    public string P3;
+    public string P4;
 
     //一番HPの多いプレイヤー番号を入れる変数
     private int TopNum;
@@ -300,19 +305,20 @@ public class Timer : MonoBehaviour
         //シーン移動処理
         //シーン名＋番号でシーン移動する場所を決める
         //シーン名の最後に番号を入れてほしい１～４まで、そうすればTopNumに合わせて呼び出されるシーンが変更されると思う
-        SceneManager.LoadScene(NextSceneName+TopNum);       
+        //SceneManager.LoadScene(NextSceneName+TopNum);       
+        SceneManager.LoadScene(NextSceneName);       
     }
     public void Info()//配列を入れてるメソッド
     {
         //HPの変数
-        var PName1 = playerMove1;
-        int PHp1 = PName1.GetComponent<PlayerMove>().PlayerHP;
-        var PName2 = playerMove2;
-        int PHp2 = PName2.GetComponent<PlayerMove>().PlayerHP;
-        var PName3 = playerMove3;
-        int PHp3 = PName3.GetComponent<PlayerMove>().PlayerHP;
-        var PName4 = playerMove4;
-        int PHp4 = PName4.GetComponent<PlayerMove>().PlayerHP;
+        playerMove1 = GameObject.Find(P1);
+        int PHp1 = playerMove1.GetComponent<PlayerMove>().PlayerHP;
+        playerMove2 = GameObject.Find(P2);
+        int PHp2 = playerMove2.GetComponent<PlayerMove>().PlayerHP;
+        playerMove3 = GameObject.Find(P3);
+        int PHp3 = playerMove3.GetComponent<PlayerMove>().PlayerHP;
+        playerMove4 = GameObject.Find(P4);
+        int PHp4 = playerMove4.GetComponent<PlayerMove>().PlayerHP;
 
         //Nameがプレイヤー番号、PHpがそのプレイヤーのHP
         var src = new[]
