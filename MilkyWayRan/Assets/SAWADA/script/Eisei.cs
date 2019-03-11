@@ -24,7 +24,7 @@ public class Eisei : MonoBehaviour
     {
 
      　//衛星が出てくる時間をランダムにする
-        eiseiattakInterval = Random.Range(0, 60);
+        eiseiattakInterval = Random.Range(1, 60);
         //one変数をtrueにする
        // one = true;
     }

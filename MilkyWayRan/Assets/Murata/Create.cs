@@ -12,7 +12,8 @@ public class Create : MonoBehaviour
     public int Gim = 1;//ギミックの数
     private GameObject Gim_mov;//ギミックの移動
     private bool Gim_mov_Go = false;//動かす許可
-
+    Vector3 pos;
+    private int number_X,number_Y=41,number_Z;
     //ギミックOK
     static bool Gim_OK = false;
     void Start()
@@ -52,18 +53,22 @@ public class Create : MonoBehaviour
         {
             //タイム計算
             time += Time.deltaTime;
+
+            int RanamuMAX = Random.Range(20,5);
+
             //2秒以上ならランダムにしたら面白そう
-            if (time >= 2)
+            if (time >= RanamuMAX)
             {
                 //数だけ回す
                 for (int i = 0; i < Gim; i++)
                 {
                     //X座標のランダム
-                    int number_X = Random.Range(10, -10);
+                     number_X = Random.Range(10, -10);
                     //Z座標のランダム
-                    int number_Z = Random.Range(10, -10);
+                     number_Z = Random.Range(10, -10);
+
                     //複数生成
-                    Gim_mov = Instantiate(Obj[1], new Vector3(number_X, 10, number_Z), transform.rotation);
+                    Gim_mov = Instantiate(Obj[1], new Vector3(number_X, number_Y, number_Z), transform.rotation);
                     //動かしてよし
                     Gim_mov_Go = true;
                 }
@@ -76,15 +81,19 @@ public class Create : MonoBehaviour
     public void Gim_GO()
     {
         //動かし許可が下りたら
-        if (Gim_mov_Go == true)
+        if (Gim_mov_Go)
         {
             //位置座標の固定
-            Vector3 pos = Gim_mov.gameObject.transform.position;
+            pos = Gim_mov.gameObject.transform.position;
+
             //速さ
             float number = Random.Range(1, 0.01f);
-            //移動
-            Gim_mov.gameObject.transform.position = new Vector3(pos.x, pos.y - number, pos.z);
-        }  
+            if (Gim_mov.transform.position.y>=1)
+            {
+                //移動
+                Gim_mov.gameObject.transform.position = new Vector3(pos.x, pos.y - number, pos.z);
+            }
+        }
     }
 
     //許可書
@@ -92,5 +101,12 @@ public class Create : MonoBehaviour
     {
         //許可
         Gim_OK = true;
+    }
+
+    //許可しない
+    public static void Gim_NO()
+    {
+        //許可しない
+        Gim_OK = false;
     }
 }

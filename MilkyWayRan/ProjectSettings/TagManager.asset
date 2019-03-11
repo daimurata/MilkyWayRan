@@ -15,6 +15,12 @@ TagManager:
   - Bullet4
   - Player3
   - Player4
+  - Satellite
+  - Star
+  - Fist
+  - Left
+  - Stage
+  - Meteo
   layers:
   - Default
   - TransparentFX
