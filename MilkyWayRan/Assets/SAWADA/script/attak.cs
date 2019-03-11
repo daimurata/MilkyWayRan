@@ -31,6 +31,9 @@ public class Attak : MonoBehaviour
     //★オブジェクトを入れる
     public GameObject Star;
 
+    //攻撃OK
+    static bool Atc_OK = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -97,30 +100,35 @@ public class Attak : MonoBehaviour
 
     public void Syageki()
     {
-        if (BulletCount > 0)
+        //攻撃許可下りたら
+        if (Atc_OK)
         {
-            //自分の位置を保存
-            var pos = this.gameObject.transform.position;
-            //弾のプレハブを作成
-            //var t = Instantiate(tama) as GameObject;
-            //複製したオブジェクトの位置　←ここ書き加えました
-            var t = Instantiate(tama, this.transform.position, Quaternion.identity);
-            //弾の初期位置を敵の位置にする
-            t.transform.position = pos;
-            //弾につけているスクリプト、TamaTobasuコンポネントを保存する
-            var cash = t.GetComponent<TamaTobasu>();
-            //スタート地点を弾のスクリプトに渡す
-            cash.CharaPos = this.transform.position;
-            //弾を一つ打ち出すたびに中継地点を変える
-            //count++;
-            //中継地点を弾のスクリプトに渡す←countをBulletCountに変更
-            if (BulletCount % 2 == 1) cash.GreenPos = greenPoint.transform.position;
-            else cash.GreenPos = greenPoint1.transform.position;
-            //敵の位置を弾のスクリプトに渡す
-            cash.TargetPos = target.transform.position;
-            //弾数を減らす←追加
-            BulletCount = BulletCount - 1;
+            if (BulletCount > 0)
+            {
+                //自分の位置を保存
+                var pos = this.gameObject.transform.position;
+                //弾のプレハブを作成
+                //var t = Instantiate(tama) as GameObject;
+                //複製したオブジェクトの位置　←ここ書き加えました
+                var t = Instantiate(tama, this.transform.position, Quaternion.identity);
+                //弾の初期位置を敵の位置にする
+                t.transform.position = pos;
+                //弾につけているスクリプト、TamaTobasuコンポネントを保存する
+                var cash = t.GetComponent<TamaTobasu>();
+                //スタート地点を弾のスクリプトに渡す
+                cash.CharaPos = this.transform.position;
+                //弾を一つ打ち出すたびに中継地点を変える
+                //count++;
+                //中継地点を弾のスクリプトに渡す←countをBulletCountに変更
+                if (BulletCount % 2 == 1) cash.GreenPos = greenPoint.transform.position;
+                else cash.GreenPos = greenPoint1.transform.position;
+                //敵の位置を弾のスクリプトに渡す
+                cash.TargetPos = target.transform.position;
+                //弾数を減らす←追加
+                BulletCount = BulletCount - 1;
+            }
         }
+       
     }
 
     IEnumerator FuncCoroutine()
@@ -141,5 +149,11 @@ public class Attak : MonoBehaviour
     void SetActivefalse()
     {
         tama2.gameObject.SetActive(false);
+    }
+    //攻撃許可
+    public static void Atc()
+    {
+        //攻撃をOK
+        Atc_OK = true;
     }
 }

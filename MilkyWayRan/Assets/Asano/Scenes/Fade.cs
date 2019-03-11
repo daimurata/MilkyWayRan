@@ -10,22 +10,59 @@ public class Fade : MonoBehaviour
     float fadeSpeed = 0.02f;        //透明度が変わるスピードを管理
     float red, green, blue, alfa=0;   //パネルの色、不透明度を管理
 
-    public bool isFadeOut = false;  //フェードアウト処理の開始、完了を管理するフラグ
-    public bool isFadeIn = false;   //フェードイン処理の開始、完了を管理するフラグ
+    public static bool isFadeOut = false;  //フェードアウト処理の開始、完了を管理するフラグ
+    public static bool isFadeIn = false;   //フェードイン処理の開始、完了を管理するフラグ
 
     public Image fadeImage;                //透明度を変更するパネルのイメージ
 
-    public string NextSceneName;//シーン移動
-    void Start()
+    public string[] NextSceneName =new string[3];//シーン移動
+
+    public static bool[] Secne_Go = new bool[3];//シーンを分岐
+
+   // public static bool[] SecneOK = new bool[2];//シーンを連続飛びしない
+
+    public static bool GOTO=true;//連続処理防止
+    //1個のみ
+    public static Fade Instance
     {
+        get;private set;
+    }
+
+    void Awake()
+    {
+        //もしインスタンスが複数存在するなら、自らを破壊する
+        if (Instance !=null)
+        {
+            //消える
+            Destroy(this);
+            //繰り返す
+            return;
+        }
+        //シングルトン
+        Instance = this;
+
+        //消えないようにする
+        DontDestroyOnLoad(this);
+    }
+
+    void Start()
+    { 
         //fadeImage = GetComponent<Image>();
         //参照
         red = fadeImage.color.r;
         green = fadeImage.color.g;
         blue = fadeImage.color.b;
         alfa = fadeImage.color.a;
-        //消えないようにする
-        DontDestroyOnLoad(this);
+
+        //シーン移動処理分け
+        Secne_Go[0] = false;
+        Secne_Go[1] = false;
+        Secne_Go[2] = false;
+
+        //シーンを連続呼び防止
+        //ゲームに行くため
+       // SecneOK[0] = true;
+        //SecneOK[1] = false;
     }
 
     void Update()
@@ -33,20 +70,35 @@ public class Fade : MonoBehaviour
         //trueなら
         if (isFadeIn)
         {
-            //フェードイン
+            //フェードイン（画像）
             StartFadeIn();
         }
 
         //trueなら
         if (isFadeOut)
         {
-            //フェードアウト
+            //フェードアウト（画像）
             StartFadeOut();
         }
+        //FadeOption();
+        /*
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            Sen_Titl();
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            Sen_Game();
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            Sen_Result();
+        }*/
+
     }
 
     /// <summary>
-    /// フェードイン
+    /// フェードイン（画像）
     /// </summary>
     void StartFadeIn()
     {
@@ -59,11 +111,12 @@ public class Fade : MonoBehaviour
             //ファードイン終了
             isFadeIn = false;
             fadeImage.enabled = false;    //パネルの表示をオフにする
+            GOTO = true;
         }
     }
 
     /// <summary>
-    /// フェードアウト
+    /// フェードアウト（画像）
     /// </summary>
     void StartFadeOut()
     {
@@ -73,13 +126,54 @@ public class Fade : MonoBehaviour
         //アルファーが1以上
         if (alfa >= 1)
         {
-            // 完全に不透明になったら処理を抜ける
-            //フェードアウト終了
-            isFadeOut = false;
-            //シーン遷移
-            SceneManager.LoadScene(NextSceneName);
-            //フェードインする
-            isFadeIn = true;
+            //タイトルへ
+            if (Secne_Go[0])
+            {
+                // 完全に不透明になったら処理を抜ける
+                //フェードアウト終了
+                isFadeOut = false;
+                //シーン遷移タイトル
+                SceneManager.LoadScene(NextSceneName[0]);
+                //フェードインする
+                isFadeIn = true;
+                //終了
+                Secne_Go[0] = false;
+                //タイトル移動可能
+                //SecneOK[0] = true;
+            }
+            //ゲームへ
+            if (Secne_Go[1])
+            {
+                // 完全に不透明になったら処理を抜ける
+                //フェードアウト終了
+                isFadeOut = false;
+                //シーン遷移タイトル
+                SceneManager.LoadScene(NextSceneName[1]);
+                //フェードインする
+                isFadeIn = true;
+                //終了
+                Secne_Go[1] = false;
+            }
+            //リザルトへ
+            if (Secne_Go[2])
+            {
+                // 完全に不透明になったら処理を抜ける
+                //フェードアウト終了
+                isFadeOut = false;
+                //シーン遷移タイトル
+                SceneManager.LoadScene(NextSceneName[2]);
+                //フェードインする
+                isFadeIn = true;
+                //終了
+                Secne_Go[2] = false;
+
+                /*
+                //タイトル移動可能
+                SecneOK[0] = true;
+                //ゲーム移動可能
+                SecneOK[1] = true;
+                */
+            }
         }
     }
 
@@ -91,16 +185,191 @@ public class Fade : MonoBehaviour
         //RGBA
         fadeImage.color = new Color(red, green, blue, alfa);
     }
+    /*
     /// <summary>
-    /// フェードを行うキー
+    /// フェードを行うコントローラー（手動処理）
     /// </summary>
     public void FadeOption()
     {
-        //ボタンでスペース
-        if (Input.GetKeyDown(KeyCode.Space))
+        //コントローラー1P
+        Controller_1P();
+
+        //コントローラー2P
+        Controller_2P();
+
+        //コントローラー3P
+        Controller_3P();
+
+        //コントローラー4P
+        Controller_4P();
+    }
+
+    /// <summary>
+    /// コントローラ処理1P
+    /// </summary>
+    public void Controller_1P()
+    {
+        //キー移動　タイトルへ　手動
+        if (Input.GetButton("PlayerLoad_Title1") && SecneOK[0] == true)//中島Buttonスクリプト参照
         {
+            //シーン移動先タイトル
+            Secne_Go[0] = true;
+
             //フェードの処理
             isFadeOut = true;
+
+            //ゲーム中に遷移しない処理
+            SecneOK[0] = false;
+        }
+        //キー移動　ゲームへ　手動
+        if (Input.GetButton("PlayerLoad_Game1") && SecneOK[1] == true)//中島Buttonスクリプト参照
+        {
+            //シーン移動先ゲーム
+            Secne_Go[1] = true;
+
+            //フェードの処理
+            isFadeOut = true;
+
+            //ゲーム中に遷移しない処理
+            SecneOK[1] = false;
+        }
+    }
+    /// <summary>
+    /// コントローラ処理2P
+    /// </summary>
+    public void Controller_2P()
+    {
+        //キー移動　タイトルへ　手動
+        if (Input.GetButton("PlayerLoad_Title2") && SecneOK[0] == true)//中島Buttonスクリプト参照
+        {
+            //シーン移動先タイトル
+            Secne_Go[0] = true;
+
+            //フェードの処理
+            isFadeOut = true;
+
+            //ゲーム中に遷移しない処理
+            SecneOK[0] = false;
+        }
+        //キー移動　ゲームへ　手動
+        if (Input.GetButton("PlayerLoad_Game2") && SecneOK[1] == true)//中島Buttonスクリプト参照
+        {
+            //シーン移動先ゲーム
+            Secne_Go[1] = true;
+
+            //フェードの処理
+            isFadeOut = true;
+
+            //ゲーム中に遷移しない処理
+            SecneOK[1] = false;
+        }
+    }
+    /// <summary>
+    /// コントローラ処理3P
+    /// </summary>
+    public void Controller_3P()
+    {
+        //キー移動　タイトルへ　手動
+        if (Input.GetButton("PlayerLoad_Title3") && SecneOK[0] == true)//中島Buttonスクリプト参照
+        {
+            //シーン移動先タイトル
+            Secne_Go[0] = true;
+
+            //フェードの処理
+            isFadeOut = true;
+
+            //ゲーム中に遷移しない処理
+            SecneOK[0] = false;
+        }
+        //キー移動　ゲームへ　手動
+        if (Input.GetButton("PlayerLoad_Game3") && SecneOK[1] == true)//中島Buttonスクリプト参照
+        {
+            //シーン移動先ゲーム
+            Secne_Go[1] = true;
+
+            //フェードの処理
+            isFadeOut = true;
+
+            //ゲーム中に遷移しない処理
+            SecneOK[1] = false;
+        }
+    }
+    /// <summary>
+    /// コントローラ処理4P
+    /// </summary>
+    public void Controller_4P()
+    {
+        //キー移動　タイトルへ　手動
+        if (Input.GetButton("PlayerLoad_Title4") && SecneOK[0] == true)//中島Buttonスクリプト参照
+        {
+            //シーン移動先タイトル
+            Secne_Go[0] = true;
+
+            //フェードの処理
+            isFadeOut = true;
+
+            //ゲーム中に遷移しない処理
+            SecneOK[0] = false;
+        }
+        //キー移動　ゲームへ　手動
+        if (Input.GetButton("PlayerLoad_Game4") && SecneOK[1] == true)//中島Buttonスクリプト参照
+        {
+            //シーン移動先ゲーム
+            Secne_Go[1] = true;
+
+            //フェードの処理
+            isFadeOut = true;
+
+            //ゲーム中に遷移しない処理
+            SecneOK[1] = false;
+        }
+    }
+    */
+    //呼ばれたらタイトルシーンへ移動　自動
+    public static void Sen_Titl()
+    {
+        if (GOTO==true)
+        {
+            GOTO = false;
+            if (GOTO==false)
+            {
+                //シーン移動先　タイトル
+                Secne_Go[0] = true;
+                //フェードの処理
+                isFadeOut = true;
+            }
+        }
+
+    }
+
+    public static void Sen_Game()
+    {
+        if (GOTO == true)
+        {
+            GOTO = false;
+            if (GOTO == false)
+            {
+                //シーン移動先 ゲーム
+                Secne_Go[1] = true;
+                //フェードの処理
+                isFadeOut = true;
+            }
+        }
+    }
+
+    //呼ばれたらリザルトシーンへ移動　自動
+    public static void Sen_Result()
+    {
+        if (GOTO == true)
+        {
+            GOTO = false;
+            if (GOTO == false)
+            {
+                //シーン移動先　リザルト
+                Secne_Go[2] = true;
+                //フェードの処理
+                isFadeOut = true;
+            }
         }
     }
 }

@@ -251,7 +251,8 @@ MonoBehaviour:
   Gage_3: {fileID: 2001142640}
   Gage_4: {fileID: 1992508783}
   Gage_5: {fileID: 444354824}
-  Bool: 5
+  at: {fileID: 0}
+  plyer: 
 --- !u!114 &69316273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1414,7 +1415,8 @@ MonoBehaviour:
   Gage_3: {fileID: 773811278}
   Gage_4: {fileID: 1925159807}
   Gage_5: {fileID: 671768513}
-  Bool: 5
+  at: {fileID: 0}
+  plyer: 
 --- !u!114 &533987983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1504,7 +1506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   death: {fileID: 556906754}
-  PP: 0.2
+  hisatu: {fileID: 0}
 --- !u!114 &556906754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2449,7 +2451,8 @@ MonoBehaviour:
   Gage_3: {fileID: 1212069340}
   Gage_4: {fileID: 917242213}
   Gage_5: {fileID: 1363614936}
-  Bool: 5
+  at: {fileID: 0}
+  plyer: 
 --- !u!114 &742239528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3198,7 +3201,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 996275520}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b66e1b9c34926b40bfa7f95cd5b87bb, type: 3}
   m_Name: 
@@ -5042,8 +5045,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1768773834}
-  m_LocalRotation: {x: 0.030991025, y: 0.96027225, z: 0.2506388, w: -0.11873064}
-  m_LocalPosition: {x: 21.819408, y: -50.043568, z: 86.88711}
+  m_LocalRotation: {x: 0.000000030908623, y: 0.7071068, z: 0.7071068, w: -0.000000030908623}
+  m_LocalPosition: {x: 0, y: -19.86, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5188,7 +5191,8 @@ MonoBehaviour:
   Gage_3: {fileID: 206432091}
   Gage_4: {fileID: 650824224}
   Gage_5: {fileID: 1134840603}
-  Bool: 5
+  at: {fileID: 0}
+  plyer: 
 --- !u!114 &1886215441
 MonoBehaviour:
   m_ObjectHideFlags: 0

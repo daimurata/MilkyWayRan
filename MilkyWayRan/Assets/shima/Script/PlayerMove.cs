@@ -37,6 +37,10 @@ public class PlayerMove : MonoBehaviour
     //無敵時間、Inspectorで変更できるよ
     public float invincible = 3;
 
+    float x, y;
+
+    //移動許可
+    static bool Mov_OK = false;
     // Use this for initialization
     void Start()
     {
@@ -83,9 +87,14 @@ public class PlayerMove : MonoBehaviour
             animator.SetBool("is_attack", true);
             Invoke("AnimatorBoolis_attack", 0.5f);
         }
-        //アナログスティックで動かせると思う
-        float x = Input.GetAxis("Horizontal" + PlayerNum);//左右
-        float y = Input.GetAxis("Vertical" + PlayerNum);//前後
+        //移動許可待ち
+        if (Mov_OK)
+        {
+            //アナログスティックで動かせると思う
+             x = Input.GetAxis("Horizontal" + PlayerNum);//左右
+             y = Input.GetAxis("Vertical" + PlayerNum);//前後
+        }
+
 
         //transform.Rotate(0, x, 0);//回転
         //transform.position += y * transform.forward * PlayerSpeed * Time.deltaTime;//前後移動
@@ -283,6 +292,12 @@ public class PlayerMove : MonoBehaviour
     void isCollisionfalse()
     {
         isCollision = true;
+    }
+    //移動許可
+    public static void Mov_GO()
+    {
+        //移動OK
+        Mov_OK = true;
     }
 
 }

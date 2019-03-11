@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// ステージ移動
+/// </summary>
 public class Position : MonoBehaviour
 {
     //移動[0]がMAX[0]がMIN
@@ -9,14 +12,14 @@ public class Position : MonoBehaviour
     //動かすオブジェクト
     public GameObject[] moveObj = new GameObject[2];
     //動くための許可
-    public bool[] OK_GO = new bool[2];
+    public static bool[] OK_GO = new bool[2];
     //目的場所
     public float[] MAX = new float[2];
     //目的場所2
     public float[] MIN = new float[2];
     //スピード
     public float Speed = 0.5f;
-
+    //移動させる名前
     public string[] Name = new string[2];
 
     void Start()
@@ -72,9 +75,13 @@ public class Position : MonoBehaviour
                 OK_GO[1] = false;
             }
         }
-
-
     }
+    //ステージ移動
+    public static void Mov_Stage()
+    {
+        //trueなら←→
+        OK_GO[0]=true;
+    } 
 }
 
 
