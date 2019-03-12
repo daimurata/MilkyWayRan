@@ -93,7 +93,7 @@ public class Play_Entry : MonoBehaviour
     public int TopNum;
 
     AudioSource audioSource;
-    public AudioClip SE1;
+    public AudioClip Entry_SE1;
     void Start()
     {
         //初期設定
@@ -246,7 +246,7 @@ public class Play_Entry : MonoBehaviour
             //if (Input.GetKeyDown(KeyCode.A)&& Game_PL[0] == false)
             if (Input.GetButtonDown("PlayerLoad1") && Game_PL[0] == false)
             {
-                audioSource.PlayOneShot(SE1);
+                audioSource.PlayOneShot(Entry_SE1);
                 //ゲームスタートするまでの時間
                 Count_Dow = 10;
                 Debug.Log("参加");
@@ -286,7 +286,7 @@ public class Play_Entry : MonoBehaviour
             //if (Input.GetKeyDown(KeyCode.S)&& Game_PL[1] == false)
             if (Input.GetButtonDown("PlayerLoad2") && Game_PL[1] == false)
             {
-                audioSource.PlayOneShot(SE1);
+                audioSource.PlayOneShot(Entry_SE1);
                 //ゲームスタートするまでの時間
                 Count_Dow = 10;
                 Debug.Log("参加");
@@ -325,7 +325,7 @@ public class Play_Entry : MonoBehaviour
             //if (Input.GetKeyDown(KeyCode.D)&&Game_PL[0] == false)
             if (Input.GetButtonDown("PlayerLoad3") && Game_PL[2] == false)
             {
-                audioSource.PlayOneShot(SE1);
+                audioSource.PlayOneShot(Entry_SE1);
                 //ゲームスタートするまでの時間
                 Count_Dow = 10;
                 Debug.Log("参加3");
@@ -364,7 +364,7 @@ public class Play_Entry : MonoBehaviour
             //if (Input.GetKeyDown(KeyCode.F)&&Game_PL[3] == false)
             if (Input.GetButtonDown("PlayerLoad4") && Game_PL[3] == false)
             {
-                audioSource.PlayOneShot(SE1);
+                audioSource.PlayOneShot(Entry_SE1);
                 //ゲームスタートするまでの時間
                 Count_Dow = 10;
                 Debug.Log("参加4");

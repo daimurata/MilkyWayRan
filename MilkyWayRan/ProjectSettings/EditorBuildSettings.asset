@@ -35,10 +35,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/A_AScenes/Game_Result4.unity
     guid: 1c9c624f244508540acf6ff649dc7965
-  - enabled: 1
+  - enabled: 0
     path: Assets/shima/Scenes/MainShima.unity
     guid: 7331165290aa4604295c7d317951e9f9
-  - enabled: 1
+  - enabled: 0
     path: Assets/shima/Scenes/TitleShima.unity
     guid: 12d657695f95fc74fbcd28e83bcb0350
   m_configObjects: {}

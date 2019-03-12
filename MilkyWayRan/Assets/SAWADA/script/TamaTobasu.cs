@@ -37,28 +37,28 @@ public class TamaTobasu : MonoBehaviour
     void Update()
     {
      
-        //弾の進む割合をTime.deltaTimeで決める
-        time += Time.deltaTime;
+        ////弾の進む割合をTime.deltaTimeで決める
+        //time += Time.deltaTime;
 
-        //二次ベジェ曲線
-        //スタート地点から中継地点までのベクトル上を通る点の現在の位置
-        var a = Vector3.Lerp(charaPos, greenPos, time);
-        //中継地点からターゲットまでのベクトル上を通る点の現在の位置
-        var b = Vector3.Lerp(greenPos, targetPos, time);
-        //上の二つの点を結んだベクトル上を通る点の現在の位置（弾の位置）
-        this.transform.position = Vector3.Lerp(a, b, time);
+        ////二次ベジェ曲線
+        ////スタート地点から中継地点までのベクトル上を通る点の現在の位置
+        //var a = Vector3.Lerp(charaPos, greenPos, time);
+        ////中継地点からターゲットまでのベクトル上を通る点の現在の位置
+        //var b = Vector3.Lerp(greenPos, targetPos, time);
+        ////上の二つの点を結んだベクトル上を通る点の現在の位置（弾の位置）
+        //this.transform.position = Vector3.Lerp(a, b, time);
 
         Destroy(gameObject, Destroybullet);//数秒後弾を消す
     }
-    void OnCollisionEnter(Collision other)
+    void OnCollisionEnter(Collision Bullet_other)
     {
         bool TriggerFlag = true;
         if (TriggerFlag)
         {
             TriggerFlag = false;
-            if (other.gameObject.tag == "Player" + EnemyNum1)
+            if (Bullet_other.gameObject.tag == "Player" + EnemyNum1)
             {
-                var hit = other.gameObject;
+                var hit = Bullet_other.gameObject;
                 var health = hit.GetComponent<PlayerMove>();
                 if (health != null)
                 {
@@ -66,9 +66,9 @@ public class TamaTobasu : MonoBehaviour
                     health.HP(PlayerNum, BulletDamage);
                 }
             }
-            if (other.gameObject.tag == "Player" + EnemyNum2)
+            if (Bullet_other.gameObject.tag == "Player" + EnemyNum2)
             {
-                var hit = other.gameObject;
+                var hit = Bullet_other.gameObject;
                 var health = hit.GetComponent<PlayerMove>();
                 if (health != null)
                 {
@@ -76,9 +76,9 @@ public class TamaTobasu : MonoBehaviour
                     health.HP(PlayerNum, BulletDamage);
                 }
             }
-            if (other.gameObject.tag == "Player" + EnemyNum3)
+            if (Bullet_other.gameObject.tag == "Player" + EnemyNum3)
             {
-                var hit = other.gameObject;
+                var hit = Bullet_other.gameObject;
                 var health = hit.GetComponent<PlayerMove>();
                 if (health != null)
                 {

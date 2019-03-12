@@ -18,7 +18,7 @@ public class Create : MonoBehaviour
     static bool Gim_OK = false;
 
     AudioSource audioSource;
-    public AudioClip SE1;
+    public AudioClip Create_SE1;
     void Start()
     {
         //仮のステージ
@@ -45,7 +45,7 @@ public class Create : MonoBehaviour
             {
                 //生成
                 Instantiate(Obj[0], new Vector3(+X, 0, -Z), transform.rotation);
-                audioSource.PlayOneShot(SE1);
+                audioSource.PlayOneShot(Create_SE1);
 
                 Debug.Log("生成数："+CreateObj+"個");
             }

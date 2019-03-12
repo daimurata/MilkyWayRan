@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour
+public class PlayerMove4 : MonoBehaviour
 {
     //ここでプレイヤー関連のやつ移動とかHPまとめてやります
 
@@ -13,6 +13,10 @@ public class PlayerMove : MonoBehaviour
     public int EnemyNum1;
     public int EnemyNum2;
     public int EnemyNum3;
+
+    public string EnemyName1;
+    public string EnemyName2;
+    public string EnemyName3;
 
     //移動スピード
     public float PlayerSpeed = 5.0f;
@@ -35,10 +39,10 @@ public class PlayerMove : MonoBehaviour
     public GameObject efect1;
     public GameObject efect2;
 
-    public AudioClip Player_SE1;
-    public AudioClip Player_SE2;
-    public AudioClip Player_SE3;
-    public AudioClip Player_SE4;
+    public AudioClip Player4_SE1;
+    public AudioClip Player4_SE2;
+    public AudioClip Player4_SE3;
+    public AudioClip Player4_SE4;
 
     //無敵（一時的にダメージを無くすためのもの）
     private bool isCollision = true;
@@ -87,7 +91,7 @@ public class PlayerMove : MonoBehaviour
             animator.SetBool("is_attack", true);
             Invoke("AnimatorBoolis_attack", 0.5f);
             _rigidBody.isKinematic = true;
-            Invoke("RigidBodyfalse", 1.0f);        
+            Invoke("RigidBodyfalse", 1.0f);
         }
         if (Input.GetButtonDown("Fire3_" + PlayerNum))
         {
@@ -100,8 +104,8 @@ public class PlayerMove : MonoBehaviour
         if (Mov_OK)
         {
             //アナログスティックで動かせると思う
-             x = Input.GetAxis("Horizontal" + PlayerNum);//左右
-             y = Input.GetAxis("Vertical" + PlayerNum);//前後
+            x = Input.GetAxis("Horizontal" + PlayerNum);//左右
+            y = Input.GetAxis("Vertical" + PlayerNum);//前後
         }
 
 
@@ -132,14 +136,14 @@ public class PlayerMove : MonoBehaviour
         {
             PlayerHP -= amount;
             isCollision = false;
-            //if (PlayerHP >= 0)
-            //{
-            //    //Debug.Log("プレイヤー" + Number + "が攻撃" + PlayerHP);
-            //}
+            if (PlayerHP >= 0)
+            {
+                //Debug.Log("プレイヤー" + Number + "が攻撃" + PlayerHP);
+            }
             if (PlayerHP <= 0)
             {
                 //死んだ時の音
-                //audioSource.PlayOneShot(Player_SE4);
+                audioSource.PlayOneShot(Player4_SE4);
                 //HP残量の確認をするためにSetActiveに変更
                 this.gameObject.SetActive(false);
                 Debug.Log("プレイヤー" + "死亡");
@@ -152,7 +156,7 @@ public class PlayerMove : MonoBehaviour
             a1.SpecialGage(amount);
         }
     }
-   
+
     void OnCollisionEnter(Collision col)
     {
         float x = Input.GetAxis("Horizontal" + PlayerNum);//左右
@@ -164,79 +168,79 @@ public class PlayerMove : MonoBehaviour
 
         //相手がプレイヤーの場合、プレイヤーの番号指定（Inspectorで変更）
         //体当たりでダメージが出る感じ
-        //if (TriggerFlag)
-        //{
-        //    TriggerFlag = false;
-        //    if (col.gameObject.tag == "Player" + EnemyNum1)
-        //    {
-        //        //爆発の生成
-        //        var t = Instantiate(efect1, this.transform.position, Quaternion.identity);
-        //        /////
-        //        //audioSource.PlayOneShot(Player_SE1);
-        //        Debug.Log(PlayerNum + "がダメージをうけた");
-        //        animator.SetBool("is_damage", true);
-        //        Invoke("AnimatorBoolis_damage", 0.5f);
-        //        //////
-        //        var hit = col.gameObject;
-        //        var health = hit.GetComponent<PlayerMove>();
-        //        if (health != null)
-        //        {
-        //            //ここがプレイヤーの入力方向と逆の方向に無理やり飛ばす処理
-        //            _rigidBody.AddForce(-direction * 100,ForceMode.Impulse);
-        //            health.HP(PlayerNum, TackleDamage);
-        //        }
-        //    }
-        //}
-        //if (TriggerFlag)
-        //{
-        //    TriggerFlag = false;
-        //    if (col.gameObject.tag == "Player"+EnemyNum2)
-        //    {
-        //        //爆発の生成
-        //        var t = Instantiate(efect1, this.transform.position, Quaternion.identity);
-        //        /////
-        //        //audioSource.PlayOneShot(Player_SE1);
-        //        animator.SetBool("is_damage", true);
-        //        Invoke("AnimatorBoolis_damage", 0.5f);
-        //        //////
-        //        var hit = col.gameObject;
-        //        var health = hit.GetComponent<PlayerMove>();
-        //        if (health != null)
-        //        {
-        //            //ここがプレイヤーの入力方向と逆の方向に無理やり飛ばす処理
-        //            _rigidBody.AddForce(-direction * 100, ForceMode.Impulse);
-        //            health.HP(PlayerNum, TackleDamage);
-        //        }
-        //    }
-        //}
-        //if (TriggerFlag)
-        //{
-        //    TriggerFlag = false;
-        //    if (col.gameObject.tag == "Player" + EnemyNum3)
-        //    {
-        //        //爆発の生成
-        //        var t = Instantiate(efect1, this.transform.position, Quaternion.identity);
-        //        /////
-        //        //audioSource.PlayOneShot(Player_SE1);
-        //        animator.SetBool("is_damage", true);
-        //        Invoke("AnimatorBoolis_damage", 0.5f);
-        //        //////
-        //        var hit = col.gameObject;
-        //        var health = hit.GetComponent<PlayerMove>();
-        //        if (health != null)
-        //        {
-        //            //ここがプレイヤーの入力方向と逆の方向に無理やり飛ばす処理
-        //            _rigidBody.AddForce(-direction * 100, ForceMode.Impulse);
-        //            health.HP(PlayerNum, TackleDamage);
-        //        }
-        //    }
-        //}
+        if (TriggerFlag)
+        {
+            TriggerFlag = false;
+            if (col.gameObject.name == EnemyName1)
+            {
+                //爆発の生成
+                var t = Instantiate(efect1, this.transform.position, Quaternion.identity);
+                /////
+                //audioSource.PlayOneShot(Player_SE1);
+                Debug.Log(PlayerNum + "がダメージをうけた");
+                animator.SetBool("is_damage", true);
+                Invoke("AnimatorBoolis_damage", 0.5f);
+                //////
+                var hit = col.gameObject;
+                var health = hit.GetComponent<PlayerMove>();
+                if (health != null)
+                {
+                    //ここがプレイヤーの入力方向と逆の方向に無理やり飛ばす処理
+                    _rigidBody.AddForce(-direction * 100, ForceMode.Impulse);
+                    health.HP(PlayerNum, TackleDamage);
+                }
+            }
+        }
+        if (TriggerFlag)
+        {
+            TriggerFlag = false;
+            if (col.gameObject.name == EnemyName2)
+            {
+                //爆発の生成
+                var t = Instantiate(efect1, this.transform.position, Quaternion.identity);
+                /////
+                //audioSource.PlayOneShot(Player_SE1);
+                animator.SetBool("is_damage", true);
+                Invoke("AnimatorBoolis_damage", 0.5f);
+                //////
+                var hit = col.gameObject;
+                var health = hit.GetComponent<PlayerMove2>();
+                if (health != null)
+                {
+                    //ここがプレイヤーの入力方向と逆の方向に無理やり飛ばす処理
+                    _rigidBody.AddForce(-direction * 100, ForceMode.Impulse);
+                    health.HP(PlayerNum, TackleDamage);
+                }
+            }
+        }
+        if (TriggerFlag)
+        {
+            TriggerFlag = false;
+            if (col.gameObject.name == EnemyName3)
+            {
+                //爆発の生成
+                var t = Instantiate(efect1, this.transform.position, Quaternion.identity);
+                /////
+                //audioSource.PlayOneShot(Player_SE1);
+                animator.SetBool("is_damage", true);
+                Invoke("AnimatorBoolis_damage", 0.5f);
+                //////
+                var hit = col.gameObject;
+                var health = hit.GetComponent<PlayerMove3>();
+                if (health != null)
+                {
+                    //ここがプレイヤーの入力方向と逆の方向に無理やり飛ばす処理
+                    _rigidBody.AddForce(-direction * 100, ForceMode.Impulse);
+                    health.HP(PlayerNum, TackleDamage);
+                }
+            }
+        }
 
         //相手がBulletの場合、弾の番号指定（Inspectorで変更）
         if (col.gameObject.tag == "Bullet" + EnemyNum1)
         {
             //小さい爆発の生成
-            //audioSource.PlayOneShot(Player_SE2);
+            audioSource.PlayOneShot(Player4_SE2);
             var t = Instantiate(efect2, col.transform.position, Quaternion.identity);
             Debug.Log(PlayerNum + "がダメージをうけた");
             animator.SetBool("is_damage", true);
@@ -245,7 +249,7 @@ public class PlayerMove : MonoBehaviour
         if (col.gameObject.tag == "Bullet" + EnemyNum2)
         {
             //小さい爆発の生成
-            //audioSource.PlayOneShot(Player_SE2);
+            audioSource.PlayOneShot(Player4_SE2);
             var t = Instantiate(efect2, col.transform.position, Quaternion.identity);
             Debug.Log(PlayerNum + "がダメージをうけた");
             animator.SetBool("is_damage", true);
@@ -254,41 +258,41 @@ public class PlayerMove : MonoBehaviour
         if (col.gameObject.tag == "Bullet" + EnemyNum3)
         {
             //小さい爆発の生成
-            //audioSource.PlayOneShot(Player_SE2);
+            audioSource.PlayOneShot(Player4_SE2);
             var t = Instantiate(efect2, col.transform.position, Quaternion.identity);
             Debug.Log(PlayerNum + "がダメージをうけた");
             animator.SetBool("is_damage", true);
             Invoke("AnimatorBoolis_damage", 0.5f);
         }
 
-        ////相手がStarの場合、Starの番号指定（Inspectorで変更）
-        //if (col.gameObject.tag == "Star" + EnemyNum1)
-        //{
-        //    //小さい爆発の生成
-        //    //audioSource.PlayOneShot(Player_SE3);
-        //    var t = Instantiate(efect2, col.transform.position, Quaternion.identity);
-        //    Debug.Log(PlayerNum + "がダメージをうけた");
-        //    animator.SetBool("is_damage", true);
-        //    Invoke("AnimatorBoolis_damage", 0.5f);
-        //}
-        //if (col.gameObject.tag == "Star" + EnemyNum2)
-        //{
-        //    //小さい爆発の生成
-        //    //audioSource.PlayOneShot(Player_SE3);
-        //    var t = Instantiate(efect2, col.transform.position, Quaternion.identity);
-        //    Debug.Log(PlayerNum + "がダメージをうけた");
-        //    animator.SetBool("is_damage", true);
-        //    Invoke("AnimatorBoolis_damage", 0.5f);
-        //}
-        //if (col.gameObject.tag == "Star" + EnemyNum3)
-        //{
-        //    //小さい爆発の生成
-        //    //audioSource.PlayOneShot(Player_SE3);
-        //    var t = Instantiate(efect2, col.transform.position, Quaternion.identity);
-        //    Debug.Log(PlayerNum + "がダメージをうけた");
-        //    animator.SetBool("is_damage", true);
-        //    Invoke("AnimatorBoolis_damage", 0.5f);
-        //}
+        //相手がStarの場合、Starの番号指定（Inspectorで変更）
+        if (col.gameObject.tag == "Star" + EnemyNum1)
+        {
+            //小さい爆発の生成
+            audioSource.PlayOneShot(Player4_SE3);
+            var t = Instantiate(efect2, col.transform.position, Quaternion.identity);
+            Debug.Log(PlayerNum + "がダメージをうけた");
+            animator.SetBool("is_damage", true);
+            Invoke("AnimatorBoolis_damage", 0.5f);
+        }
+        if (col.gameObject.tag == "Star" + EnemyNum2)
+        {
+            //小さい爆発の生成
+            audioSource.PlayOneShot(Player4_SE3);
+            var t = Instantiate(efect2, col.transform.position, Quaternion.identity);
+            Debug.Log(PlayerNum + "がダメージをうけた");
+            animator.SetBool("is_damage", true);
+            Invoke("AnimatorBoolis_damage", 0.5f);
+        }
+        if (col.gameObject.tag == "Star" + EnemyNum3)
+        {
+            //小さい爆発の生成
+            audioSource.PlayOneShot(Player4_SE3);
+            var t = Instantiate(efect2, col.transform.position, Quaternion.identity);
+            Debug.Log(PlayerNum + "がダメージをうけた");
+            animator.SetBool("is_damage", true);
+            Invoke("AnimatorBoolis_damage", 0.5f);
+        }
     }
     //↓のやつらはBoolをInvokeで呼び出すためだけに作成したものです
     void AnimatorBoolis_damage()
@@ -296,7 +300,7 @@ public class PlayerMove : MonoBehaviour
         //is_damage
         //falseを呼び出すだけのため
         animator.SetBool("is_damage", false);
-        
+
     }
     void AnimatorBoolis_attack()
     {
@@ -317,7 +321,4 @@ public class PlayerMove : MonoBehaviour
         //移動OK
         Mov_OK = true;
     }
-
-    
 }
- 

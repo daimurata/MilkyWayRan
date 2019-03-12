@@ -30,15 +30,15 @@ public class Kobusi : MonoBehaviour
 
     }
 
-    void OnCollisionEnter(Collision other)
+    void OnCollisionEnter(Collision Kobusi_other)
     {
         bool TriggerFlag = true;
         if (TriggerFlag)
         {
             TriggerFlag = false;
-            if (other.gameObject.tag == "Player" + EnemyNum1)
+            if (Kobusi_other.gameObject.tag == "Player" + EnemyNum1)
             {
-                var hit = other.gameObject;
+                var hit = Kobusi_other.gameObject;
                 var health = hit.GetComponent<PlayerMove>();
                 if (health != null)
                 {
@@ -46,9 +46,9 @@ public class Kobusi : MonoBehaviour
                     health.HP(PlayerNum, kobusiDamage);
                 }
             }
-            if (other.gameObject.tag == "Player" + EnemyNum2)
+            if (Kobusi_other.gameObject.tag == "Player" + EnemyNum2)
             {
-                var hit = other.gameObject;
+                var hit = Kobusi_other.gameObject;
                 var health = hit.GetComponent<PlayerMove>();
                 if (health != null)
                 {
@@ -56,9 +56,9 @@ public class Kobusi : MonoBehaviour
                     health.HP(PlayerNum, kobusiDamage);
                 }
             }
-            if (other.gameObject.tag == "Player" + EnemyNum3)
+            if (Kobusi_other.gameObject.tag == "Player" + EnemyNum3)
             {
-                var hit = other.gameObject;
+                var hit = Kobusi_other.gameObject;
                 var health = hit.GetComponent<PlayerMove>();
                 if (health != null)
                 {

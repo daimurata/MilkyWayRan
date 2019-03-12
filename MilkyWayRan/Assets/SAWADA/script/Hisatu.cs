@@ -18,7 +18,7 @@ public class Hisatu : MonoBehaviour
 
     //必殺技音
     AudioSource audioSource;
-    public AudioClip SE1;
+    public AudioClip Hissatu_SE1;
 
     // Start is called before the first frame update
     void Start()
@@ -55,7 +55,7 @@ public class Hisatu : MonoBehaviour
         //Specialが○○になったら必殺技を使える
         if(Special >= 10)
         {
-            audioSource.PlayOneShot(SE1);
+            //audioSource.PlayOneShot(Hissatu_SE1);
             //0にする
             Special = 0;
             //拳の生成
