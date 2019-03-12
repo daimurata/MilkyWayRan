@@ -15,10 +15,15 @@ public class Hisatu : MonoBehaviour
 
     //Death death;
     public Death death;
+
+    //必殺技音
+    AudioSource audioSource;
+    public AudioClip Hissatu_SE1;
+
     // Start is called before the first frame update
     void Start()
     {
-       
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -50,6 +55,7 @@ public class Hisatu : MonoBehaviour
         //Specialが○○になったら必殺技を使える
         if(Special >= 10)
         {
+            //audioSource.PlayOneShot(Hissatu_SE1);
             //0にする
             Special = 0;
             //拳の生成

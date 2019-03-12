@@ -230,7 +230,6 @@ GameObject:
   - component: {fileID: 336290262455545055}
   - component: {fileID: 6530575066358714362}
   - component: {fileID: 8097435745679095592}
-  - component: {fileID: 5488267262430106079}
   - component: {fileID: 5740804850087360690}
   - component: {fileID: 4077768963839223833}
   m_Layer: 0
@@ -309,28 +308,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 36
   m_CollisionDetection: 0
---- !u!114 &5488267262430106079
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4077768963839223834}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3c63988c5ff0d64582a27c6c927ebe8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerNum: 1
-  EnemyNum1: 2
-  EnemyNum2: 3
-  EnemyNum3: 4
-  PlayerSpeed: 5
-  PlayerHP: 20
-  TackleDamage: 1
-  efect1: {fileID: 0}
-  efect2: {fileID: 0}
-  invincible: 3
 --- !u!114 &5740804850087360690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -344,15 +321,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeOut: 0
-  target: {fileID: 0}
   tama: {fileID: 0}
   tama2: {fileID: 4077768965727285504}
-  greenPoint: {fileID: 4077768964308036904}
-  greenPoint1: {fileID: 4077768964627424642}
   BulletCount: 5
   BulletCountLimit: 5
   BulletTime: 3
+  BulletSpeed: 100
   PlayerNum: 1
+  Starmuzzle: {fileID: 0}
   Star: {fileID: 4077768965184346946}
 --- !u!114 &4077768963839223833
 MonoBehaviour:
@@ -371,6 +347,7 @@ MonoBehaviour:
   speed: 1000
   Special: 0
   death: {fileID: 0}
+  Hissatu_SE1: {fileID: 0}
 --- !u!1 &4077768964308036904
 GameObject:
   m_ObjectHideFlags: 0
@@ -523,6 +500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95193d4fd1ccdca45ac0342564518363, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DestroyStar: 1
   StarDamage: 5
   Num: 1
   EnemyNum1: 2

@@ -9,7 +9,7 @@ using UnityEngine;
 public class Eisei : MonoBehaviour
 {
     //1回だけ処理するために必要
-    static bool one =false;
+    static bool one = false;
     //衛星のオブジェクト
     private GameObject Eiseis;
     public GameObject Eiseiobj;
@@ -18,20 +18,20 @@ public class Eisei : MonoBehaviour
     // トータルタイム
     public float totalTime;
 
-    public float X=-13, Y=0, Z=-5;
+    public float X = -13, Y = 0, Z = -5;
     // Start is called before the first frame update
     void Start()
     {
 
-     　//衛星が出てくる時間をランダムにする
+        //衛星が出てくる時間をランダムにする
         eiseiattakInterval = Random.Range(1, 60);
         //one変数をtrueにする
-       // one = true;
+        // one = true;
     }
 
     // Update is called once per frame
     void Update()
-    {　
+    {
         //oneがtrueなら
         if (one)
         {
@@ -44,11 +44,11 @@ public class Eisei : MonoBehaviour
             {
                 //衛星を出現させる
                 Eiseis = Instantiate(Eiseiobj, new Vector3(X, Y, Z), Quaternion.identity) as GameObject;
-              　//oneをfalseにして、1回だけ処理させるようにする
+                //oneをfalseにして、1回だけ処理させるようにする
                 one = false;
             }
         }
-       
+
     }
     //衛星外部いじれる
     public static void Go_Eisei()

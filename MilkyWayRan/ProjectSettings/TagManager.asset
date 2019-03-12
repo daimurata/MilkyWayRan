@@ -13,14 +13,20 @@ TagManager:
   - Star1
   - Bullet3
   - Bullet4
-  - Player3
-  - Player4
   - Satellite
   - Star
   - Fist
   - Left
   - Stage
   - Meteo
+  - Player3
+  - Player4
+  - Fist1
+  - Fist2
+  - Fist3
+  - Fist4
+  - Star3
+  - Star4
   layers:
   - Default
   - TransparentFX

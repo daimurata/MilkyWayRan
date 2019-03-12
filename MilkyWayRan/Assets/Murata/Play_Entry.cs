@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 /// <summary>
 /// プレイヤー参加ロビー
@@ -81,10 +82,23 @@ public class Play_Entry : MonoBehaviour
 
     //ギミック
     Create Create;
+
+    //プレイヤーの名前を入れる（Clone）を最後につけること 追記　by中島
+    public string P1;
+    public string P2;
+    public string P3;
+    public string P4;
+
+    //一番HPの多いプレイヤー番号を入れる変数
+    public int TopNum;
+
+    AudioSource audioSource;
+    public AudioClip Entry_SE1;
     void Start()
     {
         //初期設定
         Setting();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -95,6 +109,10 @@ public class Play_Entry : MonoBehaviour
         Player_Set();
         //プレイヤー参加情報
         Standby_Fore();
+
+        //プレイヤーの順位判定
+        Info();
+        LastPlayerNum();
     }
 
     /// <summary>
@@ -228,6 +246,7 @@ public class Play_Entry : MonoBehaviour
             //if (Input.GetKeyDown(KeyCode.A)&& Game_PL[0] == false)
             if (Input.GetButtonDown("PlayerLoad1") && Game_PL[0] == false)
             {
+                audioSource.PlayOneShot(Entry_SE1);
                 //ゲームスタートするまでの時間
                 Count_Dow = 10;
                 Debug.Log("参加");
@@ -267,6 +286,7 @@ public class Play_Entry : MonoBehaviour
             //if (Input.GetKeyDown(KeyCode.S)&& Game_PL[1] == false)
             if (Input.GetButtonDown("PlayerLoad2") && Game_PL[1] == false)
             {
+                audioSource.PlayOneShot(Entry_SE1);
                 //ゲームスタートするまでの時間
                 Count_Dow = 10;
                 Debug.Log("参加");
@@ -305,6 +325,7 @@ public class Play_Entry : MonoBehaviour
             //if (Input.GetKeyDown(KeyCode.D)&&Game_PL[0] == false)
             if (Input.GetButtonDown("PlayerLoad3") && Game_PL[2] == false)
             {
+                audioSource.PlayOneShot(Entry_SE1);
                 //ゲームスタートするまでの時間
                 Count_Dow = 10;
                 Debug.Log("参加3");
@@ -343,6 +364,7 @@ public class Play_Entry : MonoBehaviour
             //if (Input.GetKeyDown(KeyCode.F)&&Game_PL[3] == false)
             if (Input.GetButtonDown("PlayerLoad4") && Game_PL[3] == false)
             {
+                audioSource.PlayOneShot(Entry_SE1);
                 //ゲームスタートするまでの時間
                 Count_Dow = 10;
                 Debug.Log("参加4");
@@ -753,9 +775,11 @@ public class Play_Entry : MonoBehaviour
     public void Scene_GO()
     {
         //名前宣言したシーンへ
-       // SceneManager.LoadScene(NextSceneName);
-       //リザルトへ
-        Fade.Sen_Result();
+        // SceneManager.LoadScene(NextSceneName);
+        //リザルトへ
+        Fade.Sen_Result(TopNum);
+        //とりあえず一番の番号だけ表示
+        Debug.Log("いちばーん"+TopNum);
     }
 
     /// <summary>
@@ -814,4 +838,62 @@ public class Play_Entry : MonoBehaviour
         }
     }
 
+    public void Info()//配列を入れてるメソッド
+    {
+        //HPの変数
+        var Player1 = GameObject.Find(P1);
+        int PHp1 = Player1.GetComponent<PlayerMove>().PlayerHP;
+        var Player2 = GameObject.Find(P2);
+        int PHp2 = Player2.GetComponent<PlayerMove>().PlayerHP;
+        var Player3 = GameObject.Find(P3);
+        int PHp3 = Player3.GetComponent<PlayerMove>().PlayerHP;
+        var Player4 = GameObject.Find(P4);
+        int PHp4 = Player4.GetComponent<PlayerMove>().PlayerHP;
+
+        //Nameがプレイヤー番号、PHpがそのプレイヤーのHP
+        var src = new[]
+        {
+            new {Name = 1,HP = PHp1 },
+            new {Name = 2,HP = PHp2 },
+            new {Name = 3,HP = PHp3 },
+            new {Name = 4,HP = PHp4 },
+        };
+
+        //HPが降順
+        var orderByDescendingList = src.OrderByDescending(x => x.HP).ToList();
+
+        //多分HPが一番多いプレイヤーの番号が入っていると思う
+        TopNum = orderByDescendingList[0].Name;
+    }
+
+    public void LastPlayerNum()//最後に残ったプレイヤーを判別するメソッド
+    {
+        //シーン名の後にTopNumが入っていないのはきちんとそのシーンに移動しているか判別するため
+        //1Pの勝利判定
+        //SetActiveが1P以外Falseの場合1Pの勝利にしてシーン移動させる
+        if (Player[1].activeSelf == false && Player[2].activeSelf == false && Player[3].activeSelf == false)
+        {
+            //リザルトうんぬんの処理を後で追加
+            //リザルトに飛ばす
+            Scene_GO();
+        }
+        //2Pの勝利判定
+        //SetActiveが2P以外Falseの場合2Pの勝利にしてシーン移動させる
+        if (Player[0].activeSelf == false && Player[2].activeSelf == false && Player[3].activeSelf == false)
+        {
+            Scene_GO();
+        }
+        //3Pの勝利判定
+        //SetActiveが3P以外Falseの場合3Pの勝利にしてシーン移動させる
+        if (Player[0].activeSelf == false && Player[1].activeSelf == false && Player[3].activeSelf == false)
+        {
+            Scene_GO();
+        }
+        //4Pの勝利判定
+        //SetActiveが4P以外Falseの場合4Pの勝利にしてシーン移動させる
+        if (Player[0].activeSelf == false && Player[1].activeSelf == false && Player[2].activeSelf == false)
+        {
+            Scene_GO();
+        }
+    }
 }

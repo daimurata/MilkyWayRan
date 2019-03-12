@@ -16,10 +16,14 @@ public class Create : MonoBehaviour
     private int number_X,number_Y=41,number_Z;
     //ギミックOK
     static bool Gim_OK = false;
+
+    AudioSource audioSource;
+    public AudioClip Create_SE1;
     void Start()
     {
         //仮のステージ
-       // CreateObject();
+        // CreateObject();
+        audioSource = GetComponent<AudioSource>();
     }
 
    
@@ -41,6 +45,8 @@ public class Create : MonoBehaviour
             {
                 //生成
                 Instantiate(Obj[0], new Vector3(+X, 0, -Z), transform.rotation);
+                audioSource.PlayOneShot(Create_SE1);
+
                 Debug.Log("生成数："+CreateObj+"個");
             }
         }
