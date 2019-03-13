@@ -319,7 +319,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 10, z: 50}
+  m_Size: {x: 5, y: 10, z: 50}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &16816340
 Transform:
@@ -329,7 +329,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 16816338}
   m_LocalRotation: {x: -0, y: -0.5414729, z: -0, w: -0.84071827}
-  m_LocalPosition: {x: -8, y: 2.7, z: 13.8}
+  m_LocalPosition: {x: -8.5, y: 2.7, z: 14.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1043,6 +1043,10 @@ MonoBehaviour:
   P3: SD Player P3 shima(Clone)
   P4: SD Player P4 shima(Clone)
   TopNum: 0
+  PHP1: 0
+  PHP2: 0
+  PHP3: 0
+  PHP4: 0
   Entry_SE1: {fileID: 0}
 --- !u!114 &133766258
 MonoBehaviour:
@@ -1092,9 +1096,9 @@ MonoBehaviour:
   Eiseiobj: {fileID: 2699113293350353105, guid: 977a6f259ae79b54ab4a24b2059ffe20,
     type: 3}
   totalTime: 0
-  X: -14.9
-  Y: 13.5
-  Z: -19.4
+  X: -21.76
+  Y: 11.83
+  Z: -23.02
 --- !u!1 &169663436
 GameObject:
   m_ObjectHideFlags: 0
@@ -1123,7 +1127,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 10, z: 50}
+  m_Size: {x: 5, y: 10, z: 50}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &169663438
 Transform:
@@ -1133,7 +1137,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 169663436}
   m_LocalRotation: {x: -0, y: -0.9437942, z: -0, w: -0.33053356}
-  m_LocalPosition: {x: 15.5, y: 2.7, z: 5}
+  m_LocalPosition: {x: 17.4, y: 2.7, z: 6.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1220,6 +1224,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 738961431}
     m_Modifications:
+    - target: {fileID: 3050023874109629614, guid: b0605b4f5d3cf314fb866de50b1fae09,
+        type: 3}
+      propertyPath: m_Name
+      value: Damage
+      objectReference: {fileID: 0}
     - target: {fileID: 7223126417056960449, guid: b0605b4f5d3cf314fb866de50b1fae09,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1274,11 +1283,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3050023874109629614, guid: b0605b4f5d3cf314fb866de50b1fae09,
-        type: 3}
-      propertyPath: m_Name
-      value: Damage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0605b4f5d3cf314fb866de50b1fae09, type: 3}
@@ -1472,7 +1476,7 @@ MonoBehaviour:
   EnemyNum2: 2
   EnemyNum3: 3
   PlayerSpeed: 5
-  PlayerHP: 15
+  PlayerHP: 3
   TackleDamage: 5
   efect1: {fileID: 440152010}
   efect2: {fileID: 1041205316}
@@ -1593,7 +1597,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 10, z: 50}
+  m_Size: {x: 5, y: 10, z: 50}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &216249813
 Transform:
@@ -1637,7 +1641,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 10, z: 50}
+  m_Size: {x: 10, y: 10, z: 50}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &255528371
 Transform:
@@ -1647,7 +1651,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 255528369}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.81, y: 2.7, z: 0}
+  m_LocalPosition: {x: -21.9, y: 2.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1947,7 +1951,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 10, z: 50}
+  m_Size: {x: 5, y: 10, z: 50}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &298995802
 Transform:
@@ -1957,7 +1961,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 298995800}
   m_LocalRotation: {x: -0, y: -0.9999932, z: -0, w: -0.003694192}
-  m_LocalPosition: {x: 17.2, y: 2.7, z: 6.3}
+  m_LocalPosition: {x: 19.5, y: 2.7, z: 6.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2255,7 +2259,7 @@ MonoBehaviour:
   EnemyNum2: 3
   EnemyNum3: 4
   PlayerSpeed: 5
-  PlayerHP: 15
+  PlayerHP: 3
   TackleDamage: 5
   efect1: {fileID: 440152010}
   efect2: {fileID: 1041205316}
@@ -2883,7 +2887,7 @@ MonoBehaviour:
   EnemyNum2: 2
   EnemyNum3: 3
   PlayerSpeed: 5
-  PlayerHP: 15
+  PlayerHP: 3
   TackleDamage: 5
   efect1: {fileID: 440152010}
   efect2: {fileID: 1041205316}
@@ -2920,7 +2924,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 10, z: 50}
+  m_Size: {x: 5.37, y: 10, z: 50}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &596266429
 Transform:
@@ -2930,7 +2934,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 596266427}
   m_LocalRotation: {x: -0, y: -0.19685641, z: -0, w: 0.98043233}
-  m_LocalPosition: {x: -17.2, y: 2.7, z: -5.2}
+  m_LocalPosition: {x: -17.7, y: 2.7, z: -5.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -6376,7 +6380,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 10, z: 50}
+  m_Size: {x: 5, y: 10, z: 50}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1385487995
 Transform:
@@ -6386,7 +6390,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1385487993}
   m_LocalRotation: {x: -0, y: -0.22488125, z: -0, w: -0.97438616}
-  m_LocalPosition: {x: -13.3, y: 2.7, z: 10.3}
+  m_LocalPosition: {x: -14.6, y: 2.7, z: 10.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -7659,7 +7663,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 10, z: 50}
+  m_Size: {x: 5, y: 10, z: 50}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1675641056
 Transform:
@@ -7669,7 +7673,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1675641054}
   m_LocalRotation: {x: -0, y: -0.96782327, z: -0, w: 0.25163087}
-  m_LocalPosition: {x: 15.1, y: 2.7, z: -5.1}
+  m_LocalPosition: {x: 17.9, y: 2.7, z: -6.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -7777,7 +7781,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 10, z: 50}
+  m_Size: {x: 5, y: 10, z: 50}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1699796592
 Transform:
@@ -7821,7 +7825,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 10, z: 50}
+  m_Size: {x: 5, y: 10, z: 50}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1704153619
 Transform:
@@ -8455,7 +8459,7 @@ MonoBehaviour:
   EnemyNum2: 3
   EnemyNum3: 4
   PlayerSpeed: 5
-  PlayerHP: 15
+  PlayerHP: 3
   TackleDamage: 5
   efect1: {fileID: 440152010}
   efect2: {fileID: 1041205316}
@@ -9283,7 +9287,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 10, z: 50}
+  m_Size: {x: 5, y: 10, z: 50}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &2019630118
 Transform:
@@ -9293,7 +9297,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2019630116}
   m_LocalRotation: {x: -0, y: -0.5100434, z: -0, w: 0.86014867}
-  m_LocalPosition: {x: -4.7, y: 2.7, z: -15.1}
+  m_LocalPosition: {x: -6.2, y: 2.7, z: -17.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -9559,7 +9563,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 10, z: 50}
+  m_Size: {x: 5, y: 10, z: 50}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &2057681848
 Transform:
@@ -9569,7 +9573,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2057681846}
   m_LocalRotation: {x: -0, y: -0.8369474, z: -0, w: 0.5472834}
-  m_LocalPosition: {x: 8.7, y: 2.7, z: -14.2}
+  m_LocalPosition: {x: 9.8, y: 2.7, z: -16.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

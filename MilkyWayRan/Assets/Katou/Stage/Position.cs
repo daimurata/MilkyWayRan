@@ -42,11 +42,12 @@ public class Position : MonoBehaviour
         //←→に行くとき
         if (OK_GO[0])
         {
+            //他のログが表示の判別がつかないのでDebug.Log消します
             //今の座標にスピードをかける
             moveObj[0].transform.position += new Vector3(pos[0] * Speed, 0, 0);
-            Debug.Log("やじ←" + moveObj[0] + "移動");
+            //Debug.Log("やじ←" + moveObj[0] + "移動");
             moveObj[1].transform.position += new Vector3(pos[1] * Speed, 0, 0);
-            Debug.Log("やじ→" + moveObj[1] + "移動");
+            //Debug.Log("やじ→" + moveObj[1] + "移動");
             //目的場所を超えたら
             if (POS_1.x >= MAX[0] && POS_2.x <= MIN[1])
             {

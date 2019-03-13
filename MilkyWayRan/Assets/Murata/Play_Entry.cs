@@ -92,6 +92,11 @@ public class Play_Entry : MonoBehaviour
     //一番HPの多いプレイヤー番号を入れる変数
     public int TopNum;
 
+    public int PHP1;
+    public int PHP2;
+    public int PHP3;
+    public int PHP4;
+
     AudioSource audioSource;
     public AudioClip Entry_SE1;
     void Start()
@@ -399,7 +404,7 @@ public class Play_Entry : MonoBehaviour
         //4人参加
         if (OK_pl[0]==true&&OK_pl[1]==true&&OK_pl[2]==true&&OK_pl[3]==true)
         {
-            Debug.Log("全員が参加します");
+            //Debug.Log("全員が参加します");
             //ゲーム開始までのインターバル
             Start_Game();
         }else
@@ -545,12 +550,6 @@ public class Play_Entry : MonoBehaviour
         {
             //スターを表示
             Count_UI.gameObject.GetComponent<Image>().sprite = Nanbaers[0];
-            //攻撃許可します
-            Attak.Atc();
-            //移動許可します
-            PlayerMove.Mov_GO();
-            //ギミック許可します
-            Create.Gim_GOGO();
         }
         if (Count_Dow <= 1&&Count_Dow >= 0)
         {
@@ -560,6 +559,12 @@ public class Play_Entry : MonoBehaviour
         //カウントダウンが0になったら
         if (Count_Dow <= 0)
         {
+            //攻撃許可します
+            Attak.Atc();
+            //移動許可します
+            PlayerMove.Mov_GO();
+            //ギミック許可します
+            Create.Gim_GOGO();
             //非表示カウントダウン
             Count_UI.SetActive(false);
             //カウントダウンをやめる
@@ -864,14 +869,20 @@ public class Play_Entry : MonoBehaviour
 
         //多分HPが一番多いプレイヤーの番号が入っていると思う
         TopNum = orderByDescendingList[0].Name;
+
+        //HPのを入れれてる？
+        PHP1 = src[0].HP;
+        PHP2 = src[1].HP;
+        PHP3 = src[2].HP;
+        PHP4 = src[3].HP;
     }
 
     public void LastPlayerNum()//最後に残ったプレイヤーを判別するメソッド
     {
         //シーン名の後にTopNumが入っていないのはきちんとそのシーンに移動しているか判別するため
         //1Pの勝利判定
-        //SetActiveが1P以外Falseの場合1Pの勝利にしてシーン移動させる
-        if (Player[1].activeSelf == false && Player[2].activeSelf == false && Player[3].activeSelf == false)
+        //プレイヤーのHPを入れた変数が○○以外0ならシーンに飛ばすって感じだと思う
+        if (PHP2 <= 0 && PHP3 <= 0 && PHP4 <= 0)
         {
             //リザルトうんぬんの処理を後で追加
             //リザルトに飛ばす
@@ -879,19 +890,19 @@ public class Play_Entry : MonoBehaviour
         }
         //2Pの勝利判定
         //SetActiveが2P以外Falseの場合2Pの勝利にしてシーン移動させる
-        if (Player[0].activeSelf == false && Player[2].activeSelf == false && Player[3].activeSelf == false)
+        if (PHP1 <= 0 && PHP3 <= 0 && PHP4 <= 0)
         {
             Scene_GO();
         }
         //3Pの勝利判定
         //SetActiveが3P以外Falseの場合3Pの勝利にしてシーン移動させる
-        if (Player[0].activeSelf == false && Player[1].activeSelf == false && Player[3].activeSelf == false)
+        if (PHP1 <= 0 && PHP2 <= 0 && PHP4 <= 0)
         {
             Scene_GO();
         }
         //4Pの勝利判定
         //SetActiveが4P以外Falseの場合4Pの勝利にしてシーン移動させる
-        if (Player[0].activeSelf == false && Player[1].activeSelf == false && Player[2].activeSelf == false)
+        if (PHP1 <= 0 && PHP2 <= 0 && PHP3 <= 0)
         {
             Scene_GO();
         }

@@ -49,6 +49,8 @@ public class PlayerMove : MonoBehaviour
 
     //移動許可
     static bool Mov_OK = false;
+
+    bool move = true;
     // Use this for initialization
     void Start()
     {
@@ -68,61 +70,63 @@ public class PlayerMove : MonoBehaviour
     {
         Attak d1 = GetComponent<Attak>();
         Hisatu a1 = GetComponent<Hisatu>();
-
-        //ボタン確認
-
-        if (Input.GetButtonDown("Fire1_" + PlayerNum))
+        //moveがfalseだと動かないんじゃない
+        if(move == true)
         {
-            Debug.Log("Shot1_" + PlayerNum);
-            d1.Kaiten();
-            animator.SetBool("is_attack", true);
-            Invoke("AnimatorBoolis_attack", 0.5f);
-            _rigidBody.isKinematic = true;
-            Invoke("RigidBodyfalse", 1.0f);
-        }
-        if (Input.GetButtonDown("Fire2_" + PlayerNum))
-        {
-            Debug.Log("Shot2_" + PlayerNum);
-            d1.Syageki();
-            animator.SetBool("is_attack", true);
-            Invoke("AnimatorBoolis_attack", 0.5f);
-            _rigidBody.isKinematic = true;
-            Invoke("RigidBodyfalse", 1.0f);        
-        }
-        if (Input.GetButtonDown("Fire3_" + PlayerNum))
-        {
-            a1.hisatuskill();
-            Debug.Log("Shot3_" + PlayerNum);
-            animator.SetBool("is_attack", true);
-            Invoke("AnimatorBoolis_attack", 0.5f);
-        }
-        //移動許可待ち
-        if (Mov_OK)
-        {
-            //アナログスティックで動かせると思う
-             x = Input.GetAxis("Horizontal" + PlayerNum);//左右
-             y = Input.GetAxis("Vertical" + PlayerNum);//前後
-        }
+            //ボタン確認
+            if (Input.GetButtonDown("Fire1_" + PlayerNum))
+            {
+                Debug.Log("Shot1_" + PlayerNum);
+                d1.Kaiten();
+                animator.SetBool("is_attack", true);
+                Invoke("AnimatorBoolis_attack", 0.5f);
+                _rigidBody.isKinematic = true;
+                Invoke("RigidBodyfalse", 1.0f);
+            }
+            if (Input.GetButtonDown("Fire2_" + PlayerNum))
+            {
+                Debug.Log("Shot2_" + PlayerNum);
+                d1.Syageki();
+                animator.SetBool("is_attack", true);
+                Invoke("AnimatorBoolis_attack", 0.5f);
+                _rigidBody.isKinematic = true;
+                Invoke("RigidBodyfalse", 1.0f);
+            }
+            if (Input.GetButtonDown("Fire3_" + PlayerNum))
+            {
+                a1.hisatuskill();
+                Debug.Log("Shot3_" + PlayerNum);
+                animator.SetBool("is_attack", true);
+                Invoke("AnimatorBoolis_attack", 0.5f);
+            }
+            //移動許可待ち
+            if (Mov_OK)
+            {
+                //アナログスティックで動かせると思う
+                x = Input.GetAxis("Horizontal" + PlayerNum);//左右
+                y = Input.GetAxis("Vertical" + PlayerNum);//前後
+            }
 
 
-        //transform.Rotate(0, x, 0);//回転
-        //transform.position += y * transform.forward * PlayerSpeed * Time.deltaTime;//前後移動
+            //transform.Rotate(0, x, 0);//回転
+            //transform.position += y * transform.forward * PlayerSpeed * Time.deltaTime;//前後移動
 
-        var direction = new Vector3(x, 0, y);
+            var direction = new Vector3(x, 0, y);
 
-        if (x != 0 || y != 0)
-        {
-            //方向を向く
-            transform.localRotation = Quaternion.LookRotation(direction);
-            //方向に移動
-            transform.position += PlayerSpeed * direction * Time.deltaTime;
-            //_rigidBody.AddForce(direction * 1000);
-            animator.SetBool("is_go", true);
-        }
-        else
-        {
-            animator.SetBool("is_go", false);
-        }
+            if (x != 0 || y != 0)
+            {
+                //方向を向く
+                transform.localRotation = Quaternion.LookRotation(direction);
+                //方向に移動
+                transform.position += PlayerSpeed * direction * Time.deltaTime;
+                //_rigidBody.AddForce(direction * 1000);
+                animator.SetBool("is_go", true);
+            }
+            else
+            {
+                animator.SetBool("is_go", false);
+            }
+        }    
     }
     public void HP(int Number, int amount)
     {
@@ -139,12 +143,12 @@ public class PlayerMove : MonoBehaviour
             if (PlayerHP <= 0)
             {
                 //死んだ時の音
-                //audioSource.PlayOneShot(Player_SE4);
+                audioSource.PlayOneShot(Player_SE4);
                 //HP残量の確認をするためにSetActiveに変更
-                this.gameObject.SetActive(false);
+                //this.gameObject.SetActive(false);
                 Debug.Log("プレイヤー" + "死亡");
                 //多分ここに死んだ時のアニメーション追加
-
+                move = false;//動きとめる
             }
             //○○秒後trueにする
             Invoke("isCollisionfalse", invincible);
@@ -317,7 +321,5 @@ public class PlayerMove : MonoBehaviour
         //移動OK
         Mov_OK = true;
     }
-
-    
 }
  

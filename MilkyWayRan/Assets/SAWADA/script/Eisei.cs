@@ -36,7 +36,7 @@ public class Eisei : MonoBehaviour
         if (one)
         {
             //ここで衛星が出てくる時間を確認する
-            Debug.Log(eiseiattakInterval);
+            //Debug.Log(eiseiattakInterval);
             //タイム処理
             totalTime += Time.deltaTime;
             //衛星が出てくる時間をトータルタイムが上回ったら
